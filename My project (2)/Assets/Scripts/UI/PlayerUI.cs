@@ -31,9 +31,9 @@ public class PlayerUI : MonoBehaviour
     public List<GameObject> SkillsUI;
     public List<AbilityObject> abilityObjects;
     // all skills cooldown scripts
-    private List<AbilityCooldown> _skillsCooldown = new List<AbilityCooldown>();
+    private List<AbilityCooldown> _skillsCooldown;
     // current style skills cooldown scripts
-    private List<AbilityCooldown> _currentSkillsCoolDown = new List<AbilityCooldown>();
+    private List<AbilityCooldown> _currentSkillsCoolDown;
 
     private void Awake()
     {
@@ -46,43 +46,56 @@ public class PlayerUI : MonoBehaviour
         abilitySystem = UIManager.Instance.abilitySystem;
         statusSystem = UIManager.Instance.statusSystem;
 
+        // 全部的可使用技能
         Skills = abilitySystem.AbilityObjectList;
 
-        healthBar.Setup(statusSystem.healthSystem);
-        for (int i = 0; i < 4; i++)
+        // 複製一份 scriptable objs
+        for (int i = 0; i < abilitySystem.AbilityObjectList.Count; i++)
         {
-
+            abilityObjects.Add(abilitySystem.AbilityObjectList[i].GetComponent<Spell>().spellObj);
         }
-    }
 
-    public void InitOnFirst()
-    {
-        
+        healthBar.Setup(statusSystem.healthSystem);
+
+        InitPlayerUI();
     }
 
     public void InitPlayerUI()
     {
+        _skillsCooldown = new List<AbilityCooldown>();
+        _currentSkillsCoolDown = new List<AbilityCooldown>(); 
+        CoolDowntextMeshPros = new List<TextMeshProUGUI>();
+        Textures = new List<Texture2D>();
+        Icons = new List<Image>();
+
+
         for (int i = 0; i < Skills.Count; i++)
         {
-            _skillsCooldown[i] = Skills[i].GetComponent<AbilityCooldown>();
+            _skillsCooldown.Add(Skills[i].GetComponent<AbilityCooldown>());
         }
         for (int i = 0; i < 4; i++)
         {
             SkillsUI[i] = Skills[i];
-            _currentSkillsCoolDown[i] = _skillsCooldown[i];
-            CoolDowntextMeshPros[i] = SkillsUI[i].GetComponent<TextMeshProUGUI>();
-            _coolDownTexts[i].text = CoolDowntextMeshPros[i].text;
+
+            _currentSkillsCoolDown.Add(_skillsCooldown[i]);
+
+            CoolDowntextMeshPros.Add(SkillsUI[i].GetComponent<TextMeshProUGUI>());
+            //_coolDownTexts[i].text = CoolDowntextMeshPros[i].text;
+            
         }
 
         for (int i = 0; i < Skills.Count; i++)
         {
-            Textures[i] = abilityObjects[i].texture;
+            //Textures[i] = abilityObjects[i].texture;
+            Textures.Add(abilityObjects[i].texture);
         }
 
         for (int i = 0; i < 4; i++)
         {
-            _iconMasks[i] = abilityObjects[i].darkMask;
+            //_iconMasks[i] = abilityObjects[i].darkMask;
+            
         }
+        TextureToIcon();
     }
 
     private void TextureToIcon()
@@ -90,9 +103,9 @@ public class PlayerUI : MonoBehaviour
         for (int i = 0; i < 4; i++)
         {
             Sprite sprite = Sprite.Create(Textures[i], new Rect(0, 0, Textures[i].width, Textures[i].height), Vector2.zero);
+            Icons.Add(_iconMasks[i]);
             Icons[i].sprite = sprite;
         }
-        
     }
 }
 
