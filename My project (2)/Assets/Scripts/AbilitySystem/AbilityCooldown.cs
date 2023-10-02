@@ -6,23 +6,33 @@ using TMPro;
 
 public class AbilityCooldown : MonoBehaviour
 {
+    // 通知冷卻完成的事件
     public event System.Action OnAbilityReady;
 
     // Scriptable Object
     [SerializeField, ReadOnly] public AbilityObject abilityObject;
 
+    // 總冷卻時間
     [SerializeField] private float _coolDownDuration;
+    // 倒數的冷卻時間
     [SerializeField] public float CoolDownTimeLeft;
     [SerializeField] private float _nextReadyTime;
 
     public bool IsOnCoolDown;
 
+    /// <summary>
+    /// catch the AbilityObject(scriptable obj)
+    /// set the cool down flag false
+    /// </summary>
     private void Awake()
     {
         abilityObject = GetComponent<Spell>().spellObj;
         IsOnCoolDown = false;
     }
 
+    /// <summary>
+    /// initialize AbilityObject
+    /// </summary>
     private void Start()
     {
         Initialize(abilityObject);
@@ -30,9 +40,8 @@ public class AbilityCooldown : MonoBehaviour
     }
 
     /// <summary>
-    /// Initialize Ability icon、texture on UI
+    /// Initialize Ability cooldown time duration
     /// </summary>
-    /// <param name="abilityObject"></param>
     public void Initialize(AbilityObject abilityObject)
     {
         _coolDownDuration = abilityObject.Cooldown;

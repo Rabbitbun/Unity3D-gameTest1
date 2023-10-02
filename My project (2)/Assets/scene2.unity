@@ -2612,7 +2612,11 @@ MonoBehaviour:
   statusSystem: {fileID: 0}
   Textures: []
   Icons: []
-  _iconMasks: []
+  _iconMasks:
+  - {fileID: 513293375}
+  - {fileID: 222687012}
+  - {fileID: 122254058}
+  - {fileID: 1299692294}
   _coolDownTexts: []
   CoolDowntextMeshPros: []
   healthBar: {fileID: 1426050873}

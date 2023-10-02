@@ -11,7 +11,7 @@ public class AbilitySystem : MonoBehaviour
 {
     public event System.EventHandler<StatusEventArgs> StatusChanging;
 
-    public ObjectPool<GameObject> AbilityPool;
+    //public ObjectPool<GameObject> AbilityPool;
     
     // 法術物件變數
     [HideInInspector] public Spell spell;
@@ -47,20 +47,30 @@ public class AbilitySystem : MonoBehaviour
         }
         currentAbilityList = StyleAbilityDict[0];
 
-        AbilityObjectPool.Instance.LoadToPool(StyleAbilityDict);
+        //AbilityObjectPool.Instance.LoadToPool(StyleAbilityDict);
+        AbilityObjectPool.Instance.ObjectList = AbilityObjectList;
+        for (int i = 0; i < AbilityObjectList.Count; i++)
+        {
+            AbilityObjectPool.Instance.LoadToPool(AbilityObjectList[i]);
+        }
     }
     private void Start()
     {
         statusSystem = GetComponent<StatusSystem>();
-        
+
+        int cnt = AbilityObjectPool.Instance._objectPools.Count;
+        Debug.Log("AbilityObjectPool Cnt: " + cnt);
+
         UIManager.Instance.InitAbilityOnUI(currentAbilityList, currentUseAbilityIndex);
     }
 
     private void CastSpell(int index)
     {
-        //Instantiate(this.AbilityObjs[index], _castPoint.position, _castPoint.rotation);
-        //CostMana(spell.spellObj.ManaCost);
-        Instantiate(currentAbilityList[index], _castPoint.position, _castPoint.rotation);
+        //Instantiate(currentAbilityList[index], _castPoint.position, _castPoint.rotation);
+        //ObjectPool<GameObject> objectPool = AbilityObjectPool.Instance._objectPools[index];
+        //GameObject obj = objectPool.Get();
+        //objectPool.Release(obj);
+        Debug.Log(AbilityObjectPool.Instance.Check1());
         CostMana(spell.spellObj.ManaCost);
     }
 
@@ -72,7 +82,6 @@ public class AbilitySystem : MonoBehaviour
     private bool HasEnoughMana(int index)
     {
         spell = currentAbilityList[index].GetComponent<Spell>();
-        //print("current Mana: " + statusSystem.currentMana);
         return statusSystem.currentMana - spell.spellObj.ManaCost >= 0f;
     }
 
@@ -86,13 +95,17 @@ public class AbilitySystem : MonoBehaviour
 
         if (context.performed)
         {
+            // index : 0 1 2 3
             int index = int.Parse(context.control.name) - 1;
             // send message to UIManager, so that it can deal with UI, need to check cooldown and mana
             if (!uiMamager.IsSkillOnCooldown(index) && HasEnoughMana(index))
             {
+                // cast the spell
                 CastSpell(int.Parse(context.control.name) - 1);
+
                 switch (context.control.name)
                 {
+                    // change UI
                     case "1":
                         uiMamager.OnAbilityButtonPressed(1);
                         print("Skill_1");
@@ -110,6 +123,7 @@ public class AbilitySystem : MonoBehaviour
                         print("Skill_4");
                         break;
                 }
+
             }
             else
             {
