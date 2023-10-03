@@ -16,9 +16,9 @@ public class PlayerUI : MonoBehaviour
 
 
     // 技能圖示Textures
-    [SerializeField] public List<Texture2D> Textures;
+    [SerializeField, ReadOnly] public List<Texture2D> Textures;
     // 實際技能圖示
-    [SerializeField] public List<Image> Icons;
+    [SerializeField, ReadOnly] public List<Image> Icons;
     // 技能圖示遮罩
     [SerializeField] private List<Image> _iconMasks;
     // 冷卻時間顯示
@@ -28,16 +28,18 @@ public class PlayerUI : MonoBehaviour
     // 生命條顯示
     public HealthBar healthBar;
 
+    public List<GameObject> SkillUiBtn;
+
     // 全部可使用的技能
     public List<GameObject> Skills;
     // 目前要顯示的技能 (4個)
-    public List<GameObject> SkillsUI;
+    public List<GameObject> CurrentSkills;
     // 全部可使用的技能的scriptableObject
     public List<AbilityObject> abilityObjects;
     // all skills cooldown scripts
     [SerializeField] private List<AbilityCooldown> _skillsCooldownScript;
     // 當前可使用技能的 skills cooldown scripts
-    public List<AbilityCooldown> currentSkillsCoolDown;
+    public List<AbilityCooldown> currentSkillsCoolDownScript;
 
     private void Awake()
     {
@@ -46,9 +48,10 @@ public class PlayerUI : MonoBehaviour
 
     private void Start()
     {
+        // 先抓取玩家的system
         abilitySystem = UIManager.Instance.abilitySystem;
         statusSystem = UIManager.Instance.statusSystem;
-
+        // 複製一份技能 gameObject
         Skills = abilitySystem.AbilityObjectList;
 
         // 複製一份 scriptable objs
@@ -65,8 +68,9 @@ public class PlayerUI : MonoBehaviour
     public void InitPlayerUI()
     {
         _skillsCooldownScript = new List<AbilityCooldown>();
-        currentSkillsCoolDown = new List<AbilityCooldown>(); 
-        //CoolDowntextMeshPros = new List<TextMeshProUGUI>();
+        currentSkillsCoolDownScript = new List<AbilityCooldown>();
+        _coolDownTexts = new List<Text>();
+        CoolDowntextMeshPros = new List<TextMeshProUGUI>();
         Textures = new List<Texture2D>();
         Icons = new List<Image>();
 
@@ -76,23 +80,26 @@ public class PlayerUI : MonoBehaviour
             // 填充冷卻腳本
             _skillsCooldownScript.Add(Skills[i].GetComponent<AbilityCooldown>());
             // 初始化冷卻腳本
-            _skillsCooldownScript[i].Initialize(abilityObjects[i]);
-            _skillsCooldownScript[i].abilityObject = abilityObjects[i];
+            _skillsCooldownScript[i].Initialize();
+            // 初始化texture2d
             Textures.Add(abilityObjects[i].texture);
         }
-
+        //  當前會顯示的UI
         for (int i = 0; i < 4; i++)
         {
-            SkillsUI[i] = Skills[i];
+            //CurrentSkills[i] = Skills[i];
+            CurrentSkills.Add(Skills[i]);
 
-            currentSkillsCoolDown.Add(_skillsCooldownScript[i]);
+            currentSkillsCoolDownScript.Add(_skillsCooldownScript[i]);
 
-            //CoolDowntextMeshPros.Add(SkillsUI[i].GetComponent<TextMeshProUGUI>());
+            CoolDowntextMeshPros.Add(SkillUiBtn[i].GetComponentInChildren<TextMeshProUGUI>());
+            CoolDowntextMeshPros[i].text = currentSkillsCoolDownScript[i].CoolDownTimeLeft.ToString();
+            //CoolDowntextMeshPros[i].enabled = false;
             //_coolDownTexts[i].text = CoolDowntextMeshPros[i].text;
-            
         }
         TextureToIcon();
     }
+
 
     private void TextureToIcon()
     {

@@ -5329,15 +5329,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b3555f6cc4236364b9ebeb5d58789e05, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  abilityObject: {fileID: 0}
-  texture: {fileID: 0}
-  icon: {fileID: 0}
-  iconMask: {fileID: 0}
-  coolDownText: {fileID: 0}
-  coolDowntextMeshPro: {fileID: 0}
-  coolDownDuration: 0
-  coolDownTimeLeft: 0
-  nextReadyTime: 0
+  abilityObject: {fileID: 11400000, guid: 38a3b1b7846d61849b3298b37fa32fde, type: 2}
+  _coolDownDuration: 2
+  CoolDownTimeLeft: 0
+  _nextReadyTime: 0
+  IsOnCoolDown: 0
 --- !u!1 &150962
 GameObject:
   m_ObjectHideFlags: 0

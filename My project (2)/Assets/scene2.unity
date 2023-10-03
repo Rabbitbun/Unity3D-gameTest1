@@ -2618,21 +2618,18 @@ MonoBehaviour:
   - {fileID: 122254058}
   - {fileID: 1299692294}
   _coolDownTexts: []
-  CoolDowntextMeshPros:
-  - {fileID: 1288466313}
-  - {fileID: 619766184}
-  - {fileID: 1810038242}
-  - {fileID: 1042959794}
+  CoolDowntextMeshPros: []
   healthBar: {fileID: 1426050873}
-  Skills: []
-  SkillsUI:
+  SkillUiBtn:
   - {fileID: 216659339}
   - {fileID: 175502378}
   - {fileID: 1675685943}
   - {fileID: 806814625}
+  Skills: []
+  CurrentSkills: []
   abilityObjects: []
   _skillsCooldownScript: []
-  currentSkillsCoolDown: []
+  currentSkillsCoolDownScript: []
 --- !u!1001 &451969218
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -9423,8 +9420,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8b779467dee4c294dbc4431f79f00b68, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _initialPoolSize: 5
   ObjectList: []
+  GetIndex: 0
+  ReleaseIndex: 0
 --- !u!4 &2007064436 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 400000, guid: be7e78284823c324f8c967401fb2d544, type: 3}

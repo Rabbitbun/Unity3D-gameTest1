@@ -75,37 +75,35 @@ public class UIManager : MonoBehaviour, IuseAbility
     {
         // call cool down script
 
-        //switch (index)
-        //{
-        //    case 1:
-        //        Debug.Log("Pressed Ability_1 button.");
-        //        //_skillsCooldown[0].ButtonTriggered();
-        //        //_currentSkillsCoolDown[0].ButtonTriggered();
-        //        playerUI.currentSkillsCoolDown[0].ButtonTriggered();
-        //        break;
+        switch (index)
+        {
+            case 1:
+                Debug.Log("Pressed Ability_1 button.");
+                playerUI.currentSkillsCoolDownScript[0].ButtonTriggered();
+                break;
 
-        //    case 2:
-        //        Debug.Log("Pressed Ability_2 button.");
-        //        //_skillsCooldown[1].ButtonTriggered();
-        //        //_currentSkillsCoolDown[0].ButtonTriggered();
-        //        playerUI.currentSkillsCoolDown[1].ButtonTriggered();
-        //        break;
-        //    case 3:
-        //        Debug.Log("Pressed Ability_3 button.");
-        //        //_skillsCooldown[2].ButtonTriggered();
-        //        //_currentSkillsCoolDown[0].ButtonTriggered();
-        //        playerUI.currentSkillsCoolDown[2].ButtonTriggered();
-        //        break;
-        //    case 4:
-        //        Debug.Log("Pressed Ability_4 button.");
-        //        //_skillsCooldown[3].ButtonTriggered();
-        //        //_currentSkillsCoolDown[0].ButtonTriggered();
-        //        playerUI.currentSkillsCoolDown[3].ButtonTriggered();
-        //        break;
-        //    default:
-        //        Debug.Log("Pressed invalid button.");
-        //        break;
-        //}
+            case 2:
+                Debug.Log("Pressed Ability_2 button.");
+                //_skillsCooldown[1].ButtonTriggered();
+                //_currentSkillsCoolDown[0].ButtonTriggered();
+                playerUI.currentSkillsCoolDownScript[1].ButtonTriggered();
+                break;
+            case 3:
+                Debug.Log("Pressed Ability_3 button.");
+                //_skillsCooldown[2].ButtonTriggered();
+                //_currentSkillsCoolDown[0].ButtonTriggered();
+                playerUI.currentSkillsCoolDownScript[2].ButtonTriggered();
+                break;
+            case 4:
+                Debug.Log("Pressed Ability_4 button.");
+                //_skillsCooldown[3].ButtonTriggered();
+                //_currentSkillsCoolDown[0].ButtonTriggered();
+                playerUI.currentSkillsCoolDownScript[3].ButtonTriggered();
+                break;
+            default:
+                Debug.Log("Pressed invalid button.");
+                break;
+        }
 
     }
 

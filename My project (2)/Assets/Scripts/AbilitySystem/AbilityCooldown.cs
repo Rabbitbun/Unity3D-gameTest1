@@ -18,15 +18,15 @@ public class AbilityCooldown : MonoBehaviour
     [SerializeField] public float CoolDownTimeLeft;
     [SerializeField] private float _nextReadyTime;
 
+    // 技能是否在冷卻中
     public bool IsOnCoolDown;
 
     /// <summary>
     /// catch the AbilityObject(scriptable obj)
-    /// set the cool down flag false
+    /// set the cool down flag to false
     /// </summary>
     private void Awake()
     {
-        abilityObject = GetComponent<Spell>().spellObj;
         IsOnCoolDown = false;
     }
 
@@ -35,17 +35,22 @@ public class AbilityCooldown : MonoBehaviour
     /// </summary>
     private void Start()
     {
-        Initialize(abilityObject);
+        //Initialize();
         AbilityReady();
     }
 
     /// <summary>
     /// Initialize Ability cooldown time duration
     /// </summary>
-    public void Initialize(AbilityObject abilityObject)
+    public void Initialize()
     {
+        abilityObject = GetComponent<Spell>().spellObj;
         _coolDownDuration = abilityObject.Cooldown;
     }
+    //public void Initialize(AbilityObject abilityObject)
+    //{
+    //    _coolDownDuration = abilityObject.Cooldown;
+    //}
 
     public void AbilityReady()
     {
@@ -70,6 +75,7 @@ public class AbilityCooldown : MonoBehaviour
         //iconMask.enabled = true;
         //coolDowntextMeshPro.enabled = true;
         IsOnCoolDown = true;
+        Debug.Log("Active? " + gameObject.activeInHierarchy);
         StartCoroutine("CooldownCoroutine");
     }
 }

@@ -56,6 +56,11 @@ public class BaseScript : MonoBehaviour
         yield return new WaitForSeconds(StopTime + 2.0f);
 
         GameObject.Destroy(gameObject);
+
+        //string objName = this.gameObject.name.Replace("(Clone)", "");
+        //int releaseIndex = AbilityObjectPool.Instance.ObjectList.FindIndex(obj => obj.name == objName);
+        ////int releaseIndex = AbilityObjectPool.Instance.ObjectList.IndexOf(this.gameObject);
+        //AbilityObjectPool.Instance._objectPools[releaseIndex].Release(this.gameObject);
     }
 
     private void StartParticleSystems()

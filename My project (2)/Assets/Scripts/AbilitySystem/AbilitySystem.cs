@@ -47,30 +47,30 @@ public class AbilitySystem : MonoBehaviour
         }
         currentAbilityList = StyleAbilityDict[0];
 
-        //AbilityObjectPool.Instance.LoadToPool(StyleAbilityDict);
-        AbilityObjectPool.Instance.ObjectList = AbilityObjectList;
-        for (int i = 0; i < AbilityObjectList.Count; i++)
-        {
-            AbilityObjectPool.Instance.LoadToPool(AbilityObjectList[i]);
-        }
     }
     private void Start()
     {
         statusSystem = GetComponent<StatusSystem>();
 
-        int cnt = AbilityObjectPool.Instance._objectPools.Count;
-        Debug.Log("AbilityObjectPool Cnt: " + cnt);
+        // 複製一份給物件池，讓他初始化
+        //AbilityObjectPool.Instance.ObjectList = AbilityObjectList;
+        //AbilityObjectPool.Instance.InitPool();
 
         UIManager.Instance.InitAbilityOnUI(currentAbilityList, currentUseAbilityIndex);
     }
 
     private void CastSpell(int index)
     {
-        //Instantiate(currentAbilityList[index], _castPoint.position, _castPoint.rotation);
+        Instantiate(currentAbilityList[index], _castPoint.position, _castPoint.rotation);
+
+        // 技能物件池的使用
+        //AbilityObjectPool.Instance.GetIndex = index;
         //ObjectPool<GameObject> objectPool = AbilityObjectPool.Instance._objectPools[index];
         //GameObject obj = objectPool.Get();
+        //obj.transform.position = _castPoint.position;
+        //obj.transform.rotation = _castPoint.rotation;
         //objectPool.Release(obj);
-        Debug.Log(AbilityObjectPool.Instance.Check1());
+
         CostMana(spell.spellObj.ManaCost);
     }
 
@@ -86,7 +86,7 @@ public class AbilitySystem : MonoBehaviour
     }
 
     /// <summary>
-    /// catch input to send what ability i use
+    /// catch input to send what ability be used
     /// </summary>
     private void UseAbility(InputAction.CallbackContext context)
     {
@@ -108,19 +108,19 @@ public class AbilitySystem : MonoBehaviour
                     // change UI
                     case "1":
                         uiMamager.OnAbilityButtonPressed(1);
-                        print("Skill_1");
+                        print("技能槽位1被施放了!");
                         break;
                     case "2":
                         uiMamager.OnAbilityButtonPressed(2);
-                        print("Skill_2");
+                        print("技能槽位2被施放了!");
                         break;
                     case "3":
                         uiMamager.OnAbilityButtonPressed(3);
-                        print("Skill_3");
+                        print("技能槽位3被施放了!");
                         break;
                     case "4":
                         uiMamager.OnAbilityButtonPressed(4);
-                        print("Skill_4");
+                        print("技能槽位4被施放了!");
                         break;
                 }
 
