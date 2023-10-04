@@ -23,7 +23,7 @@ public class AbilitySystem : MonoBehaviour
 
     public Dictionary<int, List<GameObject>> StyleAbilityDict = new Dictionary<int, List<GameObject>>();
 
-    int currentUseAbilityIndex;
+    int currentStyleIndex;
 
     [SerializeField] private Transform _castPoint;
 
@@ -56,7 +56,7 @@ public class AbilitySystem : MonoBehaviour
         //AbilityObjectPool.Instance.ObjectList = AbilityObjectList;
         //AbilityObjectPool.Instance.InitPool();
 
-        UIManager.Instance.InitAbilityOnUI(currentAbilityList, currentUseAbilityIndex);
+        //UIManager.Instance.InitAbilityOnUI(currentAbilityList, currentStyleIndex);
     }
 
     private void CastSpell(int index)
@@ -98,7 +98,7 @@ public class AbilitySystem : MonoBehaviour
             // index : 0 1 2 3
             int index = int.Parse(context.control.name) - 1;
             // send message to UIManager, so that it can deal with UI, need to check cooldown and mana
-            if (!uiMamager.IsSkillOnCooldown(index) && HasEnoughMana(index))
+            if (!uiMamager.playerUI.IsSkillOnCooldown(index) && HasEnoughMana(index))
             {
                 // cast the spell
                 CastSpell(int.Parse(context.control.name) - 1);
@@ -135,14 +135,14 @@ public class AbilitySystem : MonoBehaviour
     void SwitchStyle(InputAction.CallbackContext context)
     {
         // 0 1 2 3 
-        currentUseAbilityIndex = ++currentUseAbilityIndex % 4;
+        currentStyleIndex = ++currentStyleIndex % 4;
 
         // currentAbilityList.Clear();
-        for (int i = currentUseAbilityIndex * 4, j = 0; i < currentUseAbilityIndex * 4 + 4; i++, j++)
+        for (int i = currentStyleIndex * 4, j = 0; i < currentStyleIndex * 4 + 4; i++, j++)
         {
             currentAbilityList[j] = AbilityObjectList[i];
         }
-        UIManager.Instance.InitAbilityOnUI(currentAbilityList, currentUseAbilityIndex);
+        UIManager.Instance.InitAbilityOnUI(currentAbilityList, currentStyleIndex);
 
     }
     void CostMana(float costAmount)
