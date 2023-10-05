@@ -3585,7 +3585,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!114 &541042367
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -9615,9 +9615,9 @@ MonoBehaviour:
   spell: {fileID: 0}
   AbilityObjectList:
   - {fileID: 121802, guid: dd42c819b85cc2f42a6f67662b5f2a67, type: 3}
-  - {fileID: 121802, guid: dd42c819b85cc2f42a6f67662b5f2a67, type: 3}
-  - {fileID: 121802, guid: dd42c819b85cc2f42a6f67662b5f2a67, type: 3}
-  - {fileID: 121802, guid: dd42c819b85cc2f42a6f67662b5f2a67, type: 3}
+  - {fileID: 141530, guid: 78c829550241fbd4ebc7adfc841c4c6f, type: 3}
+  - {fileID: 121802, guid: 3b69481d0a532ad40aa2ff379234d69c, type: 3}
+  - {fileID: 1000013169864706, guid: 121cc583daca9f94cb362e44a8ca8e52, type: 3}
   - {fileID: 141530, guid: 78c829550241fbd4ebc7adfc841c4c6f, type: 3}
   - {fileID: 141530, guid: 78c829550241fbd4ebc7adfc841c4c6f, type: 3}
   - {fileID: 141530, guid: 78c829550241fbd4ebc7adfc841c4c6f, type: 3}
