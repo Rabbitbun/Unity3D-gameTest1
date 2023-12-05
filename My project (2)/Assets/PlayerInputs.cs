@@ -109,7 +109,7 @@ public partial class @PlayerInputs : IInputActionCollection2, IDisposable
                     ""initialStateCheck"": false
                 },
                 {
-                    ""name"": ""ESCmenu"",
+                    ""name"": ""Esc"",
                     ""type"": ""Button"",
                     ""id"": ""959fd42b-e2c8-4583-8686-999fd3750f69"",
                     ""expectedControlType"": ""Button"",
@@ -465,7 +465,7 @@ public partial class @PlayerInputs : IInputActionCollection2, IDisposable
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": ""Keyboard&Mouse"",
-                    ""action"": ""ESCmenu"",
+                    ""action"": ""Esc"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 },
@@ -557,7 +557,7 @@ public partial class @PlayerInputs : IInputActionCollection2, IDisposable
         m_Player_Jump = m_Player.FindAction("Jump", throwIfNotFound: true);
         m_Player_UseAbility = m_Player.FindAction("UseAbility", throwIfNotFound: true);
         m_Player_SwitchAbility = m_Player.FindAction("SwitchAbility", throwIfNotFound: true);
-        m_Player_ESCmenu = m_Player.FindAction("ESCmenu", throwIfNotFound: true);
+        m_Player_Esc = m_Player.FindAction("Esc", throwIfNotFound: true);
         m_Player_SwitchChoose = m_Player.FindAction("SwitchChoose", throwIfNotFound: true);
     }
 
@@ -627,7 +627,7 @@ public partial class @PlayerInputs : IInputActionCollection2, IDisposable
     private readonly InputAction m_Player_Jump;
     private readonly InputAction m_Player_UseAbility;
     private readonly InputAction m_Player_SwitchAbility;
-    private readonly InputAction m_Player_ESCmenu;
+    private readonly InputAction m_Player_Esc;
     private readonly InputAction m_Player_SwitchChoose;
     public struct PlayerActions
     {
@@ -642,7 +642,7 @@ public partial class @PlayerInputs : IInputActionCollection2, IDisposable
         public InputAction @Jump => m_Wrapper.m_Player_Jump;
         public InputAction @UseAbility => m_Wrapper.m_Player_UseAbility;
         public InputAction @SwitchAbility => m_Wrapper.m_Player_SwitchAbility;
-        public InputAction @ESCmenu => m_Wrapper.m_Player_ESCmenu;
+        public InputAction @Esc => m_Wrapper.m_Player_Esc;
         public InputAction @SwitchChoose => m_Wrapper.m_Player_SwitchChoose;
         public InputActionMap Get() { return m_Wrapper.m_Player; }
         public void Enable() { Get().Enable(); }
@@ -680,9 +680,9 @@ public partial class @PlayerInputs : IInputActionCollection2, IDisposable
                 @SwitchAbility.started -= m_Wrapper.m_PlayerActionsCallbackInterface.OnSwitchAbility;
                 @SwitchAbility.performed -= m_Wrapper.m_PlayerActionsCallbackInterface.OnSwitchAbility;
                 @SwitchAbility.canceled -= m_Wrapper.m_PlayerActionsCallbackInterface.OnSwitchAbility;
-                @ESCmenu.started -= m_Wrapper.m_PlayerActionsCallbackInterface.OnESCmenu;
-                @ESCmenu.performed -= m_Wrapper.m_PlayerActionsCallbackInterface.OnESCmenu;
-                @ESCmenu.canceled -= m_Wrapper.m_PlayerActionsCallbackInterface.OnESCmenu;
+                @Esc.started -= m_Wrapper.m_PlayerActionsCallbackInterface.OnEsc;
+                @Esc.performed -= m_Wrapper.m_PlayerActionsCallbackInterface.OnEsc;
+                @Esc.canceled -= m_Wrapper.m_PlayerActionsCallbackInterface.OnEsc;
                 @SwitchChoose.started -= m_Wrapper.m_PlayerActionsCallbackInterface.OnSwitchChoose;
                 @SwitchChoose.performed -= m_Wrapper.m_PlayerActionsCallbackInterface.OnSwitchChoose;
                 @SwitchChoose.canceled -= m_Wrapper.m_PlayerActionsCallbackInterface.OnSwitchChoose;
@@ -717,9 +717,9 @@ public partial class @PlayerInputs : IInputActionCollection2, IDisposable
                 @SwitchAbility.started += instance.OnSwitchAbility;
                 @SwitchAbility.performed += instance.OnSwitchAbility;
                 @SwitchAbility.canceled += instance.OnSwitchAbility;
-                @ESCmenu.started += instance.OnESCmenu;
-                @ESCmenu.performed += instance.OnESCmenu;
-                @ESCmenu.canceled += instance.OnESCmenu;
+                @Esc.started += instance.OnEsc;
+                @Esc.performed += instance.OnEsc;
+                @Esc.canceled += instance.OnEsc;
                 @SwitchChoose.started += instance.OnSwitchChoose;
                 @SwitchChoose.performed += instance.OnSwitchChoose;
                 @SwitchChoose.canceled += instance.OnSwitchChoose;
@@ -783,7 +783,7 @@ public partial class @PlayerInputs : IInputActionCollection2, IDisposable
         void OnJump(InputAction.CallbackContext context);
         void OnUseAbility(InputAction.CallbackContext context);
         void OnSwitchAbility(InputAction.CallbackContext context);
-        void OnESCmenu(InputAction.CallbackContext context);
+        void OnEsc(InputAction.CallbackContext context);
         void OnSwitchChoose(InputAction.CallbackContext context);
     }
 }

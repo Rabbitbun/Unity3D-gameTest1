@@ -11,6 +11,10 @@ public class GameEventManager : MonoBehaviour
         Cursor.visible = false;
         Cursor.lockState = CursorLockMode.Locked;
     }
+    
+    private void Update()
+    {
+    }
 
     /// <summary>
     /// when pause the game, mouse will unlock
@@ -24,6 +28,9 @@ public class GameEventManager : MonoBehaviour
             Time.timeScale = 1;
             Cursor.visible = false;
             Cursor.lockState = CursorLockMode.Locked;
+
+            
+
             print("set to continue.");
         }
         else if (IsgamePaused == false)

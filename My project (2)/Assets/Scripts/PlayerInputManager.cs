@@ -3,6 +3,8 @@ using UnityEngine.InputSystem;
 
 public class PlayerInputManager : MonoBehaviour
 {
+    public static PlayerInputManager Instance;
+
     public Vector2 move { get; private set; }
     public Vector2 look { get; private set; }
     public bool jump { get; private set; }
@@ -11,6 +13,8 @@ public class PlayerInputManager : MonoBehaviour
     public bool rightClick { get; private set; }
     public bool leftClick { get; private set; }
     public bool tabClick { get; private set; }
+
+    public bool EscPressed { get; private set; }
 
     public PlayerInputs PlayerInput;
 
@@ -26,6 +30,8 @@ public class PlayerInputManager : MonoBehaviour
     public void Awake()
     {
         PlayerInput = MasterManager.Instance.playerInputActions;
+
+        Instance = this;
         //PlayerInput.Player.Enable();
     }
 
@@ -55,7 +61,7 @@ public class PlayerInputManager : MonoBehaviour
         PlayerInput.Player.Crouch.performed += OnCrouchInput;
         PlayerInput.Player.Crouch.canceled += OnCrouchInput;
 
-
+        PlayerInput.Player.Esc.started += OnEscInput;
     }
 
     public void OnMoveInput(InputAction.CallbackContext context)
@@ -95,6 +101,12 @@ public class PlayerInputManager : MonoBehaviour
     public void OnLookInput(InputAction.CallbackContext context)
     {
         look = context.ReadValue<Vector2>();
+    }
+
+    public void OnEscInput(InputAction.CallbackContext context)
+    {
+        //EscPressed = !EscPressed;
+        MasterManager.Instance.GameEventManager.PauseGame();
     }
     
 }

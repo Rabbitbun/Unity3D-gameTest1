@@ -87,7 +87,7 @@
                     "initialStateCheck": false
                 },
                 {
-                    "name": "ESCmenu",
+                    "name": "Esc",
                     "type": "Button",
                     "id": "959fd42b-e2c8-4583-8686-999fd3750f69",
                     "expectedControlType": "Button",
@@ -443,7 +443,7 @@
                     "interactions": "",
                     "processors": "",
                     "groups": "Keyboard&Mouse",
-                    "action": "ESCmenu",
+                    "action": "Esc",
                     "isComposite": false,
                     "isPartOfComposite": false
                 },
