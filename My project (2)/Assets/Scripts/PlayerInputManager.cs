@@ -13,6 +13,8 @@ public class PlayerInputManager : MonoBehaviour
     public bool rightClick { get; private set; }
     public bool leftClick { get; private set; }
     public bool tabClick { get; private set; }
+    public bool Casting { get; private set; }
+    public bool Aiming { get; private set; }
 
     public bool EscPressed { get; private set; }
 
@@ -62,6 +64,12 @@ public class PlayerInputManager : MonoBehaviour
         PlayerInput.Player.Crouch.canceled += OnCrouchInput;
 
         PlayerInput.Player.Esc.started += OnEscInput;
+
+        PlayerInput.Player.CastSpell.started += OnCasting;
+        PlayerInput.Player.CastSpell.performed += OnCasting;
+        PlayerInput.Player.CastSpell.canceled += OnCasting;
+
+        PlayerInput.Player.Aimming.started += OnAimming;
     }
 
     public void OnMoveInput(InputAction.CallbackContext context)
@@ -109,5 +117,15 @@ public class PlayerInputManager : MonoBehaviour
         //EscPressed = !EscPressed;
         MasterManager.Instance.GameEventManager.PauseGame();
     }
-    
+
+    public void OnCasting(InputAction.CallbackContext context)
+    {
+        //Casting = context.ReadValueAsButton();
+        Casting = !Casting;
+    }
+
+    public void OnAimming(InputAction.CallbackContext context)
+    {
+        Aiming = !Aiming;
+    }
 }

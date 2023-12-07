@@ -11,41 +11,50 @@ public class AbilitySystem : MonoBehaviour
 {
     public event System.EventHandler<StatusEventArgs> StatusChanging;
 
-    //public ObjectPool<GameObject> AbilityPool;
+    //public ObjectPool<GameObject> AbilityPool; // 待處理
     
     // 法術物件變數
     [HideInInspector] public Spell spell;
 
-    // 存放總共可使用的技能預製物件
+    // 存放總共可使用的技能預製物件(4+4個)
     [SerializeField] public List<GameObject> AbilityObjectList;
-    // 目前Style所可使用的技能預製物件
+    // 目前所可使用的技能預製物件(4個)
     [SerializeField] public List<GameObject> currentAbilityList;
 
-    public Dictionary<int, List<GameObject>> StyleAbilityDict = new Dictionary<int, List<GameObject>>();
+    public Dictionary<int, List<GameObject>> AbilityDict = new Dictionary<int, List<GameObject>>();
 
-    int currentStyleIndex;
+    int currentLListIndex;
+    int abilityListNumber = 2;
+    int NumberInList = 4;
 
     [SerializeField] private Transform _castPoint;
 
-    [SerializeField] public UIManager uiMamager;
+    //[SerializeField] public UIManager uiMamager; // 以UIManager.Instance取代
 
+    // 玩家狀態
     [ReadOnly] public StatusSystem statusSystem;
+
+    public PlayerController playerController;
 
     private void Awake()
     {
+        // 註冊輸入事件
         MasterManager.Instance.PlayerInputManager.PlayerInput.Player.UseAbility.performed += UseAbility;
-        MasterManager.Instance.PlayerInputManager.PlayerInput.Player.SwitchAbility.performed += SwitchStyle;
+        MasterManager.Instance.PlayerInputManager.PlayerInput.Player.SwitchAbility.performed += SwitchList;
+
+        playerController = GetComponent<PlayerController>();
 
         for (int i = 0; i < AbilityObjectList.Count; i++)
         {
-            int styleIndex = i / 4;
-            if (!StyleAbilityDict.ContainsKey(styleIndex))
+            // 4個一組
+            int ListIndex = i / NumberInList;
+            if (!AbilityDict.ContainsKey(ListIndex))
             {
-                StyleAbilityDict[styleIndex] = new List<GameObject>();
+                AbilityDict[ListIndex] = new List<GameObject>();
             }
-            StyleAbilityDict[styleIndex].Add(AbilityObjectList[i]);
+            AbilityDict[ListIndex].Add(AbilityObjectList[i]);
         }
-        currentAbilityList = StyleAbilityDict[0];
+        currentAbilityList = AbilityDict[0];
 
     }
     private void Start()
@@ -56,7 +65,7 @@ public class AbilitySystem : MonoBehaviour
         //AbilityObjectPool.Instance.ObjectList = AbilityObjectList;
         //AbilityObjectPool.Instance.InitPool();
 
-        //UIManager.Instance.InitAbilityOnUI(currentAbilityList, currentStyleIndex);
+        //UIManager.Instance.InitAbilityOnUI(currentAbilityList, currentLListIndex);
     }
 
     private void CastSpell(int index)
@@ -98,7 +107,7 @@ public class AbilitySystem : MonoBehaviour
             // index : 0 1 2 3
             int index = int.Parse(context.control.name) - 1;
             // send message to UIManager, so that it can deal with UI, need to check cooldown and mana
-            if (!uiMamager.playerUI.IsSkillOnCooldown(index) && HasEnoughMana(index))
+            if (!UIManager.Instance.playerUI.IsSkillOnCooldown(index) && HasEnoughMana(index))
             {
                 // cast the spell
                 CastSpell(int.Parse(context.control.name) - 1);
@@ -107,19 +116,19 @@ public class AbilitySystem : MonoBehaviour
                 {
                     // change UI
                     case "1":
-                        uiMamager.OnAbilityButtonPressed(1);
+                        UIManager.Instance.OnAbilityButtonPressed(1);
                         print("技能槽位1被施放了!");
                         break;
                     case "2":
-                        uiMamager.OnAbilityButtonPressed(2);
+                        UIManager.Instance.OnAbilityButtonPressed(2);
                         print("技能槽位2被施放了!");
                         break;
                     case "3":
-                        uiMamager.OnAbilityButtonPressed(3);
+                        UIManager.Instance.OnAbilityButtonPressed(3);
                         print("技能槽位3被施放了!");
                         break;
                     case "4":
-                        uiMamager.OnAbilityButtonPressed(4);
+                        UIManager.Instance.OnAbilityButtonPressed(4);
                         print("技能槽位4被施放了!");
                         break;
                 }
@@ -127,22 +136,23 @@ public class AbilitySystem : MonoBehaviour
             }
             else
             {
-                print("SKILL is on cooldown...");
+                print("技能冷卻中/沒有魔力了...");
             }
         }
     }
 
-    void SwitchStyle(InputAction.CallbackContext context)
+    public void SwitchList(InputAction.CallbackContext context)
     {
-        // 0 1 2 3 
-        currentStyleIndex = ++currentStyleIndex % 4;
+        // 0 1
+        currentLListIndex = ++currentLListIndex % abilityListNumber;
 
         // currentAbilityList.Clear();
-        for (int i = currentStyleIndex * 4, j = 0; i < currentStyleIndex * 4 + 4; i++, j++)
-        {
-            currentAbilityList[j] = AbilityObjectList[i];
-        }
-        UIManager.Instance.InitAbilityOnUI(currentAbilityList, currentStyleIndex);
+        //for (int i = currentLListIndex * 4, j = 0; i < currentLListIndex * 4 + 4; i++, j++)
+        //{
+        //    currentAbilityList[j] = AbilityObjectList[i];
+        //}
+        currentAbilityList = AbilityDict[currentLListIndex];
+        UIManager.Instance.InitAbilityOnUI(currentAbilityList, currentLListIndex);
 
     }
     void CostMana(float costAmount)

@@ -125,6 +125,24 @@ public partial class @PlayerInputs : IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""CastSpell"",
+                    ""type"": ""Button"",
+                    ""id"": ""af75d68b-a99c-414e-9465-9cafd26ab336"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""Aimming"",
+                    ""type"": ""Button"",
+                    ""id"": ""47665191-6e7b-4b2e-8b77-21ffc526f9db"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
                 }
             ],
             ""bindings"": [
@@ -479,6 +497,28 @@ public partial class @PlayerInputs : IInputActionCollection2, IDisposable
                     ""action"": ""SwitchChoose"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""a624b414-adfe-41be-9aab-33511c3330d7"",
+                    ""path"": ""<Mouse>/rightButton"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""Keyboard&Mouse"",
+                    ""action"": ""CastSpell"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""e39f0cfb-3394-4393-b402-426b356a6f22"",
+                    ""path"": ""<Keyboard>/f"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""Keyboard&Mouse"",
+                    ""action"": ""Aimming"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
                 }
             ]
         }
@@ -559,6 +599,8 @@ public partial class @PlayerInputs : IInputActionCollection2, IDisposable
         m_Player_SwitchAbility = m_Player.FindAction("SwitchAbility", throwIfNotFound: true);
         m_Player_Esc = m_Player.FindAction("Esc", throwIfNotFound: true);
         m_Player_SwitchChoose = m_Player.FindAction("SwitchChoose", throwIfNotFound: true);
+        m_Player_CastSpell = m_Player.FindAction("CastSpell", throwIfNotFound: true);
+        m_Player_Aimming = m_Player.FindAction("Aimming", throwIfNotFound: true);
     }
 
     public void Dispose()
@@ -629,6 +671,8 @@ public partial class @PlayerInputs : IInputActionCollection2, IDisposable
     private readonly InputAction m_Player_SwitchAbility;
     private readonly InputAction m_Player_Esc;
     private readonly InputAction m_Player_SwitchChoose;
+    private readonly InputAction m_Player_CastSpell;
+    private readonly InputAction m_Player_Aimming;
     public struct PlayerActions
     {
         private @PlayerInputs m_Wrapper;
@@ -644,6 +688,8 @@ public partial class @PlayerInputs : IInputActionCollection2, IDisposable
         public InputAction @SwitchAbility => m_Wrapper.m_Player_SwitchAbility;
         public InputAction @Esc => m_Wrapper.m_Player_Esc;
         public InputAction @SwitchChoose => m_Wrapper.m_Player_SwitchChoose;
+        public InputAction @CastSpell => m_Wrapper.m_Player_CastSpell;
+        public InputAction @Aimming => m_Wrapper.m_Player_Aimming;
         public InputActionMap Get() { return m_Wrapper.m_Player; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -686,6 +732,12 @@ public partial class @PlayerInputs : IInputActionCollection2, IDisposable
                 @SwitchChoose.started -= m_Wrapper.m_PlayerActionsCallbackInterface.OnSwitchChoose;
                 @SwitchChoose.performed -= m_Wrapper.m_PlayerActionsCallbackInterface.OnSwitchChoose;
                 @SwitchChoose.canceled -= m_Wrapper.m_PlayerActionsCallbackInterface.OnSwitchChoose;
+                @CastSpell.started -= m_Wrapper.m_PlayerActionsCallbackInterface.OnCastSpell;
+                @CastSpell.performed -= m_Wrapper.m_PlayerActionsCallbackInterface.OnCastSpell;
+                @CastSpell.canceled -= m_Wrapper.m_PlayerActionsCallbackInterface.OnCastSpell;
+                @Aimming.started -= m_Wrapper.m_PlayerActionsCallbackInterface.OnAimming;
+                @Aimming.performed -= m_Wrapper.m_PlayerActionsCallbackInterface.OnAimming;
+                @Aimming.canceled -= m_Wrapper.m_PlayerActionsCallbackInterface.OnAimming;
             }
             m_Wrapper.m_PlayerActionsCallbackInterface = instance;
             if (instance != null)
@@ -723,6 +775,12 @@ public partial class @PlayerInputs : IInputActionCollection2, IDisposable
                 @SwitchChoose.started += instance.OnSwitchChoose;
                 @SwitchChoose.performed += instance.OnSwitchChoose;
                 @SwitchChoose.canceled += instance.OnSwitchChoose;
+                @CastSpell.started += instance.OnCastSpell;
+                @CastSpell.performed += instance.OnCastSpell;
+                @CastSpell.canceled += instance.OnCastSpell;
+                @Aimming.started += instance.OnAimming;
+                @Aimming.performed += instance.OnAimming;
+                @Aimming.canceled += instance.OnAimming;
             }
         }
     }
@@ -785,5 +843,7 @@ public partial class @PlayerInputs : IInputActionCollection2, IDisposable
         void OnSwitchAbility(InputAction.CallbackContext context);
         void OnEsc(InputAction.CallbackContext context);
         void OnSwitchChoose(InputAction.CallbackContext context);
+        void OnCastSpell(InputAction.CallbackContext context);
+        void OnAimming(InputAction.CallbackContext context);
     }
 }

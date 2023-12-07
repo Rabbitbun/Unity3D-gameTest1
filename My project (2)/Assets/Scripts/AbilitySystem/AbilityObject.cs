@@ -27,8 +27,10 @@ public class AbilityObject : ScriptableObject
     public AbilityCastType CastType;
 
     public Texture2D texture;
-    [HideInInspector] public Image icon; //UI icon
+    public Sprite spriteTexture;
+    public Image icon; //UI icon
     [HideInInspector] public Image darkMask; //icon Background
+
     public string Name;
     public int ID;
     //[SerializeField] public Text coolDownText;
