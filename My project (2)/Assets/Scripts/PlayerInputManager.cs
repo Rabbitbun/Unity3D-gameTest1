@@ -43,7 +43,7 @@ public class PlayerInputManager : MonoBehaviour
 
         PlayerInput.Player.LeftClick.started += OnLeftClickInput;
         //_playerInput.Player.LeftClick.performed += OnLeftClickInput;
-        //_playerInput.Player.LeftClick.canceled += OnLeftClickInput;
+        PlayerInput.Player.LeftClick.canceled += OnLeftClickInput;
 
         PlayerInput.Player.RightClick.started += OnRightClickInput;
         //_playerInput.Player.RightClick.performed += OnRightClickInput;
@@ -83,14 +83,15 @@ public class PlayerInputManager : MonoBehaviour
 
     public void OnLeftClickInput(InputAction.CallbackContext context)
     {
-        if (context.phase == InputActionPhase.Performed)
-        {
-            leftClick = true;
-        }
-        else
-        {
-            leftClick = false;
-        }
+        //if (context.phase == InputActionPhase.Performed)
+        //{
+        //    leftClick = true;
+        //}
+        //else
+        //{
+        //    leftClick = false;
+        //}
+        leftClick = context.ReadValueAsButton();
     }
 
     public void OnJumpInput(InputAction.CallbackContext context)

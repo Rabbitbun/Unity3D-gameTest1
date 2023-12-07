@@ -11,6 +11,8 @@ public class UIManager : MonoBehaviour, IuseAbility
     [SerializeField, ReadOnly] public AbilitySystem abilitySystem;
     [SerializeField, ReadOnly] public StatusSystem statusSystem;
 
+    [SerializeField] public GameObject PauseMenu;
+
     //public List<GameObject> Skills;
     // all skills cooldown scripts
     //private List<AbilityCooldown> _skillsCooldown = new List<AbilityCooldown>();

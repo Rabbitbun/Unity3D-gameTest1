@@ -14,6 +14,22 @@ public class ViewManager : MonoBehaviour
 
     private readonly Stack<View> history = new Stack<View>();
 
+    private void OnDisable()
+    {
+        for (int i = 0; i < views.Length; i++)
+        {
+            views[i].Hide();
+        }
+    }
+
+    private void OnEnable()
+    {
+        if (startingView != null)
+        {
+            Show(startingView, false);
+        }
+    }
+
     private void Awake()
     {
         Instance = this;

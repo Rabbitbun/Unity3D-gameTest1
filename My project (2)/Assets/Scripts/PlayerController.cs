@@ -157,6 +157,17 @@ public class PlayerController : MonoBehaviour
     {
         if (MasterManager.Instance.GameEventManager.IsgamePaused == false)
             CameraRotation();
+
+        if (PlayerInputManager.Instance.leftClick)
+        {
+            print("Left clicked " + PlayerInputManager.Instance.leftClick);
+            _animator.SetTrigger("Attack");
+        }
+        else
+        {
+            _animator.ResetTrigger("Attack");
+        }
+            
     }
     
     // 讀取輸入
@@ -450,8 +461,8 @@ public class PlayerController : MonoBehaviour
         {
             _animator.SetBool("Aim", false);
             float rad = Mathf.Atan2(playerMovement.x, playerMovement.z);
-            _animator.SetFloat(_rotateSpeedHash, rad, 0.1f, Time.deltaTime);
-            _playerTransform.Rotate(0f, rad * 300 * Time.deltaTime, 0f);
+            _animator.SetFloat(_rotateSpeedHash, rad, 0.1f, Time.deltaTime * 2.0f);
+            _playerTransform.Rotate(0f, rad * 300 * Time.deltaTime * 2.0f, 0f);
         }
         else if(armState == ArmState.Aim)
         {
