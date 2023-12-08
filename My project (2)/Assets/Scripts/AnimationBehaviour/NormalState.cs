@@ -91,7 +91,6 @@ public class NormalState : StateMachineBehaviour
     void SwitchPlayerStates()
     {
         playerPosture = playerController.playerPosture;
-        Debug.Log(playerPosture);
         switch (playerPosture)
         {
             case PlayerController.PlayerPosture.Stand:
@@ -173,13 +172,12 @@ public class NormalState : StateMachineBehaviour
         }
         else if (playerController.IsCasting)
         {
-            playerController.armState = PlayerController.ArmState.CastSpell;
+            playerController.armState = PlayerController.ArmState.Cast;
         }
         else
         {
             playerController.armState = PlayerController.ArmState.Normal;
         }
-        Debug.Log(playerPosture);
     }
 
     void CaculateGravity()
@@ -307,7 +305,7 @@ public class NormalState : StateMachineBehaviour
             animator.SetBool("Aim", false);
             animator.SetBool("Casting", false);
         }
-        else if (playerController.armState == PlayerController.ArmState.CastSpell)
+        else if (playerController.armState == PlayerController.ArmState.Cast)
         {
             animator.SetBool("Aim", false);
             animator.SetBool("Casting", true);

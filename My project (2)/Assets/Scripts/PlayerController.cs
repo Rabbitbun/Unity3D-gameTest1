@@ -55,7 +55,7 @@ public class PlayerController : MonoBehaviour
         Normal,
         Aim,
         Attack,
-        CastSpell,
+        Cast,
     };
     public ArmState armState = ArmState.Normal;
     #endregion
@@ -161,10 +161,12 @@ public class PlayerController : MonoBehaviour
         //Jump(); //
         CaculateInputDirection();
         //SetupAnimator(); //
+        //Time.timeScale = 0.05f;
     }
     
     void LateUpdate()
     {
+        //print("在FixUpdate()最前:" + IsCasting);
         if (MasterManager.Instance.GameEventManager.IsgamePaused == false)
             CameraRotation();
 
@@ -177,14 +179,38 @@ public class PlayerController : MonoBehaviour
             rig.weight = Mathf.Lerp(rig.weight, 0.0f, Time.deltaTime * 7.0f);
         }
 
+        
+
+        DealWithInputInFixUpdate();
+
+        //print("在FixUpdate()最後:" + IsCasting);
+    }
+
+    void DealWithInputInFixUpdate()
+    {
+        if (MasterManager.Instance.GameEventManager.IsgamePaused)
+            return;
+
         IsJumping = PlayerInputManager.Instance.jump;
         IsCasting = PlayerInputManager.Instance.Casting;
         IsAiming = PlayerInputManager.Instance.Aiming;
+        if (IsAiming && PlayerInputManager.Instance.RightClickPressed)
+        {
+            PlayerInputManager.Instance.Aiming = false;
+            PlayerInputManager.Instance.Casting = false;
+            IsCasting = false;
+            //print("在FixUpdate()中1:" + IsCasting);
+        }
 
         if (PlayerInputManager.Instance.leftClick)
         {
-            print("Left clicked " + PlayerInputManager.Instance.leftClick);
-            if (VerticalVelocity <= 0.0f)
+            //print("Left clicked " + PlayerInputManager.Instance.leftClick);
+            if (IsCasting)
+            {
+                PlayerInputManager.Instance.Casting = false;
+                IsCasting = false;
+            }
+            if (VerticalVelocity <= 0.0f || IsGrounded)
             {
                 IsAttacking = true;
                 if (armState == ArmState.Normal)
@@ -195,29 +221,32 @@ public class PlayerController : MonoBehaviour
                 {
                     animator.SetTrigger("Attack2");
                 }
-                else
+                else if (armState == ArmState.Cast)
                 {
-                    animator.ResetTrigger("Attack1");
-                    animator.ResetTrigger("Attack2");
+                    animator.SetTrigger("Attack1");
                 }
-
             }
-            
-            
-        }
-        
 
+        }
+        else
+        {
+            //animator.ResetTrigger("Attack1");
+            //animator.ResetTrigger("Attack2");
+        }
     }
     
     // 讀取輸入
     void DealWithInput()
     {
+        if (MasterManager.Instance.GameEventManager.IsgamePaused)
+            return;
         MoveInput = playerInput.move;
         IsRunning = playerInput.run;
         IsCrouch = playerInput.crouch;
         //IsJumping = playerInput.jump;
         mouseXY = playerInput.look;
         //IsAiming = playerInput.rightClick;
+
     }
  
     private void CameraRotation()
@@ -520,7 +549,7 @@ public class PlayerController : MonoBehaviour
             animator.SetBool("Aim", false);
             animator.SetBool("Casting", false);
         }
-        else if (armState == ArmState.CastSpell)
+        else if (armState == ArmState.Cast)
         {
             animator.SetBool("Aim", false);
             animator.SetBool("Casting", true);
@@ -584,7 +613,7 @@ public class PlayerController : MonoBehaviour
             playerDeltaMovement = PlayerTransform.TransformVector(playerMovement) * Time.deltaTime;
             _averageVel.y = VerticalVelocity;
             playerDeltaMovement += _averageVel * Time.deltaTime;
-            if (armState == ArmState.Aim || armState == ArmState.CastSpell)
+            if (armState == ArmState.Aim || armState == ArmState.Cast)
             {
                 playerDeltaMovement.x *= animator.GetFloat(_moveSpeedHash) / 2.5f;
                 playerDeltaMovement.z *= animator.GetFloat(_moveSpeedHash) / 2.5f;

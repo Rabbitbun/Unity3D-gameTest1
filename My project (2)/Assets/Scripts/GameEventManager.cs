@@ -31,7 +31,7 @@ public class GameEventManager : MonoBehaviour
 
             UIManager.Instance.PauseMenu.SetActive(false);
 
-            print("set to continue.");
+            //print("set to continue.");
         }
         else if (IsgamePaused == false)
         {
@@ -43,7 +43,7 @@ public class GameEventManager : MonoBehaviour
 
             UIManager.Instance.PauseMenu.SetActive(true);
 
-            print("set to stop.");
+            //print("set to stop.");
         }
     }
 }

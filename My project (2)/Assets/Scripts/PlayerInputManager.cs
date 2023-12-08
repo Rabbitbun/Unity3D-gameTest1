@@ -13,8 +13,9 @@ public class PlayerInputManager : MonoBehaviour
     public bool rightClick { get; private set; }
     public bool leftClick { get; private set; }
     public bool tabClick { get; private set; }
-    public bool Casting { get; private set; }
-    public bool Aiming { get; private set; }
+    public bool Casting { get; set; }
+    public bool Aiming { get; set; }
+    public bool RightClickPressed { get; private set; }
 
     public bool EscPressed { get; private set; }
 
@@ -51,6 +52,10 @@ public class PlayerInputManager : MonoBehaviour
         //_playerInput.Player.RightClick.performed += OnRightClickInput;
         //_playerInput.Player.RightClick.canceled += OnRightClickInput;
 
+        PlayerInput.Player.RightClick.started += OnRightClickPressed;
+        //PlayerInput.Player.RightClick.performed += OnRightClickPressed;
+        PlayerInput.Player.RightClick.canceled += OnRightClickPressed;
+
         PlayerInput.Player.Move.performed += OnMoveInput;
         PlayerInput.Player.Move.canceled += OnMoveInput;
 
@@ -66,8 +71,8 @@ public class PlayerInputManager : MonoBehaviour
         PlayerInput.Player.Esc.started += OnEscInput;
 
         PlayerInput.Player.CastSpell.started += OnCasting;
-        PlayerInput.Player.CastSpell.performed += OnCasting;
-        PlayerInput.Player.CastSpell.canceled += OnCasting;
+        //PlayerInput.Player.CastSpell.performed += OnCasting;
+        //PlayerInput.Player.CastSpell.canceled += OnCasting;
 
         PlayerInput.Player.Aimming.started += OnAimming;
     }
@@ -121,11 +126,28 @@ public class PlayerInputManager : MonoBehaviour
     public void OnCasting(InputAction.CallbackContext context)
     {
         //Casting = context.ReadValueAsButton();
-        Casting = !Casting;
+        if (Aiming)
+        {
+            Casting = false;
+        }
+        else
+        {
+            Casting = !Casting;
+        }
+        Debug.Log(Casting);
     }
 
     public void OnAimming(InputAction.CallbackContext context)
     {
+        if (Casting)
+        {
+            Casting = false;
+        }
         Aiming = !Aiming;
+    }
+
+    public void OnRightClickPressed(InputAction.CallbackContext context)
+    {
+        RightClickPressed = context.ReadValueAsButton();
     }
 }
