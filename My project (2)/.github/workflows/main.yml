@@ -16,7 +16,7 @@ jobs:
       # Cache
       - uses: actions/cache@v3
         with:
-          path: Library
+          path: My project (2)/Library
           key: Library-${{ hashFiles('My project (2)/Assets/**', 'My project (2)/Packages/**', 'My project (2)/ProjectSettings/**') }}
           restore-keys: |
             Library-
@@ -44,7 +44,7 @@ jobs:
       # Cache
       - uses: actions/cache@v3
         with:
-          path: Library
+          path: My project (2)/Library
           key: Library-${{ hashFiles('My project (2)/Assets/**', 'My project (2)/Packages/**', 'My project (2)/ProjectSettings/**') }}
           restore-keys: |
             Library-
@@ -64,4 +64,4 @@ jobs:
       - uses: actions/upload-artifact@v3
         with:
           name: Build
-          path: build
+          path: My project (2)/build
