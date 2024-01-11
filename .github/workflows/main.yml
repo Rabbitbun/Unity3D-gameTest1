@@ -10,9 +10,9 @@ jobs:
       fail-fast: false
       matrix:
         targetPlatform:
-          - StandaloneWindows64 # Build a Windows 64-bit standalone.
+          - StandaloneWindows64
         projectPath:
-          - My project (2) # ** this is what you're looking for **
+          - My project (2)
     steps:
       - uses: actions/checkout@v2
         with:
