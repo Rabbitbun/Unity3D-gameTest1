@@ -1,9 +1,6 @@
 name: Build project
 
-on:
-  push:
-    branches:
-      - main
+on: [push]
 
 jobs:
   buildForAllSupportedPlatforms:
@@ -18,20 +15,20 @@ jobs:
           - My project (2)
     steps:
       - name: 檢出程式碼
-        uses: actions/checkout@v2
+        uses: actions/checkout@v4
         with:
           fetch-depth: 0
           lfs: true
 
       - name: 快取 Unity Library
-        uses: actions/cache@v2
+        uses: actions/cache@v3
         with:
           path: ${{ matrix.projectPath }}/Library
           key: Library-${{ matrix.targetPlatform }}
           restore-keys: Library-
 
       - name: 建置專案
-        uses: game-ci/unity-builder@v2
+        uses: game-ci/unity-builder@v4
         env:
           UNITY_LICENSE: ${{ secrets.UNITY_LICENSE }}
         with:
@@ -39,7 +36,7 @@ jobs:
           projectPath: ${{ matrix.projectPath }}
 
       - name: 上傳產物
-        uses: actions/upload-artifact@v2
+        uses: actions/upload-artifact@v3
         with:
           name: Build-${{ matrix.targetPlatform }}
           path: ${{ matrix.projectPath }}/build/${{ matrix.targetPlatform }}
