@@ -35,7 +35,7 @@ jobs:
           UNITY_PASSWORD: ${{ secrets.UNITY_PASSWORD }}
         with:
           targetPlatform: ${{ matrix.targetPlatform }}
-          projectPath: ${{ matrix.projectPath }}
+
 
       - name: 上傳產物
         uses: actions/upload-artifact@v3
