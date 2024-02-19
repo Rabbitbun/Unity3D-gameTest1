@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class Spell : MonoBehaviour
 {
-    public AbilityObject spellObj;
+    public SkillObject spellObj;
 
     private void Awake()
     {

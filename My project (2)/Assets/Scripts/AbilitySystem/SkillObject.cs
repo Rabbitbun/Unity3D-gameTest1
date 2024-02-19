@@ -4,8 +4,6 @@ using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
 
-
-
 public enum AbilityCastType
 {
     Targeted, //瞄準施放
@@ -13,8 +11,7 @@ public enum AbilityCastType
 }
 
 [CreateAssetMenu(fileName = "New Spell", menuName = "Spells")]
-[SerializeField]
-public class AbilityObject : ScriptableObject
+public class SkillObject : ScriptableObject
 {
     public float DamageAmount;
     public float ManaCost;

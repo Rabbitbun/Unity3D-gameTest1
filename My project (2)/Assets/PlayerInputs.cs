@@ -91,7 +91,7 @@ public partial class @PlayerInputs : IInputActionCollection2, IDisposable
                     ""initialStateCheck"": false
                 },
                 {
-                    ""name"": ""UseAbility"",
+                    ""name"": ""UseSkill"",
                     ""type"": ""Button"",
                     ""id"": ""5e3c2192-622b-48cf-a731-d1e396b59e5b"",
                     ""expectedControlType"": ""Button"",
@@ -100,7 +100,7 @@ public partial class @PlayerInputs : IInputActionCollection2, IDisposable
                     ""initialStateCheck"": true
                 },
                 {
-                    ""name"": ""SwitchAbility"",
+                    ""name"": ""SwitchSkill"",
                     ""type"": ""Button"",
                     ""id"": ""0917bad6-c433-4495-8ab6-cebe96e78023"",
                     ""expectedControlType"": ""Button"",
@@ -428,7 +428,7 @@ public partial class @PlayerInputs : IInputActionCollection2, IDisposable
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": ""Keyboard&Mouse"",
-                    ""action"": ""UseAbility"",
+                    ""action"": ""UseSkill"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 },
@@ -439,7 +439,7 @@ public partial class @PlayerInputs : IInputActionCollection2, IDisposable
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": ""Keyboard&Mouse"",
-                    ""action"": ""UseAbility"",
+                    ""action"": ""UseSkill"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 },
@@ -450,7 +450,7 @@ public partial class @PlayerInputs : IInputActionCollection2, IDisposable
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": ""Keyboard&Mouse"",
-                    ""action"": ""UseAbility"",
+                    ""action"": ""UseSkill"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 },
@@ -461,7 +461,7 @@ public partial class @PlayerInputs : IInputActionCollection2, IDisposable
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": ""Keyboard&Mouse"",
-                    ""action"": ""UseAbility"",
+                    ""action"": ""UseSkill"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 },
@@ -472,7 +472,7 @@ public partial class @PlayerInputs : IInputActionCollection2, IDisposable
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": ""Keyboard&Mouse"",
-                    ""action"": ""SwitchAbility"",
+                    ""action"": ""SwitchSkill"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 },
@@ -595,8 +595,8 @@ public partial class @PlayerInputs : IInputActionCollection2, IDisposable
         m_Player_RightClick = m_Player.FindAction("RightClick", throwIfNotFound: true);
         m_Player_Crouch = m_Player.FindAction("Crouch", throwIfNotFound: true);
         m_Player_Jump = m_Player.FindAction("Jump", throwIfNotFound: true);
-        m_Player_UseAbility = m_Player.FindAction("UseAbility", throwIfNotFound: true);
-        m_Player_SwitchAbility = m_Player.FindAction("SwitchAbility", throwIfNotFound: true);
+        m_Player_UseSkill = m_Player.FindAction("UseSkill", throwIfNotFound: true);
+        m_Player_SwitchSkill = m_Player.FindAction("SwitchSkill", throwIfNotFound: true);
         m_Player_Esc = m_Player.FindAction("Esc", throwIfNotFound: true);
         m_Player_SwitchChoose = m_Player.FindAction("SwitchChoose", throwIfNotFound: true);
         m_Player_CastSpell = m_Player.FindAction("CastSpell", throwIfNotFound: true);
@@ -667,8 +667,8 @@ public partial class @PlayerInputs : IInputActionCollection2, IDisposable
     private readonly InputAction m_Player_RightClick;
     private readonly InputAction m_Player_Crouch;
     private readonly InputAction m_Player_Jump;
-    private readonly InputAction m_Player_UseAbility;
-    private readonly InputAction m_Player_SwitchAbility;
+    private readonly InputAction m_Player_UseSkill;
+    private readonly InputAction m_Player_SwitchSkill;
     private readonly InputAction m_Player_Esc;
     private readonly InputAction m_Player_SwitchChoose;
     private readonly InputAction m_Player_CastSpell;
@@ -684,8 +684,8 @@ public partial class @PlayerInputs : IInputActionCollection2, IDisposable
         public InputAction @RightClick => m_Wrapper.m_Player_RightClick;
         public InputAction @Crouch => m_Wrapper.m_Player_Crouch;
         public InputAction @Jump => m_Wrapper.m_Player_Jump;
-        public InputAction @UseAbility => m_Wrapper.m_Player_UseAbility;
-        public InputAction @SwitchAbility => m_Wrapper.m_Player_SwitchAbility;
+        public InputAction @UseSkill => m_Wrapper.m_Player_UseSkill;
+        public InputAction @SwitchSkill => m_Wrapper.m_Player_SwitchSkill;
         public InputAction @Esc => m_Wrapper.m_Player_Esc;
         public InputAction @SwitchChoose => m_Wrapper.m_Player_SwitchChoose;
         public InputAction @CastSpell => m_Wrapper.m_Player_CastSpell;
@@ -720,12 +720,12 @@ public partial class @PlayerInputs : IInputActionCollection2, IDisposable
                 @Jump.started -= m_Wrapper.m_PlayerActionsCallbackInterface.OnJump;
                 @Jump.performed -= m_Wrapper.m_PlayerActionsCallbackInterface.OnJump;
                 @Jump.canceled -= m_Wrapper.m_PlayerActionsCallbackInterface.OnJump;
-                @UseAbility.started -= m_Wrapper.m_PlayerActionsCallbackInterface.OnUseAbility;
-                @UseAbility.performed -= m_Wrapper.m_PlayerActionsCallbackInterface.OnUseAbility;
-                @UseAbility.canceled -= m_Wrapper.m_PlayerActionsCallbackInterface.OnUseAbility;
-                @SwitchAbility.started -= m_Wrapper.m_PlayerActionsCallbackInterface.OnSwitchAbility;
-                @SwitchAbility.performed -= m_Wrapper.m_PlayerActionsCallbackInterface.OnSwitchAbility;
-                @SwitchAbility.canceled -= m_Wrapper.m_PlayerActionsCallbackInterface.OnSwitchAbility;
+                @UseSkill.started -= m_Wrapper.m_PlayerActionsCallbackInterface.OnUseSkill;
+                @UseSkill.performed -= m_Wrapper.m_PlayerActionsCallbackInterface.OnUseSkill;
+                @UseSkill.canceled -= m_Wrapper.m_PlayerActionsCallbackInterface.OnUseSkill;
+                @SwitchSkill.started -= m_Wrapper.m_PlayerActionsCallbackInterface.OnSwitchSkill;
+                @SwitchSkill.performed -= m_Wrapper.m_PlayerActionsCallbackInterface.OnSwitchSkill;
+                @SwitchSkill.canceled -= m_Wrapper.m_PlayerActionsCallbackInterface.OnSwitchSkill;
                 @Esc.started -= m_Wrapper.m_PlayerActionsCallbackInterface.OnEsc;
                 @Esc.performed -= m_Wrapper.m_PlayerActionsCallbackInterface.OnEsc;
                 @Esc.canceled -= m_Wrapper.m_PlayerActionsCallbackInterface.OnEsc;
@@ -763,12 +763,12 @@ public partial class @PlayerInputs : IInputActionCollection2, IDisposable
                 @Jump.started += instance.OnJump;
                 @Jump.performed += instance.OnJump;
                 @Jump.canceled += instance.OnJump;
-                @UseAbility.started += instance.OnUseAbility;
-                @UseAbility.performed += instance.OnUseAbility;
-                @UseAbility.canceled += instance.OnUseAbility;
-                @SwitchAbility.started += instance.OnSwitchAbility;
-                @SwitchAbility.performed += instance.OnSwitchAbility;
-                @SwitchAbility.canceled += instance.OnSwitchAbility;
+                @UseSkill.started += instance.OnUseSkill;
+                @UseSkill.performed += instance.OnUseSkill;
+                @UseSkill.canceled += instance.OnUseSkill;
+                @SwitchSkill.started += instance.OnSwitchSkill;
+                @SwitchSkill.performed += instance.OnSwitchSkill;
+                @SwitchSkill.canceled += instance.OnSwitchSkill;
                 @Esc.started += instance.OnEsc;
                 @Esc.performed += instance.OnEsc;
                 @Esc.canceled += instance.OnEsc;
@@ -839,8 +839,8 @@ public partial class @PlayerInputs : IInputActionCollection2, IDisposable
         void OnRightClick(InputAction.CallbackContext context);
         void OnCrouch(InputAction.CallbackContext context);
         void OnJump(InputAction.CallbackContext context);
-        void OnUseAbility(InputAction.CallbackContext context);
-        void OnSwitchAbility(InputAction.CallbackContext context);
+        void OnUseSkill(InputAction.CallbackContext context);
+        void OnSwitchSkill(InputAction.CallbackContext context);
         void OnEsc(InputAction.CallbackContext context);
         void OnSwitchChoose(InputAction.CallbackContext context);
         void OnCastSpell(InputAction.CallbackContext context);

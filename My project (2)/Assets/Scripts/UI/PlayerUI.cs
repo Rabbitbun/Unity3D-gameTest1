@@ -11,10 +11,10 @@ using UnityEngine.UI;
 public class PlayerUI : MonoBehaviour
 {
     // 從player上抓取system
-    [SerializeField, ReadOnly] public AbilitySystem abilitySystem;
-    [SerializeField, ReadOnly] public StatusSystem statusSystem;
+    [SerializeField, ReadOnly] public SkillSystem SkillSystem;
+    [SerializeField, ReadOnly] public StatusSystem StatusSystem;
     // PlayerUI上的技能冷卻系統腳本
-    [SerializeField, ReadOnly] public AbilityCooldown abilityCooldownScript;
+    [SerializeField, ReadOnly] public SkillCooldown SkillCooldownScript;
     // 技能圖示Textures
     [SerializeField, ReadOnly] public List<Texture2D> Textures;
     // 實際技能圖示
@@ -35,11 +35,11 @@ public class PlayerUI : MonoBehaviour
     // 目前要顯示的技能 (4個)
     public List<GameObject> CurrentSkills;
     // 全部可使用的技能的scriptableObject
-    public List<AbilityObject> abilityObjects;
+    public List<SkillObject> SkillObjects;
     // 目前要顯示的技能圖示
     public List<Image> currentIcons;
 
-    private int _styleIndex = 0;
+    private int _listIndex = 0;
 
     // all skills cooldown scripts
     //[SerializeField] private List<AbilityCooldown> _skillsCooldownScript;
@@ -54,21 +54,21 @@ public class PlayerUI : MonoBehaviour
     private void Start()
     {
         // 先抓取玩家的system
-        abilitySystem = UIManager.Instance.abilitySystem;
-        statusSystem = UIManager.Instance.statusSystem;
+        SkillSystem = UIManager.Instance.SkillSystem;
+        StatusSystem = UIManager.Instance.StatusSystem;
 
-        abilityCooldownScript = GetComponent<AbilityCooldown>();
+        SkillCooldownScript = GetComponent<SkillCooldown>();
 
         // 複製一份技能 gameObject
-        Skills = abilitySystem.AbilityObjectList;
+        Skills = SkillSystem.SkillObjectList;
 
         // 複製一份 scriptable objs
-        for (int i = 0; i < abilitySystem.AbilityObjectList.Count; i++)
+        for (int i = 0; i < SkillSystem.SkillObjectList.Count; i++)
         {
-            abilityObjects.Add(abilitySystem.AbilityObjectList[i].GetComponent<Spell>().spellObj);
+            SkillObjects.Add(SkillSystem.SkillObjectList[i].GetComponent<Spell>().spellObj);
         }
 
-        healthBar.Setup(statusSystem.healthSystem);
+        healthBar.Setup(StatusSystem.healthSystem);
 
         InitPlayerUI();
     }
@@ -79,7 +79,7 @@ public class PlayerUI : MonoBehaviour
         Textures = new List<Texture2D>();
         //Icons = new List<Image>();
 
-        abilityCooldownScript.Initialize(abilityObjects);
+        SkillCooldownScript.Initialize(SkillObjects);
 
         // 全部技能
         for (int i = 0; i < Skills.Count; i++)
@@ -91,7 +91,7 @@ public class PlayerUI : MonoBehaviour
             //_skillsCooldownScript[i].Initialize();
 
             // 初始化texture2d
-            Textures.Add(abilityObjects[i].texture);
+            Textures.Add(SkillObjects[i].texture);
         }
         
 
@@ -113,22 +113,22 @@ public class PlayerUI : MonoBehaviour
     private void Update()
     {
         // 更新技能按鈕上的冷卻文字
-        for (int i = 0, j = _styleIndex*4; i < 4; i++, j++)
+        for (int i = 0, j = _listIndex*4; i < 4; i++, j++)
         {
-            CoolDowntextMeshPros[i].text = abilityCooldownScript.coolDownTimeLefts[j].ToString("0");
+            CoolDowntextMeshPros[i].text = SkillCooldownScript.coolDownTimeLefts[j].ToString("0");
             if (CoolDowntextMeshPros[i].text == "0") CoolDowntextMeshPros[i].enabled = false;
             else CoolDowntextMeshPros[i].enabled = true;
 
             
             _iconMasks[i].fillAmount = Mathf.Lerp(0, 1,
-                                        abilityCooldownScript.coolDownTimeLefts[j]
-                                        / abilityCooldownScript.coolDownDurations[j]);
+                                        SkillCooldownScript.coolDownTimeLefts[j]
+                                        / SkillCooldownScript.coolDownDurations[j]);
         }   
     }
 
     private void TextureToIcon()
     {
-        for (int i = 0, j = _styleIndex*4; i < 4; i++, j++)
+        for (int i = 0, j = _listIndex*4; i < 4; i++, j++)
         {
             Sprite sprite = Sprite.Create(Textures[j], new Rect(0, 0, Textures[j].width, Textures[j].height), Vector2.zero);
             Icons[i].sprite = sprite;
@@ -138,26 +138,26 @@ public class PlayerUI : MonoBehaviour
     /// 技能按鈕觸發，以技能id來看
     /// </summary>
     /// <param name="index">第幾個按鈕 0 1 2 3</param>
-    public void AbilityBtnTriggered(int index)
+    public void SkillBtnTriggered(int index)
     {
-        AbilityObject ao = CurrentSkills[index].GetComponent<Spell>().spellObj;
+        SkillObject ao = CurrentSkills[index].GetComponent<Spell>().spellObj;
         int id = ao.ID;
         float timeLeft = ao.Cooldown;
-        abilityCooldownScript.coolDownTimeLefts[id-1] += timeLeft;
+        SkillCooldownScript.coolDownTimeLefts[id-1] += timeLeft;
     }
 
     public bool IsSkillOnCooldown(int BtnIndex)
     {
-        AbilityObject ao = CurrentSkills[BtnIndex].GetComponent<Spell>().spellObj;
+        SkillObject ao = CurrentSkills[BtnIndex].GetComponent<Spell>().spellObj;
         int id = ao.ID;
-        return abilityCooldownScript.IsOnCooldown[id - 1];
+        return SkillCooldownScript.IsOnCooldown[id - 1];
     }
 
-    public void ChangeStyle(int styleIndex)
+    public void ChangeSkillList(int ListIndex)
     {
-        _styleIndex = styleIndex;
+        _listIndex = ListIndex;
 
-        for (int i = 0, j = _styleIndex*4; i < 4; i++, j++)
+        for (int i = 0, j = _listIndex*4; i < 4; i++, j++)
         {
             CurrentSkills[i] = Skills[j];
         }

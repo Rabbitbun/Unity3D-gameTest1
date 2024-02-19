@@ -15,7 +15,7 @@ public class SwitchAbilityUI : MonoBehaviour
 
     private void Awake()
     {
-        MasterManager.Instance.PlayerInputManager.PlayerInput.Player.SwitchAbility.performed += SwitchAbility;
+        MasterManager.Instance.PlayerInputManager.PlayerInput.Player.SwitchSkill.performed += SwitchSkillList;
     }
 
     private void Start()
@@ -23,7 +23,7 @@ public class SwitchAbilityUI : MonoBehaviour
         Arrow.DOScale(1, 0.1f).SetRecyclable(true);
     }
 
-    private void SwitchAbility(InputAction.CallbackContext context)
+    private void SwitchSkillList(InputAction.CallbackContext context)
     {
         CurrentAbilityIndex = ++CurrentAbilityIndex % 4;
         if (MasterManager.Instance.GameEventManager.IsgamePaused)

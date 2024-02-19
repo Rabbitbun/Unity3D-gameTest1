@@ -4,15 +4,14 @@ using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
 
-public class AbilityCooldown : MonoBehaviour
+public class SkillCooldown : MonoBehaviour
 {
     // 通知冷卻完成的事件
-    public event System.Action OnAbilityReady;
+    public event System.Action OnSkillReady;
 
-    int abilityCapacity = 0;
+    int SkillCapacity = 0;
     public List<float> coolDownDurations;
     public List<float> coolDownTimeLefts;
-    // 技能是否在冷卻中
     public List<bool> IsOnCooldown;
 
 
@@ -22,25 +21,23 @@ public class AbilityCooldown : MonoBehaviour
     //[SerializeField] public float CoolDownTimeLeft;
     //[SerializeField] private float _nextReadyTime;
 
-
-
     /// <summary>
     /// initialize AbilityObject
     /// </summary>
     //private void Start()
     //{
-    //    AbilityReady();
+    //    SkillReady();
     //}
 
     /// <summary>
     /// Initialize Ability cooldown time duration
     /// </summary>
-    public void Initialize(List<AbilityObject> objList)
+    public void Initialize(List<SkillObject> objList)
     {
-        abilityCapacity = objList.Count;
-        coolDownDurations = new List<float>(abilityCapacity);
-        coolDownTimeLefts = new List<float>(abilityCapacity);
-        IsOnCooldown = new List<bool>(abilityCapacity);
+        SkillCapacity = objList.Count;
+        coolDownDurations = new List<float>(SkillCapacity);
+        coolDownTimeLefts = new List<float>(SkillCapacity);
+        IsOnCooldown = new List<bool>(SkillCapacity);
 
         for (int i = 0; i < objList.Count; i++)
         {
@@ -52,7 +49,7 @@ public class AbilityCooldown : MonoBehaviour
 
     private void Update()
     {
-        for (int i = 0; i < abilityCapacity; i++) 
+        for (int i = 0; i < SkillCapacity; i++) 
         {
             coolDownTimeLefts[i] = Mathf.Max(coolDownTimeLefts[i] - Time.deltaTime, 0f);
             if (coolDownTimeLefts[i] > 0f)
@@ -66,7 +63,7 @@ public class AbilityCooldown : MonoBehaviour
         }
     }
 
-    public void AbilityReady()
+    public void SkillReady()
     {
         
     }

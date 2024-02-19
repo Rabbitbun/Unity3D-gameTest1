@@ -69,7 +69,7 @@
                     "initialStateCheck": false
                 },
                 {
-                    "name": "UseAbility",
+                    "name": "UseSkill",
                     "type": "Button",
                     "id": "5e3c2192-622b-48cf-a731-d1e396b59e5b",
                     "expectedControlType": "Button",
@@ -78,7 +78,7 @@
                     "initialStateCheck": true
                 },
                 {
-                    "name": "SwitchAbility",
+                    "name": "SwitchSkill",
                     "type": "Button",
                     "id": "0917bad6-c433-4495-8ab6-cebe96e78023",
                     "expectedControlType": "Button",
@@ -406,7 +406,7 @@
                     "interactions": "",
                     "processors": "",
                     "groups": "Keyboard&Mouse",
-                    "action": "UseAbility",
+                    "action": "UseSkill",
                     "isComposite": false,
                     "isPartOfComposite": false
                 },
@@ -417,7 +417,7 @@
                     "interactions": "",
                     "processors": "",
                     "groups": "Keyboard&Mouse",
-                    "action": "UseAbility",
+                    "action": "UseSkill",
                     "isComposite": false,
                     "isPartOfComposite": false
                 },
@@ -428,7 +428,7 @@
                     "interactions": "",
                     "processors": "",
                     "groups": "Keyboard&Mouse",
-                    "action": "UseAbility",
+                    "action": "UseSkill",
                     "isComposite": false,
                     "isPartOfComposite": false
                 },
@@ -439,7 +439,7 @@
                     "interactions": "",
                     "processors": "",
                     "groups": "Keyboard&Mouse",
-                    "action": "UseAbility",
+                    "action": "UseSkill",
                     "isComposite": false,
                     "isPartOfComposite": false
                 },
@@ -450,7 +450,7 @@
                     "interactions": "",
                     "processors": "",
                     "groups": "Keyboard&Mouse",
-                    "action": "SwitchAbility",
+                    "action": "SwitchSkill",
                     "isComposite": false,
                     "isPartOfComposite": false
                 },

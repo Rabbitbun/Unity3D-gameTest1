@@ -2,5 +2,5 @@
 
 public interface IuseAbility
 {
-    public void OnAbilityButtonPressed(int index);
+    public void OnSkillButtonPressed(int index);
 }

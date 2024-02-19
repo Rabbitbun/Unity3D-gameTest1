@@ -20,7 +20,7 @@ public class StatusSystem : MonoBehaviour
     public float hpRechargeRate = 1f;
     private float nextHpRechargeTime = 0f;
 
-    [SerializeField] public AbilitySystem abilitySystem;
+    public SkillSystem SkillSystem;
     //[SerializeField] public UIManager uIMamager;
 
     public event System.EventHandler<StatusEventArgs> StatusChanging;
@@ -29,13 +29,13 @@ public class StatusSystem : MonoBehaviour
     {
         currentHp = maxHp;
         currentMana = maxMana;
-        abilitySystem = GetComponent<AbilitySystem>();
+        SkillSystem = GetComponent<SkillSystem>();
         healthSystem = new HealthSystem(maxHp);
     }
 
     void Start()
     {
-        abilitySystem.StatusChanging += OnStatusChanging;
+        SkillSystem.StatusChanging += OnStatusChanging;
         this.StatusChanging += OnStatusChanging;
         //uIMamager.StatusChanging += OnStatusChanging;
     }

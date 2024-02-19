@@ -1,18 +1,9 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.UI;
 
-public class InventoryMenuView : View
+public class InventorySystem : MonoBehaviour
 {
-    [SerializeField] private Button inventoryButton;
-
-    public override void Initialize()
-    {
-        inventoryButton.onClick.AddListener(() => ViewManager.Show(this, false));
-    }
-
-
     [SerializeField] private InventoryItem itemPrefab;
 
     [SerializeField] private RectTransform contentPanel;
