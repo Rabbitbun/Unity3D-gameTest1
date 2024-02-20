@@ -11006,14 +11006,7 @@ MonoBehaviour:
   itemPrefab: {fileID: 8668697405963239623, guid: be7141a7be34d62479a9adfe77115797, type: 3}
   contentPanel: {fileID: 310745620}
   uiItemsList: []
-  inventorySize: 50
   itemDescription: {fileID: 2083512336}
-  image: {fileID: 21300000, guid: be340a165cb9c8d4cb50f1deeb51d4ea, type: 3}
-  quantity: 1
-  title: title123
-  info: info8888
-  description: des777777777777777777777777777777
-  otherInfo: otherInfo1111111
 --- !u!114 &1364997281
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -16021,6 +16014,21 @@ MonoBehaviour:
   _castPoint: {fileID: 290551067}
   statusSystem: {fileID: 0}
   playerController: {fileID: 0}
+--- !u!114 &2004084760
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2004084745}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6f67c73effa418c4686f054d2c3db5a8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  inventoryMenu: {fileID: 1364997280}
+  inventoryData: {fileID: 11400000, guid: 236c5ca4e7530e44b9732a071b70fe0b, type: 2}
+  IsUpdateIventory: 0
 --- !u!4 &2007064436 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 400000, guid: be7e78284823c324f8c967401fb2d544, type: 3}
@@ -16302,6 +16310,7 @@ MonoBehaviour:
   itemImage: {fileID: 1174872429}
   title: {fileID: 924723139}
   info: {fileID: 648174228}
+  holdNumber: 0
   description: {fileID: 38934173}
   otherInfo: {fileID: 1920780819}
 --- !u!1 &2102502195

@@ -18,6 +18,7 @@ public class ItemData : ScriptableObject
     [field: SerializeField] public int ID { get; set; }
     [field: SerializeField] public Sprite ItemImage { get; set; }
     [field: SerializeField, TextArea] public string Description { get; set; }
+    [field: SerializeField, TextArea] public string OtherInfo { get; set; }
 
     public ItemType itemType;
 

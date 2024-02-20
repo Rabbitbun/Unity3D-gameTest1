@@ -20,22 +20,19 @@ public class InventoryMenuView : View
 
     [SerializeField] private List<InventoryItem> uiItemsList = new List<InventoryItem>();
 
-    [SerializeField] private int inventorySize = 10;
-
     [SerializeField] private InventoryDescription itemDescription;
 
     public event Action<int> OnDescriptionRequested, OnItemActionRequested;
 
     private void Start()
     {
-        InitializeInventoryUI(inventorySize);
-
         itemDescription.ResetDescription();
     }
 
     public override void Show()
     {
         base.Show();
+        Debug.Log("InventoryMenuView Show");
 
         ResetSelection();
     }
@@ -90,6 +87,12 @@ public class InventoryMenuView : View
         
     }
 
-    
+    internal void UpdateDescription(int itemIndex, Sprite itemImage, string name, int holdNumber,
+        string description, string otherInfo)
+    {
+        itemDescription.SetDescription(itemImage, name, holdNumber, description, otherInfo);
 
+        DeselectAllItems();
+        uiItemsList[itemIndex].Select();
+    }
 }
