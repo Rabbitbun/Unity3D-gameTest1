@@ -6,7 +6,7 @@ using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.EventSystems;
 
-public class InventoryItem : MonoBehaviour
+public class InventoryItem : MonoBehaviour, IPointerClickHandler
 {
     [SerializeField] private Image itemImage;
 
@@ -14,8 +14,7 @@ public class InventoryItem : MonoBehaviour
 
     [SerializeField] private Image borderImage;
 
-    public event Action<InventoryItem> OnItemClicked, OnItemDroppedOn, 
-        OnItemBeginDrag, OnItemEndDrag, OnRightClicked;
+    public event Action<InventoryItem> OnItemClicked, OnRightClicked;
 
     [SerializeField, ReadOnly] private bool empty = true;
 
@@ -48,31 +47,11 @@ public class InventoryItem : MonoBehaviour
     {
         this.borderImage.enabled = true;
     }
-
-    public void OnBeginDrag()
-    {
-        if (this.empty) 
-            return;
-
-        OnItemBeginDrag?.Invoke(this);
-    }
-
-    public void OnDrop()
-    {
-        OnItemDroppedOn?.Invoke(this);
-    }
-
-    public void OnEndDrag()
-    {
-        OnItemEndDrag?.Invoke(this);
-    }
-
-    public void OnPointerClick(BaseEventData data)
+    
+    public void OnPointerClick(PointerEventData pointerData)
     {
         if (this.empty)
             return;
-
-        PointerEventData pointerData = (PointerEventData)data;
 
         if (pointerData.button == PointerEventData.InputButton.Right)
         {
@@ -83,6 +62,4 @@ public class InventoryItem : MonoBehaviour
             OnItemClicked?.Invoke(this);
         }
     }
-
-
 }

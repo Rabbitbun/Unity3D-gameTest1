@@ -11006,7 +11006,7 @@ MonoBehaviour:
   itemPrefab: {fileID: 8668697405963239623, guid: be7141a7be34d62479a9adfe77115797, type: 3}
   contentPanel: {fileID: 310745620}
   uiItemsList: []
-  inventorySize: 10
+  inventorySize: 50
   itemDescription: {fileID: 2083512336}
   image: {fileID: 21300000, guid: be340a165cb9c8d4cb50f1deeb51d4ea, type: 3}
   quantity: 1

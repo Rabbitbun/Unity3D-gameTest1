@@ -47,9 +47,6 @@ public class InventoryMenuView : View
             uiItemsList.Add(item);
 
             item.OnItemClicked += HandleItemSelection;
-            item.OnItemBeginDrag += HandleBeginDrag;
-            item.OnItemDroppedOn += HandleSwap;
-            item.OnItemEndDrag += HandleEndDrag;
             item.OnRightClicked += HandleShowItemActions;
         }
     }
@@ -58,21 +55,6 @@ public class InventoryMenuView : View
     {
         itemDescription.SetDescription(image, title, info, description, otherInfo);
         uiItemsList[0].Select();
-    }
-
-    private void HandleBeginDrag(InventoryItem item)
-    {
-        
-    }
-
-    private void HandleSwap(InventoryItem item)
-    {
-        
-    }
-
-    private void HandleEndDrag(InventoryItem item)
-    {
-        
     }
 
     private void HandleShowItemActions(InventoryItem item)
