@@ -84,7 +84,12 @@ public class InventoryMenuView : View
 
     private void HandleShowItemActions(InventoryItem item)
     {
-        
+        int index = uiItemsList.IndexOf(item);
+
+        if (index == -1)
+            return;
+
+        OnItemActionRequested?.Invoke(index);
     }
 
     internal void UpdateDescription(int itemIndex, Sprite itemImage, string name, int holdNumber,

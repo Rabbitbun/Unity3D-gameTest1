@@ -125,6 +125,28 @@ public class InventoryData : ScriptableObject
         AddItem(item.item, item.quantity);
     }
 
+    public void RemoveItem(int itemIndex, int amount)
+    {
+        if (inventoryItems.Count > itemIndex)
+        {
+            if (inventoryItems[itemIndex].IsEmpty)
+                return;
+
+            int reminder = inventoryItems[itemIndex].quantity - amount;
+            if (reminder <= 0) 
+            {
+                // 清空
+                inventoryItems[itemIndex] = InventoryItemStruct.GetEmptyItem();
+            }
+            else // reminder > 0
+            {
+                // 用剩餘的數量更新
+                inventoryItems[itemIndex] = inventoryItems[itemIndex].ChangeQuantity(reminder);
+            }
+            InformAboutChange();
+        }
+    }
+
     public Dictionary<int, InventoryItemStruct> GetCurrentInventoryState()
     {
         Dictionary<int, InventoryItemStruct> returnValue = new Dictionary<int, InventoryItemStruct>();
@@ -148,7 +170,7 @@ public class InventoryData : ScriptableObject
         OnInventoryUpdated?.Invoke(GetCurrentInventoryState());
     }
 
-
+    
 }
 
 [System.Serializable]
