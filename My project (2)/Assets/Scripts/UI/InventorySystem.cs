@@ -44,7 +44,10 @@ public class InventorySystem : MonoBehaviour
     {
         InventoryItemStruct inventoryItem = inventoryData.GetItemAt(itemIndex);
         if (inventoryItem.IsEmpty)
+        {
+            inventoryMenu.ResetSelection();
             return;
+        }
 
         ItemData item = inventoryItem.item;
         inventoryMenu.UpdateDescription(itemIndex, item.ItemImage, 
