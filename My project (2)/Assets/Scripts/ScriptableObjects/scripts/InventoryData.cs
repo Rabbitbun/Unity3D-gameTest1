@@ -22,7 +22,7 @@ public class InventoryData : ScriptableObject
         }
     }
 
-    public int AddItem(ItemData item, int quantity)
+    public int AddItem(ItemData item, int quantity, List<ItemParameter> itemState = null)
     {
         if (item.IsStackable == false)
         {
@@ -30,7 +30,7 @@ public class InventoryData : ScriptableObject
             {
                 while (IsInventoryFull(item) == false && quantity > 0)
                 {
-                    quantity -= AddItemToFirstFreeSlot(item, 1);
+                    quantity -= AddItemToFirstFreeSlot(item, 1, itemState);
                 }
                 InformAboutChange();
                 return quantity;
@@ -41,13 +41,18 @@ public class InventoryData : ScriptableObject
         InformAboutChange();
         return quantity;
     }
+    public void AddItem(InventoryItemStruct item)
+    {
+        AddItem(item.item, item.quantity);
+    }
 
-    private int AddItemToFirstFreeSlot(ItemData item, int quantity)
+    private int AddItemToFirstFreeSlot(ItemData item, int quantity, List<ItemParameter> itemState = null)
     {
         InventoryItemStruct newItem = new InventoryItemStruct
         {
             item = item,
-            quantity = quantity
+            quantity = quantity,
+            itemState = new List<ItemParameter>(itemState == null ? item.DefaultParametersList :  itemState)
         };
 
         for (int i = 0; i < inventoryItems.Count; i++)
@@ -120,11 +125,6 @@ public class InventoryData : ScriptableObject
         return quantity;
     }
 
-    public void AddItem(InventoryItemStruct item)
-    {
-        AddItem(item.item, item.quantity);
-    }
-
     public void RemoveItem(int itemIndex, int amount)
     {
         if (inventoryItems.Count > itemIndex)
@@ -178,6 +178,7 @@ public struct InventoryItemStruct
 {
     public int quantity;
     public ItemData item;
+    public List<ItemParameter> itemState;
     public bool IsEmpty => item == null;
 
     public InventoryItemStruct ChangeQuantity(int newQuantity)
@@ -186,6 +187,7 @@ public struct InventoryItemStruct
         {
             item = this.item,
             quantity = newQuantity,
+            itemState = new List<ItemParameter>(this.itemState),
         };
     }
 
@@ -194,5 +196,6 @@ public struct InventoryItemStruct
         {
             item = null,
             quantity = 0,
+            itemState = new List<ItemParameter>(),
         };
 }

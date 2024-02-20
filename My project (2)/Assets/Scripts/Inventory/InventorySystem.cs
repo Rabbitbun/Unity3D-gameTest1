@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Text;
 using UnityEngine;
 
 /// <summary>
@@ -89,8 +90,24 @@ public class InventorySystem : MonoBehaviour
         }
 
         ItemData item = inventoryItem.item;
+        string otherInfo = PrepareDescription(inventoryItem);
         inventoryMenu.UpdateDescription(itemIndex, item.ItemImage, 
-            item.name, inventoryItem.quantity, item.Description, item.OtherInfo);
+            item.name, inventoryItem.quantity, item.Description, otherInfo);
+    }
+
+    private string PrepareDescription(InventoryItemStruct inventoryItem)
+    {
+        StringBuilder sb = new StringBuilder();
+        sb.Append(inventoryItem.item.Description);
+        sb.AppendLine();
+        for (int i = 0; i < inventoryItem.itemState.Count; i++) 
+        {
+            sb.Append($"{inventoryItem.itemState[i].itemParameter.ParameterName} " +
+                    $": {inventoryItem.itemState[i].value} / " +
+                    $"{inventoryItem.item.DefaultParametersList[i].value}");
+            sb.AppendLine();
+        }
+        return sb.ToString();
     }
 
     private void HandleItemActionRequest(int itemIndex)
@@ -98,18 +115,20 @@ public class InventorySystem : MonoBehaviour
         InventoryItemStruct inventoryItem = inventoryData.GetItemAt(itemIndex);
         if (inventoryItem.IsEmpty)
             return;
-
-        IItemAction itemAction = inventoryItem.item as IItemAction;
-        if (itemAction != null) 
-        {
-            itemAction.PerformAction(gameObject);
-        }
-
+        
         IDestroyableItem destroyableItem = inventoryItem.item as IDestroyableItem;
         if (destroyableItem != null)
         {
             inventoryData.RemoveItem(itemIndex, 1);
         }
+
+        IItemAction itemAction = inventoryItem.item as IItemAction;
+        if (itemAction != null) 
+        {
+            itemAction.PerformAction(gameObject, inventoryItem.itemState);
+        }
+
+        
     }
 
 }

@@ -2,17 +2,21 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class EquippableItemData : MonoBehaviour
+[CreateAssetMenu]
+public class EquippableItemData : ItemData, IDestroyableItem, IItemAction
 {
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
+    public string ActionName => "Equip";
 
-    // Update is called once per frame
-    void Update()
+    public AudioClip actionSFX { get; private set; }
+
+    public bool PerformAction(GameObject character, List<ItemParameter> itemState = null)
     {
-        
+        AgentWeapon weaponSystem = character.GetComponent<AgentWeapon>();
+        if (weaponSystem != null ) 
+        {
+            weaponSystem.SetWeapon(this, itemState == null ? DefaultParametersList : itemState);
+            return true;
+        }
+        return false;
     }
 }

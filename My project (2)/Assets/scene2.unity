@@ -1740,7 +1740,7 @@ PrefabInstance:
     - target: {fileID: 697005453264489224, guid: c1d9ed92a31115b4eb0fdbac7e309729, type: 3}
       propertyPath: <InventoryItem>k__BackingField
       value: 
-      objectReference: {fileID: 11400000, guid: 358c3bf7fbe03a74e8ea28db747ae009, type: 2}
+      objectReference: {fileID: 11400000, guid: bd259e5372df34d489b47f202a68e3f0, type: 2}
     - target: {fileID: 697005453264489226, guid: c1d9ed92a31115b4eb0fdbac7e309729, type: 3}
       propertyPath: m_Name
       value: lootItem (1)
@@ -16170,6 +16170,7 @@ MonoBehaviour:
   InitialItems:
   - quantity: 5
     item: {fileID: 11400000, guid: 3c8b37b4d2e390542ac6aeced4b6638b, type: 2}
+    itemState: []
 --- !u!114 &2004084761
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -16183,6 +16184,24 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   inventoryData: {fileID: 11400000, guid: 236c5ca4e7530e44b9732a071b70fe0b, type: 2}
+--- !u!114 &2004084762
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2004084745}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 101d3693c625229449a648194e8d6f6d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  weapon: {fileID: 0}
+  inventoryData: {fileID: 11400000, guid: 236c5ca4e7530e44b9732a071b70fe0b, type: 2}
+  parametersToModify:
+  - itemParameter: {fileID: 11400000, guid: 0302e5b5a3904c9499d97770e2e2c4a1, type: 2}
+    value: -10
+  itemCurrentState: []
 --- !u!4 &2007064436 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 400000, guid: be7e78284823c324f8c967401fb2d544, type: 3}

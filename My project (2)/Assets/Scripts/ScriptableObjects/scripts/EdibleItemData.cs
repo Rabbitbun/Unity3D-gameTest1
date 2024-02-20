@@ -11,7 +11,7 @@ public class EdibleItemData : ItemData, IDestroyableItem, IItemAction
 
     public AudioClip actionSFX {get; private set; }
 
-    public bool PerformAction(GameObject character)
+    public bool PerformAction(GameObject character, List<ItemParameter> itemState = null)
     {
         foreach (ModifierData data in modifierDatas)
         {
@@ -31,7 +31,7 @@ public interface IItemAction
 {
     public string ActionName { get; }
     public AudioClip actionSFX { get; } // 不必要
-    bool PerformAction(GameObject character);
+    bool PerformAction(GameObject character, List<ItemParameter> itemState);
 }
 
 [System.Serializable]
