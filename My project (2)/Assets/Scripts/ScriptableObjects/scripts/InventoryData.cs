@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 
 [CreateAssetMenu]
@@ -9,6 +10,8 @@ public class InventoryData : ScriptableObject
     [field: SerializeField] private List<InventoryItemStruct> inventoryItems;
 
     [field: SerializeField] public int Size { get; private set; } = 10;
+
+    public event Action<Dictionary<int, InventoryItemStruct>> OnInventoryUpdated;
 
     public void Initialize()
     {
@@ -19,19 +22,83 @@ public class InventoryData : ScriptableObject
         }
     }
 
-    public void AddItem(ItemData item, int quantity)
+    public int AddItem(ItemData item, int quantity)
     {
+        if (item.IsStackable == false)
+        {
+            for (int i = 0; i < inventoryItems.Count; i++)
+            {
+                while (inventoryItems[i].IsEmpty && quantity > 0)
+                {
+                    quantity -= AddItemToFirstFreeSlot(item, 1);
+                    InformAboutChange();
+                    return quantity;
+                }
+            }
+        }
+
+        quantity = AddStackableItem(item, quantity);
+        InformAboutChange();
+        return quantity;
+    }
+
+    private int AddItemToFirstFreeSlot(ItemData item, int quantity)
+    {
+        InventoryItemStruct newItem = new InventoryItemStruct
+        {
+            item = item,
+            quantity = quantity
+        };
+
         for (int i = 0; i < inventoryItems.Count; i++)
         {
             if (inventoryItems[i].IsEmpty)
             {
-                inventoryItems[i] = new InventoryItemStruct
-                {
-                    item = item,
-                    quantity = quantity
-                };
+                inventoryItems[i] = newItem;
+                return quantity;
             }
         }
+        return 0;
+    }
+
+    /// <summary>
+    /// 檢查是否滿了 如果滿了就回傳true(有空位等於false)
+    /// </summary>
+    /// <returns></returns>
+    private bool IsInventoryFull()
+        =>inventoryItems.Where(item => item.IsEmpty).Any() == false;
+
+    private int AddStackableItem(ItemData item, int quantity)
+    {
+        for (int i = 0; i < inventoryItems.Count; i++)
+        {
+            if (inventoryItems[i].IsEmpty)
+                continue;
+
+            if (inventoryItems[i].item.ID == item.ID)
+            {
+                int amountPossibleToTake = inventoryItems[i].item.MaxStackSize - inventoryItems[i].quantity;
+
+                if (quantity > amountPossibleToTake)
+                {
+                    inventoryItems[i] = inventoryItems[i].ChangeQuantity(inventoryItems[i].item.MaxStackSize);
+                    quantity -= amountPossibleToTake;
+                }
+                else // quantity <= amountPossibleToTake
+                {
+                    inventoryItems[i] = inventoryItems[i].ChangeQuantity(
+                        inventoryItems[i].quantity + quantity);
+                    InformAboutChange();
+                    return 0;
+                }
+            }
+            return quantity;
+        }
+    }
+
+    public void AddItem(InventoryItemStruct item)
+    {
+        AddItem(item.item, item.quantity);
     }
 
     public Dictionary<int, InventoryItemStruct> GetCurrentInventoryState()
@@ -51,6 +118,13 @@ public class InventoryData : ScriptableObject
     {
         return inventoryItems[itemIndex];
     }
+
+    public void InformAboutChange()
+    {
+        OnInventoryUpdated?.Invoke(GetCurrentInventoryState());
+    }
+
+
 }
 
 [System.Serializable]

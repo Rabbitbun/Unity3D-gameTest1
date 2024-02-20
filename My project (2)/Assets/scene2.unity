@@ -16029,6 +16029,15 @@ MonoBehaviour:
   inventoryMenu: {fileID: 1364997280}
   inventoryData: {fileID: 11400000, guid: 236c5ca4e7530e44b9732a071b70fe0b, type: 2}
   IsUpdateIventory: 0
+  InitialItems:
+  - quantity: 10
+    item: {fileID: 11400000, guid: 3c8b37b4d2e390542ac6aeced4b6638b, type: 2}
+  - quantity: 20
+    item: {fileID: 11400000, guid: 3c8b37b4d2e390542ac6aeced4b6638b, type: 2}
+  - quantity: 1
+    item: {fileID: 11400000, guid: 358c3bf7fbe03a74e8ea28db747ae009, type: 2}
+  - quantity: 30
+    item: {fileID: 11400000, guid: 3c8b37b4d2e390542ac6aeced4b6638b, type: 2}
 --- !u!4 &2007064436 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 400000, guid: be7e78284823c324f8c967401fb2d544, type: 3}

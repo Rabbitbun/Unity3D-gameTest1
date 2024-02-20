@@ -95,4 +95,13 @@ public class InventoryMenuView : View
         DeselectAllItems();
         uiItemsList[itemIndex].Select();
     }
+
+    public void ResetAllItems()
+    {
+        foreach (var item in uiItemsList)
+        {
+            item.ResetData();
+            item.Deselect();
+        }
+    }
 }
