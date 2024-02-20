@@ -88,7 +88,7 @@ public class StatusSystem : MonoBehaviour
 
     }
 
-    void TakeDamage(float damageAmount)
+    public void TakeDamage(float damageAmount)
     {
         if (this.StatusChanging != null)
         {
@@ -96,7 +96,7 @@ public class StatusSystem : MonoBehaviour
         }
     }
 
-    void TakeHeal(float healAmount)
+    public void TakeHeal(float healAmount)
     {
         if (this.StatusChanging != null)
         {

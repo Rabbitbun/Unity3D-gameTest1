@@ -16163,11 +16163,7 @@ MonoBehaviour:
   inventoryMenu: {fileID: 1364997280}
   inventoryData: {fileID: 11400000, guid: 236c5ca4e7530e44b9732a071b70fe0b, type: 2}
   IsUpdateIventory: 0
-  InitialItems:
-  - quantity: 10
-    item: {fileID: 11400000, guid: 3c8b37b4d2e390542ac6aeced4b6638b, type: 2}
-  - quantity: 1
-    item: {fileID: 11400000, guid: 358c3bf7fbe03a74e8ea28db747ae009, type: 2}
+  InitialItems: []
 --- !u!114 &2004084761
 MonoBehaviour:
   m_ObjectHideFlags: 0

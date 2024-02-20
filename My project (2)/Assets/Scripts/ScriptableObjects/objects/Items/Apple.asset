@@ -9,7 +9,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 3c56209e2692b554086002cc71d0e741, type: 3}
+  m_Script: {fileID: 11500000, guid: 5139df00ee06c8449827ab2bd33c1a96, type: 3}
   m_Name: Apple
   m_EditorClassIdentifier: 
   <IsStackable>k__BackingField: 1
@@ -17,6 +17,11 @@ MonoBehaviour:
   <ItemName>k__BackingField: Apple
   <ID>k__BackingField: 101
   <ItemImage>k__BackingField: {fileID: 21300000, guid: f09eae8c0ea04254b90c5386a034a225, type: 3}
-  <Description>k__BackingField: Apple, can eat.
-  <OtherInfo>k__BackingField: just an apple.
+  <Description>k__BackingField: 'An Apple.
+
+    Recover Health while ate.'
+  <OtherInfo>k__BackingField: nothing.
   itemType: 0
+  modifierDatas:
+  - stateModifier: {fileID: 11400000, guid: 6972299316b4e3547be0167a14f5512f, type: 2}
+    value: -10

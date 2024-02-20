@@ -8,10 +8,8 @@ public enum ItemType
     // 其他類型...
 }
 
-[CreateAssetMenu(fileName = "New Item", menuName = "itemData")]
-public class ItemData : ScriptableObject
+public abstract class ItemData : ScriptableObject
 {
-    
     [field: SerializeField] public bool IsStackable { get; set; }
     [field: SerializeField] public int MaxStackSize { get; set; } = 1;
     [field: SerializeField] public string ItemName{ get; set; }
