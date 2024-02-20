@@ -28,12 +28,12 @@ public class InventoryData : ScriptableObject
         {
             for (int i = 0; i < inventoryItems.Count; i++)
             {
-                while (inventoryItems[i].IsEmpty && quantity > 0)
+                while (IsInventoryFull(item) == false && quantity > 0)
                 {
                     quantity -= AddItemToFirstFreeSlot(item, 1);
-                    InformAboutChange();
-                    return quantity;
                 }
+                InformAboutChange();
+                return quantity;
             }
         }
 
@@ -65,8 +65,23 @@ public class InventoryData : ScriptableObject
     /// 檢查是否滿了 如果滿了就回傳true(有空位等於false)
     /// </summary>
     /// <returns></returns>
-    private bool IsInventoryFull()
-        =>inventoryItems.Where(item => item.IsEmpty).Any() == false;
+    private bool IsInventoryFull(ItemData itemdata)
+    {
+        if (itemdata.IsStackable == false)
+            return false;
+
+        foreach (var item in inventoryItems)
+        {
+            if (item.IsEmpty)
+                continue;
+
+            if (item.item.ID == itemdata.ID)
+                return true;
+        }
+
+        return false;
+    }
+        //=>inventoryItems.Where(item => item.IsEmpty).Any() == false;
 
     private int AddStackableItem(ItemData item, int quantity)
     {
@@ -78,6 +93,9 @@ public class InventoryData : ScriptableObject
             if (inventoryItems[i].item.ID == item.ID)
             {
                 int amountPossibleToTake = inventoryItems[i].item.MaxStackSize - inventoryItems[i].quantity;
+
+                if (amountPossibleToTake == 0)
+                    return quantity;
 
                 if (quantity > amountPossibleToTake)
                 {
@@ -92,8 +110,14 @@ public class InventoryData : ScriptableObject
                     return 0;
                 }
             }
-            return quantity;
         }
+        while (quantity > 0 && IsInventoryFull(item) == false)
+        {
+            int newQuantity = Mathf.Clamp(quantity, 0, item.MaxStackSize);
+            quantity -= newQuantity;
+            AddItemToFirstFreeSlot(item, newQuantity);
+        }
+        return quantity;
     }
 
     public void AddItem(InventoryItemStruct item)
