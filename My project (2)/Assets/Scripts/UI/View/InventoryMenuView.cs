@@ -24,18 +24,20 @@ public class InventoryMenuView : View
 
     [SerializeField] private InventoryDescription itemDescription;
 
-    // temporary variables
-    public Sprite image;
-    public int quantity;
-    public string title, info, description, otherInfo;
+    public event Action<int> OnDescriptionRequested, OnItemActionRequested;
 
     private void Start()
     {
         InitializeInventoryUI(inventorySize);
 
         itemDescription.ResetDescription();
+    }
 
-        uiItemsList[0].SetData(image, quantity);
+    public override void Show()
+    {
+        base.Show();
+
+        ResetSelection();
     }
 
     public void InitializeInventoryUI(int inventorySize)
@@ -51,14 +53,43 @@ public class InventoryMenuView : View
         }
     }
 
+    public void UpdateData(int itemIndex, Sprite itemImage, int itemQuantity)
+    {
+        if (uiItemsList.Count > itemIndex) 
+        {
+            uiItemsList[itemIndex].SetData(itemImage, itemQuantity);
+        }
+    }
+
+    public void ResetSelection()
+    {
+        itemDescription.ResetDescription();
+        DeselectAllItems();
+    }
+
+    private void DeselectAllItems()
+    {
+        foreach (InventoryItem item in uiItemsList)
+        {
+            item.Deselect();
+        }
+    }
+
     private void HandleItemSelection(InventoryItem item)
     {
-        itemDescription.SetDescription(image, title, info, description, otherInfo);
-        uiItemsList[0].Select();
+        int index = uiItemsList.IndexOf(item);
+
+        if (index == -1)
+            return;
+
+        OnDescriptionRequested?.Invoke(index);
     }
 
     private void HandleShowItemActions(InventoryItem item)
     {
         
     }
+
+    
+
 }
