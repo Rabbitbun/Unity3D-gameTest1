@@ -115,7 +115,33 @@ public class InventorySystem : MonoBehaviour
         InventoryItemStruct inventoryItem = inventoryData.GetItemAt(itemIndex);
         if (inventoryItem.IsEmpty)
             return;
-        
+
+        IItemAction itemAction = inventoryItem.item as IItemAction;
+        if (itemAction != null) 
+        {
+            inventoryMenu.ShowItemAction(itemIndex);
+            inventoryMenu.AddAction(itemAction.ActionName, () => PerformAction(itemIndex));
+        }
+
+        IDestroyableItem destroyableItem = inventoryItem.item as IDestroyableItem;
+        if (destroyableItem != null)
+        {
+            inventoryMenu.AddAction("Drop", () => DropItem(itemIndex, inventoryItem.quantity));
+        }
+    }
+
+    private void DropItem(int itemIndex, int quantity)
+    {
+        inventoryData.RemoveItem(itemIndex, quantity);
+        inventoryMenu.ResetSelection();
+    }
+
+    public void PerformAction(int itemIndex)
+    {
+        InventoryItemStruct inventoryItem = inventoryData.GetItemAt(itemIndex);
+        if (inventoryItem.IsEmpty)
+            return;
+
         IDestroyableItem destroyableItem = inventoryItem.item as IDestroyableItem;
         if (destroyableItem != null)
         {
@@ -123,12 +149,13 @@ public class InventorySystem : MonoBehaviour
         }
 
         IItemAction itemAction = inventoryItem.item as IItemAction;
-        if (itemAction != null) 
+        if (itemAction != null)
         {
             itemAction.PerformAction(gameObject, inventoryItem.itemState);
-        }
 
-        
+            if (inventoryData.GetItemAt(itemIndex).IsEmpty)
+                inventoryMenu.ResetSelection();
+        }
     }
 
 }

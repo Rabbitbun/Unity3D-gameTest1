@@ -24,6 +24,8 @@ public class InventoryMenuView : View
 
     public event Action<int> OnDescriptionRequested, OnItemActionRequested;
 
+    [SerializeField] private ItemActionPanel actionPanel;
+
     private void Start()
     {
         itemDescription.ResetDescription();
@@ -58,6 +60,17 @@ public class InventoryMenuView : View
         }
     }
 
+    public void AddAction(string actionName, Action performAction)
+    {
+        actionPanel.AddButton(actionName, performAction);
+    }
+
+    public void ShowItemAction(int itemIndex) 
+    {
+        actionPanel.Toggle(true);
+        actionPanel.transform.position = uiItemsList[itemIndex].transform.position;
+    }
+
     public void ResetSelection()
     {
         itemDescription.ResetDescription();
@@ -70,6 +83,8 @@ public class InventoryMenuView : View
         {
             item.Deselect();
         }
+
+        actionPanel.Toggle(false);
     }
 
     private void HandleItemSelection(InventoryItem item)
