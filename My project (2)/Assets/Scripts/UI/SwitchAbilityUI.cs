@@ -15,7 +15,7 @@ public class SwitchAbilityUI : MonoBehaviour
 
     private void Awake()
     {
-        MasterManager.Instance.PlayerInputManager.PlayerInput.Player.SwitchSkill.performed += SwitchSkillList;
+        //MasterManager.Instance.PlayerInputManager.PlayerInput.Player.SwitchSkill.performed += SwitchSkillList;
     }
 
     private void Start()

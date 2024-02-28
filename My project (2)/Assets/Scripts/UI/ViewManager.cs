@@ -14,13 +14,6 @@ public class ViewManager : MonoBehaviour
 
     private readonly Stack<View> history = new Stack<View>();
 
-    private void OnDisable()
-    {
-        for (int i = 0; i < views.Length; i++)
-        {
-            views[i].Hide();
-        }
-    }
 
     private void OnEnable()
     {
@@ -30,6 +23,14 @@ public class ViewManager : MonoBehaviour
         }
     }
 
+    private void OnDisable()
+    {
+        for (int i = 0; i < views.Length; i++)
+        {
+            views[i].Hide();
+        }
+    }
+    
     private void Awake()
     {
         Instance = this;
@@ -102,7 +103,7 @@ public class ViewManager : MonoBehaviour
         Instance.currentView = view;
     }
 
-    public static void ShowLast() 
+    public static void ShowLast()
     {
         if (Instance.history.Count != 0)
         {

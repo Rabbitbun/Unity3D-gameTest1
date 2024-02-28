@@ -4,13 +4,14 @@ using UnityEngine.Animations.Rigging;
 
 public class PlayerController : MonoBehaviour
 {
+    [SerializeField] private InputReader _inputReader = default;
+
     public Transform PlayerTransform;
     public Animator animator;
     private Transform _cameraTransform;
     public CharacterController CharacterController;
     Vector2 mouseXY;
 
-    //[SerializeField] public MasterManager masterManager;
     private PlayerInputManager playerInput;
     private MasterManager masterManagerInstance;
 
@@ -73,7 +74,7 @@ public class PlayerController : MonoBehaviour
     public bool IsAiming;
     public bool IsJumping;
     public bool IsAttacking;
-    public bool IsCasting;
+    public bool IsChanting;
     #endregion
 
     #region 狀態機參數的Hash
@@ -130,6 +131,48 @@ public class PlayerController : MonoBehaviour
 
     public Rig rig;
 
+    private bool IsNormalAttacking;
+
+    private void OnEnable()
+    {
+        _inputReader.moveEvent += OnMove;
+        _inputReader.startedRunning += OnStartedRunning;
+        _inputReader.stoppedRunning += OnStoppedRunning;
+        _inputReader.jumpEvent += OnJump;
+        _inputReader.jumpCanceledEvent += OnJumpCanceled;
+        _inputReader.cameraMoveEvent += OnMouseXY;
+
+        _inputReader.startedChanting += OnStartedChanting;
+        _inputReader.stoppedChanting += OnStoppedChanting;
+        _inputReader.startedAiming += OnStartedAiming;
+        _inputReader.stoppedAiming += OnStoppedAiming;
+
+        _inputReader.crouchEvent += OnCrouch;
+
+        _inputReader.attackEvent += OnAttack;
+        //...
+    }
+
+    private void OnDisable()
+    {
+        _inputReader.moveEvent -= OnMove;
+        _inputReader.startedRunning -= OnStartedRunning;
+        _inputReader.stoppedRunning -= OnStoppedRunning;
+        _inputReader.jumpEvent -= OnJump;
+        _inputReader.jumpCanceledEvent -= OnJumpCanceled;
+        _inputReader.cameraMoveEvent -= OnMouseXY;
+
+        _inputReader.startedChanting -= OnStartedChanting;
+        _inputReader.stoppedChanting -= OnStoppedChanting;
+        _inputReader.startedAiming -= OnStartedAiming;
+        _inputReader.stoppedAiming -= OnStoppedAiming;
+
+        _inputReader.crouchEvent -= OnCrouch;
+
+        _inputReader.attackEvent -= OnAttack;
+        //...
+    }
+
     void Start()
     {
         PlayerTransform = this.transform;
@@ -153,7 +196,6 @@ public class PlayerController : MonoBehaviour
 
     void Update()
     {
-        //Debug.DrawRay(cameraTransform.position, cameraTransform.forward * 50f, Color.blue);
         DealWithInput();
         //CheckGround();
         //SwitchPlayerStates(); //
@@ -161,29 +203,24 @@ public class PlayerController : MonoBehaviour
         //Jump(); //
         CaculateInputDirection();
         //SetupAnimator(); //
-        //Time.timeScale = 0.05f;
     }
     
     void LateUpdate()
     {
-        //print("在FixUpdate()最前:" + IsCasting);
         if (MasterManager.Instance.GameEventManager.IsgamePaused == false)
             CameraRotation();
 
-        if (IsCasting)
+        switch (IsChanting)
         {
-            rig.weight = Mathf.Lerp(rig.weight, 1.0f, Time.deltaTime * 5.0f);
+            case true:
+                rig.weight = Mathf.Lerp(rig.weight, 1.0f, Time.deltaTime * 10.0f);
+                break;
+            case false:
+                rig.weight = Mathf.Lerp(rig.weight, 0.0f, Time.deltaTime * 15.0f);
+                break;
         }
-        else
-        {
-            rig.weight = Mathf.Lerp(rig.weight, 0.0f, Time.deltaTime * 7.0f);
-        }
-
-        
 
         DealWithInputInFixUpdate();
-
-        //print("在FixUpdate()最後:" + IsCasting);
     }
 
     void DealWithInputInFixUpdate()
@@ -191,48 +228,56 @@ public class PlayerController : MonoBehaviour
         if (MasterManager.Instance.GameEventManager.IsgamePaused)
             return;
 
-        IsJumping = PlayerInputManager.Instance.jump;
-        IsCasting = PlayerInputManager.Instance.Casting;
-        IsAiming = PlayerInputManager.Instance.Aiming;
-        if (IsAiming && PlayerInputManager.Instance.RightClickPressed)
-        {
-            PlayerInputManager.Instance.Aiming = false;
-            PlayerInputManager.Instance.Casting = false;
-            IsCasting = false;
-            //print("在FixUpdate()中1:" + IsCasting);
-        }
+        /// IsJumping = PlayerInputManager.Instance.jump;
+        /// IsChanting = PlayerInputManager.Instance.Casting;
+        /// IsAiming = PlayerInputManager.Instance.Aiming;
 
-        if (PlayerInputManager.Instance.leftClick)
+        //if (IsAiming && PlayerInputManager.Instance.RightClickPressed)
+        //{
+        //    PlayerInputManager.Instance.Aiming = false;
+        //    PlayerInputManager.Instance.Casting = false;
+        //    IsChanting = false;
+        //    //print("在FixUpdate()中1:" + IsChanting);
+        //}
+
+        // 如果在 Chanting 時做其他動作如普通攻擊等, chanting會被取消, 需重新按下 chanting鍵
+        if (IsAttacking)
         {
-            //print("Left clicked " + PlayerInputManager.Instance.leftClick);
-            if (IsCasting)
+            if (IsChanting)
             {
-                PlayerInputManager.Instance.Casting = false;
-                IsCasting = false;
-            }
-            if (VerticalVelocity <= 0.0f || IsGrounded)
-            {
-                IsAttacking = true;
-                if (armState == ArmState.Normal)
-                {
-                    animator.SetTrigger("Attack1");
-                }
-                else if (armState == ArmState.Aim)
-                {
-                    animator.SetTrigger("Attack2");
-                }
-                else if (armState == ArmState.Cast)
-                {
-                    animator.SetTrigger("Attack1");
-                }
+                IsChanting = false;
             }
 
+            animator.SetTrigger("Attack1");
         }
-        else
-        {
-            //animator.ResetTrigger("Attack1");
-            //animator.ResetTrigger("Attack2");
-        }
+
+        //if (PlayerInputManager.Instance.leftClick)
+        //{
+        //    //print("Left clicked " + PlayerInputManager.Instance.leftClick);
+        //    if (IsChanting)
+        //    {
+        //        PlayerInputManager.Instance.Casting = false;
+        //        IsChanting = false;
+        //    }
+        //    if (VerticalVelocity <= 0.0f || IsGrounded)
+        //    {
+        //        IsAttacking = true;
+        //        if (armState == ArmState.Normal)
+        //        {
+        //            animator.SetTrigger("Attack1");
+        //        }
+        //        else if (armState == ArmState.Aim)
+        //        {
+        //            animator.SetTrigger("Attack2");
+        //        }
+        //        else if (armState == ArmState.Cast)
+        //        {
+        //            animator.SetTrigger("Attack1");
+        //        }
+        //    }
+
+        //}
+
     }
     
     // 讀取輸入
@@ -240,11 +285,12 @@ public class PlayerController : MonoBehaviour
     {
         if (MasterManager.Instance.GameEventManager.IsgamePaused)
             return;
-        MoveInput = playerInput.move;
-        IsRunning = playerInput.run;
-        IsCrouch = playerInput.crouch;
+
+        /// MoveInput = playerInput.move;
+        /// IsRunning = playerInput.run;
+        /// IsCrouch = playerInput.crouch;
         //IsJumping = playerInput.jump;
-        mouseXY = playerInput.look;
+        /// mouseXY = playerInput.look;
         //IsAiming = playerInput.rightClick;
 
     }
@@ -458,6 +504,9 @@ public class PlayerController : MonoBehaviour
         }
     }
 
+    /// <summary>
+    /// 將移動方向轉為以攝影機前方為基準
+    /// </summary>
     void CaculateInputDirection()
     {
         Vector3 camForwardProjection = new Vector3(_cameraTransform.forward.x, 0, _cameraTransform.forward.z).normalized;
@@ -565,6 +614,7 @@ public class PlayerController : MonoBehaviour
         }
     }
 
+    // 平均速度
     public Vector3 AverageVel(Vector3 newVel)
     {
         _valCache[_currentCacheIndex] = newVel;
@@ -629,4 +679,34 @@ public class PlayerController : MonoBehaviour
 
     }
     */
+
+    //---- EVENT LISTENERS ----
+
+    private void OnMove(Vector2 movement) => MoveInput = movement;
+
+    private void OnStartedRunning() => IsRunning = true;
+
+    private void OnStoppedRunning() => IsRunning = false;
+
+    private void OnMouseXY(Vector2 mousePos, bool isDeviceMouse)
+    {
+        mouseXY = mousePos;
+    }
+
+    private void OnJump() => IsJumping = true;
+
+    private void OnJumpCanceled() => IsJumping = false;
+
+    private void OnStartedChanting() => IsChanting = true;
+
+    private void OnStoppedChanting() => IsChanting = false;
+
+    private void OnCrouch() => IsCrouch = !IsCrouch;
+
+    private void OnStartedAiming() => IsAiming = true;
+
+    private void OnStoppedAiming() => IsAiming = false;
+
+    private void OnAttack() => IsAttacking = true;
+
 }

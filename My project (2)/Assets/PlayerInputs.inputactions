@@ -24,7 +24,7 @@
                     "initialStateCheck": true
                 },
                 {
-                    "name": "LeftClick",
+                    "name": "Attack",
                     "type": "Button",
                     "id": "1a985c21-16f2-4e9f-a528-def4999a5db4",
                     "expectedControlType": "Button",
@@ -42,9 +42,9 @@
                     "initialStateCheck": false
                 },
                 {
-                    "name": "RightClick",
+                    "name": "Jump",
                     "type": "Button",
-                    "id": "ec9b134c-aa96-41d0-b976-0d462d31b1f3",
+                    "id": "ad3db88b-1f98-4d0d-b0a6-59afb652f902",
                     "expectedControlType": "Button",
                     "processors": "",
                     "interactions": "",
@@ -60,25 +60,16 @@
                     "initialStateCheck": false
                 },
                 {
-                    "name": "Jump",
+                    "name": "UseAbility",
                     "type": "Button",
-                    "id": "ad3db88b-1f98-4d0d-b0a6-59afb652f902",
+                    "id": "5e3c2192-622b-48cf-a731-d1e396b59e5b",
                     "expectedControlType": "Button",
                     "processors": "",
                     "interactions": "",
                     "initialStateCheck": false
                 },
                 {
-                    "name": "UseSkill",
-                    "type": "Button",
-                    "id": "5e3c2192-622b-48cf-a731-d1e396b59e5b",
-                    "expectedControlType": "Button",
-                    "processors": "",
-                    "interactions": "",
-                    "initialStateCheck": true
-                },
-                {
-                    "name": "SwitchSkill",
+                    "name": "SwitchStyle",
                     "type": "Button",
                     "id": "0917bad6-c433-4495-8ab6-cebe96e78023",
                     "expectedControlType": "Button",
@@ -87,25 +78,7 @@
                     "initialStateCheck": false
                 },
                 {
-                    "name": "Esc",
-                    "type": "Button",
-                    "id": "959fd42b-e2c8-4583-8686-999fd3750f69",
-                    "expectedControlType": "Button",
-                    "processors": "",
-                    "interactions": "",
-                    "initialStateCheck": false
-                },
-                {
-                    "name": "SwitchChoose",
-                    "type": "Button",
-                    "id": "3b3fb1b0-4113-4b9e-8831-e321c5c75d81",
-                    "expectedControlType": "Button",
-                    "processors": "",
-                    "interactions": "",
-                    "initialStateCheck": false
-                },
-                {
-                    "name": "CastSpell",
+                    "name": "Chant",
                     "type": "Button",
                     "id": "af75d68b-a99c-414e-9465-9cafd26ab336",
                     "expectedControlType": "Button",
@@ -114,9 +87,36 @@
                     "initialStateCheck": false
                 },
                 {
-                    "name": "Aimming",
+                    "name": "Aim",
                     "type": "Button",
                     "id": "47665191-6e7b-4b2e-8b77-21ffc526f9db",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                },
+                {
+                    "name": "Pause",
+                    "type": "Button",
+                    "id": "959fd42b-e2c8-4583-8686-999fd3750f69",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                },
+                {
+                    "name": "Interact",
+                    "type": "Button",
+                    "id": "a344f3ed-f570-408e-803b-beecfb5c5458",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                },
+                {
+                    "name": "LockCamera",
+                    "type": "Button",
+                    "id": "3b3fb1b0-4113-4b9e-8831-e321c5c75d81",
                     "expectedControlType": "Button",
                     "processors": "",
                     "interactions": "",
@@ -296,7 +296,7 @@
                     "interactions": "",
                     "processors": "",
                     "groups": ";Gamepad",
-                    "action": "LeftClick",
+                    "action": "Attack",
                     "isComposite": false,
                     "isPartOfComposite": false
                 },
@@ -307,7 +307,7 @@
                     "interactions": "",
                     "processors": "",
                     "groups": ";Keyboard&Mouse",
-                    "action": "LeftClick",
+                    "action": "Attack",
                     "isComposite": false,
                     "isPartOfComposite": false
                 },
@@ -318,7 +318,7 @@
                     "interactions": "",
                     "processors": "",
                     "groups": ";Touch",
-                    "action": "LeftClick",
+                    "action": "Attack",
                     "isComposite": false,
                     "isPartOfComposite": false
                 },
@@ -329,7 +329,7 @@
                     "interactions": "",
                     "processors": "",
                     "groups": "Joystick",
-                    "action": "LeftClick",
+                    "action": "Attack",
                     "isComposite": false,
                     "isPartOfComposite": false
                 },
@@ -340,7 +340,7 @@
                     "interactions": "",
                     "processors": "",
                     "groups": "XR",
-                    "action": "LeftClick",
+                    "action": "Attack",
                     "isComposite": false,
                     "isPartOfComposite": false
                 },
@@ -352,39 +352,6 @@
                     "processors": "",
                     "groups": "Keyboard&Mouse",
                     "action": "Run",
-                    "isComposite": false,
-                    "isPartOfComposite": false
-                },
-                {
-                    "name": "",
-                    "id": "93dffc38-ae50-4cc1-bc0e-10201a71eade",
-                    "path": "<Keyboard>/leftAlt",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": "Keyboard&Mouse",
-                    "action": "RightClick",
-                    "isComposite": false,
-                    "isPartOfComposite": false
-                },
-                {
-                    "name": "",
-                    "id": "1a7b0cd3-31ff-4c69-8fec-232a1c163c86",
-                    "path": "<Mouse>/rightButton",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": "Keyboard&Mouse",
-                    "action": "RightClick",
-                    "isComposite": false,
-                    "isPartOfComposite": false
-                },
-                {
-                    "name": "",
-                    "id": "928e5189-bff6-4127-be9e-c3fdbb74a142",
-                    "path": "<Keyboard>/leftCtrl",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": "Keyboard&Mouse",
-                    "action": "Crouch",
                     "isComposite": false,
                     "isPartOfComposite": false
                 },
@@ -406,7 +373,7 @@
                     "interactions": "",
                     "processors": "",
                     "groups": "Keyboard&Mouse",
-                    "action": "UseSkill",
+                    "action": "UseAbility",
                     "isComposite": false,
                     "isPartOfComposite": false
                 },
@@ -417,7 +384,7 @@
                     "interactions": "",
                     "processors": "",
                     "groups": "Keyboard&Mouse",
-                    "action": "UseSkill",
+                    "action": "UseAbility",
                     "isComposite": false,
                     "isPartOfComposite": false
                 },
@@ -428,7 +395,7 @@
                     "interactions": "",
                     "processors": "",
                     "groups": "Keyboard&Mouse",
-                    "action": "UseSkill",
+                    "action": "UseAbility",
                     "isComposite": false,
                     "isPartOfComposite": false
                 },
@@ -439,7 +406,51 @@
                     "interactions": "",
                     "processors": "",
                     "groups": "Keyboard&Mouse",
-                    "action": "UseSkill",
+                    "action": "UseAbility",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "b0d13e4a-d425-4c9b-9e79-bf03ba49a3bf",
+                    "path": "<Keyboard>/5",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "Keyboard&Mouse",
+                    "action": "UseAbility",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "dd5c2200-8c1d-4231-9c3a-324b07df5e7c",
+                    "path": "<Keyboard>/6",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "Keyboard&Mouse",
+                    "action": "UseAbility",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "2f7666c5-2723-4a0b-b5ad-dba70f07f0db",
+                    "path": "<Keyboard>/7",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "Keyboard&Mouse",
+                    "action": "UseAbility",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "5a0b9f07-8e56-4970-a989-fdb2a33e6473",
+                    "path": "<Keyboard>/8",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "Keyboard&Mouse",
+                    "action": "UseAbility",
                     "isComposite": false,
                     "isPartOfComposite": false
                 },
@@ -450,29 +461,7 @@
                     "interactions": "",
                     "processors": "",
                     "groups": "Keyboard&Mouse",
-                    "action": "SwitchSkill",
-                    "isComposite": false,
-                    "isPartOfComposite": false
-                },
-                {
-                    "name": "",
-                    "id": "30c5bef2-0901-4cd7-8d2a-de77346244c3",
-                    "path": "<Keyboard>/escape",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": "Keyboard&Mouse",
-                    "action": "Esc",
-                    "isComposite": false,
-                    "isPartOfComposite": false
-                },
-                {
-                    "name": "",
-                    "id": "39df5c95-d811-44cd-8b90-eb001523e7af",
-                    "path": "<Keyboard>/backquote",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": "Keyboard&Mouse",
-                    "action": "SwitchChoose",
+                    "action": "SwitchStyle",
                     "isComposite": false,
                     "isPartOfComposite": false
                 },
@@ -483,7 +472,7 @@
                     "interactions": "",
                     "processors": "",
                     "groups": "Keyboard&Mouse",
-                    "action": "CastSpell",
+                    "action": "Chant",
                     "isComposite": false,
                     "isPartOfComposite": false
                 },
@@ -494,7 +483,179 @@
                     "interactions": "",
                     "processors": "",
                     "groups": "Keyboard&Mouse",
-                    "action": "Aimming",
+                    "action": "Aim",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "812d1e67-a168-4190-b59f-5b01404f2b34",
+                    "path": "<Keyboard>/e",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "Keyboard&Mouse",
+                    "action": "Interact",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "39df5c95-d811-44cd-8b90-eb001523e7af",
+                    "path": "<Keyboard>/backquote",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "Keyboard&Mouse",
+                    "action": "LockCamera",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "30c5bef2-0901-4cd7-8d2a-de77346244c3",
+                    "path": "<Keyboard>/escape",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "Keyboard&Mouse",
+                    "action": "Pause",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "928e5189-bff6-4127-be9e-c3fdbb74a142",
+                    "path": "<Keyboard>/leftCtrl",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "Keyboard&Mouse",
+                    "action": "Crouch",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                }
+            ]
+        },
+        {
+            "name": "Menu",
+            "id": "2208ea36-1abe-4b67-9d2b-403c168ed3bf",
+            "actions": [
+                {
+                    "name": "MoveSelection",
+                    "type": "Value",
+                    "id": "7e2b2900-aacc-4a71-9af5-89bb3c8dce32",
+                    "expectedControlType": "Vector2",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": true
+                },
+                {
+                    "name": "RightClick",
+                    "type": "Button",
+                    "id": "0136f73e-da2a-4d51-bcf3-13fb5908bbbf",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                },
+                {
+                    "name": "LeftClick",
+                    "type": "Button",
+                    "id": "52957879-65cf-4ad1-90fc-4ed1ccf06dfa",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                },
+                {
+                    "name": "MouseMove",
+                    "type": "PassThrough",
+                    "id": "080e4060-6aaa-4daa-989d-2dfb6c634551",
+                    "expectedControlType": "Vector2",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                },
+                {
+                    "name": "Unpause",
+                    "type": "Button",
+                    "id": "9f873a4c-b742-46b0-8e5c-84b30e1b147e",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                },
+                {
+                    "name": "BackView",
+                    "type": "Button",
+                    "id": "2aeb259d-f59d-47cc-ab40-452cbc61c152",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                }
+            ],
+            "bindings": [
+                {
+                    "name": "",
+                    "id": "dcdc4c9e-e252-461f-8906-3e2cb9ebd45a",
+                    "path": "",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "MoveSelection",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "385eeb8a-cb8e-4529-8223-d936d1fc88d8",
+                    "path": "<Mouse>/rightButton",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "Keyboard&Mouse",
+                    "action": "RightClick",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "4aa619b2-0713-4a28-904f-a79fdcf7cf98",
+                    "path": "<Mouse>/leftButton",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "Keyboard&Mouse",
+                    "action": "LeftClick",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "1be1a5e3-7f5b-49ad-a24f-35ca4f8714af",
+                    "path": "<Mouse>/position",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "MouseMove",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "99ab0b4b-93b2-405a-bc58-3242de57c35f",
+                    "path": "<Keyboard>/escape",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "Keyboard&Mouse",
+                    "action": "Unpause",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "4032bfc7-3469-46b5-89c2-734052deb3a4",
+                    "path": "<Keyboard>/q",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "Keyboard&Mouse",
+                    "action": "BackView",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }

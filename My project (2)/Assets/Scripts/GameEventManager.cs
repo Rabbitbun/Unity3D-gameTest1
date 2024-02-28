@@ -29,7 +29,7 @@ public class GameEventManager : MonoBehaviour
             Cursor.visible = false;
             Cursor.lockState = CursorLockMode.Locked;
 
-            UIManager.Instance.PauseMenu.SetActive(false);
+            /// UIManager.Instance.PauseMenu.SetActive(false);
 
             //print("set to continue.");
         }
@@ -41,7 +41,7 @@ public class GameEventManager : MonoBehaviour
             Cursor.visible = true;
             Cursor.lockState = CursorLockMode.None;
 
-            UIManager.Instance.PauseMenu.SetActive(true);
+            /// UIManager.Instance.PauseMenu.SetActive(true);
 
             //print("set to stop.");
         }

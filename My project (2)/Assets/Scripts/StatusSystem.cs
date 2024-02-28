@@ -65,7 +65,7 @@ public class StatusSystem : MonoBehaviour
 
     void Update()
     {
-        print("HP: " + currentHp);
+        //print("HP: " + currentHp);
         if (Input.GetKeyDown(KeyCode.K))
         {
             TakeDamage(11);

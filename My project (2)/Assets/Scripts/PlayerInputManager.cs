@@ -44,17 +44,17 @@ public class PlayerInputManager : MonoBehaviour
         PlayerInput.Player.Look.performed += OnLookInput;
         PlayerInput.Player.Look.canceled += OnLookInput;
 
-        PlayerInput.Player.LeftClick.started += OnLeftClickInput;
-        //_playerInput.Player.LeftClick.performed += OnLeftClickInput;
-        PlayerInput.Player.LeftClick.canceled += OnLeftClickInput;
+        //PlayerInput.Player.LeftClick.started += OnLeftClickInput;
+        ////_playerInput.Player.LeftClick.performed += OnLeftClickInput;
+        //PlayerInput.Player.LeftClick.canceled += OnLeftClickInput;
 
-        PlayerInput.Player.RightClick.started += OnRightClickInput;
-        //_playerInput.Player.RightClick.performed += OnRightClickInput;
-        //_playerInput.Player.RightClick.canceled += OnRightClickInput;
+        //PlayerInput.Player.RightClick.started += OnRightClickInput;
+        ////_playerInput.Player.RightClick.performed += OnRightClickInput;
+        ////_playerInput.Player.RightClick.canceled += OnRightClickInput;
 
-        PlayerInput.Player.RightClick.started += OnRightClickPressed;
-        //PlayerInput.Player.RightClick.performed += OnRightClickPressed;
-        PlayerInput.Player.RightClick.canceled += OnRightClickPressed;
+        //PlayerInput.Player.RightClick.started += OnRightClickPressed;
+        ////PlayerInput.Player.RightClick.performed += OnRightClickPressed;
+        //PlayerInput.Player.RightClick.canceled += OnRightClickPressed;
 
         PlayerInput.Player.Move.performed += OnMoveInput;
         PlayerInput.Player.Move.canceled += OnMoveInput;
@@ -68,13 +68,13 @@ public class PlayerInputManager : MonoBehaviour
         PlayerInput.Player.Crouch.performed += OnCrouchInput;
         PlayerInput.Player.Crouch.canceled += OnCrouchInput;
 
-        PlayerInput.Player.Esc.started += OnEscInput;
+        PlayerInput.Player.Pause.started += OnEscInput;
 
-        PlayerInput.Player.CastSpell.started += OnCasting;
-        //PlayerInput.Player.CastSpell.performed += OnCasting;
-        //PlayerInput.Player.CastSpell.canceled += OnCasting;
+        //PlayerInput.Player.CastSpell.started += OnCasting;
+        ////PlayerInput.Player.CastSpell.performed += OnCasting;
+        ////PlayerInput.Player.CastSpell.canceled += OnCasting;
 
-        PlayerInput.Player.Aimming.started += OnAimming;
+        PlayerInput.Player.Aim.started += OnAimming;
     }
 
     public void OnMoveInput(InputAction.CallbackContext context)

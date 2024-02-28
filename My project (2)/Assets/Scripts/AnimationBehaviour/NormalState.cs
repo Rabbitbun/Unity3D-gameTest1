@@ -170,7 +170,7 @@ public class NormalState : StateMachineBehaviour
         {
             playerController.armState = PlayerController.ArmState.Attack;
         }
-        else if (playerController.IsCasting)
+        else if (playerController.IsChanting)
         {
             playerController.armState = PlayerController.ArmState.Cast;
         }

@@ -1,5 +1,5 @@
 ﻿using UnityEngine;
-using System.Collections;
+
 public interface ICollisionHandler
 {
     void HandleCollision(GameObject obj, Collision c);

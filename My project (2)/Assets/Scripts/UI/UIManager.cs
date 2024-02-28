@@ -5,6 +5,8 @@ public class UIManager : MonoBehaviour, IuseAbility
 {
     public static UIManager Instance { get; private set;}
 
+    [SerializeField] private InputReader _inputReader = default;
+
     [SerializeField, ReadOnly] public PlayerUI playerUI;
 
     // 從玩家身上抓取System
@@ -12,6 +14,7 @@ public class UIManager : MonoBehaviour, IuseAbility
     [SerializeField, ReadOnly] public StatusSystem StatusSystem;
 
     [SerializeField] public GameObject PauseMenu;
+    [SerializeField] public KeyBindingFootBarHelper KeyBindingFootBar;
 
     //public List<GameObject> Skills;
     // all skills cooldown scripts
@@ -19,6 +22,19 @@ public class UIManager : MonoBehaviour, IuseAbility
     // current style skills cooldown scripts
     //private List<AbilityCooldown> _currentSkillsCoolDown = new List<AbilityCooldown>();
 
+    private void OnEnable()
+    {
+        _inputReader.pauseEvent += OpenPauseMenu;
+        _inputReader.menuUnpauseEvent += ClosePauseMenu;
+        _inputReader.menuBackViewEvent += BackTrackView;
+    }
+
+    private void OnDisable()
+    {
+        _inputReader.pauseEvent -= OpenPauseMenu;
+        _inputReader.menuUnpauseEvent -= ClosePauseMenu;
+        _inputReader.menuBackViewEvent -= BackTrackView;
+    }
 
     private void Awake()
     {
@@ -28,6 +44,8 @@ public class UIManager : MonoBehaviour, IuseAbility
 
         SkillSystem = GameObject.FindWithTag("Player").GetComponent<SkillSystem>();
         StatusSystem = GameObject.FindWithTag("Player").GetComponent<StatusSystem>();
+
+
         
         // TODO: 需要重新架構整個cooldown 腳本 
         //foreach (var go in SkillSystem.SkillObjectList)
@@ -43,8 +61,31 @@ public class UIManager : MonoBehaviour, IuseAbility
     private void Start()
     {
         //StatusChanging += HealthChanging;
-        
+
         //healthBar.Setup(StatusSystem.healthSystem);
+
+        KeyBindingFootBar.Initialized(_inputReader);
+    }
+
+    // 打開遊戲菜單並且把Action map設為menu action, 同時也打開footbar
+    private void OpenPauseMenu()
+    {
+        PauseMenu.SetActive(true);
+        KeyBindingFootBar.gameObject.SetActive(true);
+        _inputReader.EnableMenuInput();
+    }
+
+    // 關閉遊戲菜單並且把Action map設為gameplay action, 同時也關閉footbar
+    private void ClosePauseMenu()
+    {
+        PauseMenu.SetActive(false);
+        KeyBindingFootBar.gameObject.SetActive(false);
+        _inputReader.EnableGameplayInput();
+    }
+
+    private void BackTrackView()
+    {
+        ViewManager.ShowLast();
     }
 
     public void InitSkillListOnUI(List<GameObject> skillList, int ListIndex)

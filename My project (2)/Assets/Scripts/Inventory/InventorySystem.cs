@@ -1,11 +1,10 @@
-using System;
-using System.Collections;
 using System.Collections.Generic;
 using System.Text;
 using UnityEngine;
 
 /// <summary>
-/// 擔任InventoryUI跟背後邏輯的溝通
+/// 掛載在Player上
+/// 擔任 InventoryUI 跟背後邏輯的溝通橋梁
 /// </summary>
 public class InventorySystem : MonoBehaviour
 {
@@ -28,7 +27,7 @@ public class InventorySystem : MonoBehaviour
 
     private void Update()
     {
-        // 檢查是否需要更新Inventory (打開菜單時更新)
+        // 檢查是否需要更新Inventory (打開遊戲菜單時更新)
         IsUpdateIventory = MasterManager.Instance.GameEventManager.IsgamePaused;
 
         if (IsUpdateIventory)
@@ -41,13 +40,15 @@ public class InventorySystem : MonoBehaviour
     }
 
     /// <summary>
-    /// 初始化UI
+    /// 初始化UI, 掛上事件
     /// </summary>
     private void PrepareUI()
     {
         inventoryMenu.InitializeInventoryUI(inventoryData.Size);
 
+        // 詳細描述
         this.inventoryMenu.OnDescriptionRequested += HandleDescriptionRequest;
+        // 額外選項
         this.inventoryMenu.OnItemActionRequested += HandleItemActionRequest;
     }
 
@@ -109,7 +110,11 @@ public class InventorySystem : MonoBehaviour
         }
         return sb.ToString();
     }
-
+    
+    /// <summary>
+    /// 處理額外選項事件
+    /// </summary>
+    /// <param name="itemIndex"></param>
     private void HandleItemActionRequest(int itemIndex)
     {
         InventoryItemStruct inventoryItem = inventoryData.GetItemAt(itemIndex);

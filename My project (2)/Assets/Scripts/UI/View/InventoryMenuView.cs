@@ -11,7 +11,7 @@ public class InventoryMenuView : View
 
     public override void Initialize()
     {
-        inventoryButton.onClick.AddListener(() => ViewManager.Show(this, false));
+        inventoryButton.onClick.AddListener(() => ViewManager.Show(this, true));
     }
 
     [SerializeField] private InventoryItem itemPrefab;
@@ -37,6 +37,13 @@ public class InventoryMenuView : View
         Debug.Log("InventoryMenuView Show");
 
         ResetSelection();
+    }
+
+    public override void Hide()
+    {
+        base.Hide();
+
+        //inventoryButton.
     }
 
     public void InitializeInventoryUI(int inventorySize)
