@@ -1,7 +1,6 @@
 using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.Events;
-using UnityEditor.Rendering.LookDev;
 
 [CreateAssetMenu(fileName = "InputReader", menuName = "Game/Input Reader")]
 public class InputReader : ScriptableObject, PlayerInputs.IPlayerActions, PlayerInputs.IMenuActions
@@ -13,8 +12,14 @@ public class InputReader : ScriptableObject, PlayerInputs.IPlayerActions, Player
     public event UnityAction<Vector2, bool> cameraMoveEvent = delegate { };
 
     public event UnityAction attackEvent = delegate { };
-    public event UnityAction useAbilityEvent = delegate { };
+
+    public event UnityAction<int> useAbility1Event = delegate { };
+    public event UnityAction<int> useAbility2Event = delegate { };
+    public event UnityAction<int> useAbility3Event = delegate { };
+    public event UnityAction<int> useAbility4Event = delegate { };
+
     public event UnityAction switchStyleEvent = delegate { };
+    public event UnityAction switchAbilityListEvent = delegate { };
 
     public event UnityAction startedRunning = delegate { };
     public event UnityAction stoppedRunning = delegate { };
@@ -150,10 +155,31 @@ public class InputReader : ScriptableObject, PlayerInputs.IPlayerActions, Player
             switchStyleEvent.Invoke();
     }
 
-    public void OnUseAbility(InputAction.CallbackContext context)
+    public void OnUseAbility1(InputAction.CallbackContext context)
     {
         if (context.phase == InputActionPhase.Performed)
-            useAbilityEvent.Invoke();
+            useAbility1Event.Invoke(0);
+    }
+    public void OnUseAbility2(InputAction.CallbackContext context)
+    {
+        if (context.phase == InputActionPhase.Performed)
+            useAbility2Event.Invoke(1);
+    }
+    public void OnUseAbility3(InputAction.CallbackContext context)
+    {
+        if (context.phase == InputActionPhase.Performed)
+            useAbility3Event.Invoke(2);
+    }
+    public void OnUseAbility4(InputAction.CallbackContext context)
+    {
+        if (context.phase == InputActionPhase.Performed)
+            useAbility4Event.Invoke(3);
+    }
+
+    public void OnSwitchAbilityList(InputAction.CallbackContext context)
+    {
+        if (context.phase == InputActionPhase.Performed)
+            switchAbilityListEvent.Invoke();
     }
 
     // menu

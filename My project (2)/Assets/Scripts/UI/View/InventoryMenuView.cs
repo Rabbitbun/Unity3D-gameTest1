@@ -3,7 +3,6 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
-using static UnityEditor.Progress;
 
 public class InventoryMenuView : View
 {
@@ -14,6 +13,7 @@ public class InventoryMenuView : View
         inventoryButton.onClick.AddListener(() => ViewManager.Show(this, true));
     }
 
+    // 物品框底
     [SerializeField] private InventoryItem itemPrefab;
 
     [SerializeField] private RectTransform contentPanel;
@@ -43,7 +43,7 @@ public class InventoryMenuView : View
     {
         base.Hide();
 
-        //inventoryButton.
+        
     }
 
     public void InitializeInventoryUI(int inventorySize)
@@ -54,14 +54,14 @@ public class InventoryMenuView : View
             item.transform.SetParent(contentPanel);
             uiItemsList.Add(item);
 
-            item.OnItemClicked += HandleItemSelection;
-            item.OnRightClicked += HandleShowItemActions;
+            item.OnItemClicked += HandleShowItemActions;
+            item.OnMouseEnter += HandleItemSelection;
         }
     }
 
     public void UpdateData(int itemIndex, Sprite itemImage, int itemQuantity)
     {
-        if (uiItemsList.Count > itemIndex) 
+        if (uiItemsList.Count > itemIndex)
         {
             uiItemsList[itemIndex].SetData(itemImage, itemQuantity);
         }

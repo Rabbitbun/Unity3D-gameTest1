@@ -1,3 +1,5 @@
+using AbilitySystem;
+using AbilitySystem.Authoring;
 using System.Collections;
 using UnityEngine;
 using UnityEngine.Animations.Rigging;

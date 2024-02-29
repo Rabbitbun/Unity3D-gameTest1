@@ -6,7 +6,7 @@ using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.EventSystems;
 
-public class InventoryItem : MonoBehaviour, IPointerClickHandler
+public class InventoryItem : MonoBehaviour, IPointerClickHandler, IPointerEnterHandler
 {
     [SerializeField] private Image itemImage;
 
@@ -14,7 +14,7 @@ public class InventoryItem : MonoBehaviour, IPointerClickHandler
 
     [SerializeField] private Image borderImage;
 
-    public event Action<InventoryItem> OnItemClicked, OnRightClicked;
+    public event Action<InventoryItem> OnItemClicked, OnMouseEnter;
 
     [SerializeField, ReadOnly] private bool empty = true;
 
@@ -50,13 +50,14 @@ public class InventoryItem : MonoBehaviour, IPointerClickHandler
     
     public void OnPointerClick(PointerEventData pointerData)
     {
-        if (pointerData.button == PointerEventData.InputButton.Right)
-        {
-            OnRightClicked?.Invoke(this);
-        }
-        else
+        if (pointerData.button == PointerEventData.InputButton.Left)
         {
             OnItemClicked?.Invoke(this);
         }
+    }
+
+    public void OnPointerEnter(PointerEventData eventData)
+    {
+        OnMouseEnter?.Invoke(this);
     }
 }

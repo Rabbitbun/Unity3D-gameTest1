@@ -1,5 +1,6 @@
 {
   "dependencies": {
+    "com.sjai013.abilitysystem": "https://github.com/sjai013/unity-gameplay-ability-system.git#upm",
     "com.unity.2d.sprite": "1.0.0",
     "com.unity.animation.rigging": "1.1.1",
     "com.unity.cinemachine": "2.8.9",

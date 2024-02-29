@@ -42,8 +42,8 @@ public class SkillSystem : MonoBehaviour
     private void Awake()
     {
         // 註冊輸入事件
-        MasterManager.Instance.PlayerInputManager.PlayerInput.Player.UseAbility.performed += UseSkill;
-        MasterManager.Instance.PlayerInputManager.PlayerInput.Player.SwitchStyle.performed += SwitchList;
+        //MasterManager.Instance.PlayerInputManager.PlayerInput.Player.UseAbility.performed += UseSkill;
+        //MasterManager.Instance.PlayerInputManager.PlayerInput.Player.SwitchStyle.performed += SwitchList;
 
         playerController = GetComponent<PlayerController>();
 
