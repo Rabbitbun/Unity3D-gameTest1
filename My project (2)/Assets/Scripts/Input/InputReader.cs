@@ -5,6 +5,9 @@ using UnityEngine.Events;
 [CreateAssetMenu(fileName = "InputReader", menuName = "Game/Input Reader")]
 public class InputReader : ScriptableObject, PlayerInputs.IPlayerActions, PlayerInputs.IMenuActions
 {
+    // 變數
+    public bool IsChanting { get; private set; } = false;
+
     public PlayerInputs playerInput;
 
     // GamePlay
@@ -85,10 +88,17 @@ public class InputReader : ScriptableObject, PlayerInputs.IPlayerActions, Player
     public void OnChant(InputAction.CallbackContext context)
     {
         if (context.phase == InputActionPhase.Performed)
+        {
+            IsChanting = true;
             startedChanting.Invoke();
+        }
 
         if (context.phase == InputActionPhase.Canceled)
+        {
+            IsChanting = false;
             stoppedChanting.Invoke();
+        }
+            
     }
 
     public void OnCrouch(InputAction.CallbackContext context)

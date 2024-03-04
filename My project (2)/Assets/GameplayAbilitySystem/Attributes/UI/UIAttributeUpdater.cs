@@ -18,17 +18,37 @@ public class UIAttributeUpdater : MonoBehaviour
     [SerializeField]
     private AttributeScriptableObject maxAttribute;
 
+    [SerializeField] private FitUIAttributeEventHandler UIattributeEventHandler;
+
     [SerializeField] private bool isHealthBar;
+
+    private void OnEnable()
+    {
+        if (UIattributeEventHandler != null)
+        {
+            UIattributeEventHandler.OnUIMaxAttributeChanged += OnAttributeMaxValueChanged;
+        }
+            
+    }
+
+    private void OnDisable()
+    {
+        if (UIattributeEventHandler != null)
+        {
+            UIattributeEventHandler.OnUIMaxAttributeChanged -= OnAttributeMaxValueChanged;
+        }
+    }
 
     private void Start()
     {
-        if (isHealthBar)
-            currentAttribute.PreAttributeChange += OnAttributeChanged;
+        
     }
 
-    private void OnAttributeChanged(object sender, EventArgs e)
+    // 收到attribute的maxValue 更改ui components 去符合長度
+    private void OnAttributeMaxValueChanged(float value)
     {
-        Debug.Log("在UIupdater中 的 OnAttributeChanged觸發了!!!!");
+        var rect = this.gameObject.GetComponent<RectTransform>();
+        rect.sizeDelta = new Vector2(value, rect.sizeDelta.y);
     }
 
     void LateUpdate()

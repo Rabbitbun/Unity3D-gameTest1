@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using AttributeSystem.Authoring;
 using AttributeSystem.Components;
@@ -9,7 +10,7 @@ public class FitUIAttributeEventHandler : AbstractAttributeEventHandler
 {
     [SerializeField] private AttributeScriptableObject PrimaryAttributeMax;
 
-    [SerializeField] private RectTransform UIbar;
+    public event Action<float> OnUIMaxAttributeChanged;
 
     public override void PreAttributeChange(AttributeSystemComponent attributeSystem, List<AttributeValue> prevAttributeValues, ref List<AttributeValue> currentAttributeValues)
     {
@@ -22,8 +23,7 @@ public class FitUIAttributeEventHandler : AbstractAttributeEventHandler
 
             if (prevValue != currentValue)
             {
-                // If MaxValue has changed, fit UI length
-                UIbar.sizeDelta = new Vector2(currentValue, UIbar.rect.height);
+                OnUIMaxAttributeChanged?.Invoke(currentValue);
             }
         }
     }

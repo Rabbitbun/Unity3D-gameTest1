@@ -56,7 +56,10 @@ public class AbilityController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
+        if (_inputReader.IsChanting)
+        {
+            UseAbility(8);
+        }
     }
 
     // 啟用初始化的ability
@@ -98,7 +101,9 @@ public class AbilityController : MonoBehaviour
 
     public void UseAbility(int i)
     {
+        Debug.Log("Use Ability " + i);
         var spec = abilitySpecs[i];
         StartCoroutine(spec.TryActivateAbility());
     }
+
 }
