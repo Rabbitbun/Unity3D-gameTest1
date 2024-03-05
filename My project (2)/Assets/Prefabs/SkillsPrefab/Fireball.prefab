@@ -363,16 +363,14 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 121802}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: b3555f6cc4236364b9ebeb5d58789e05, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  abilityObject: {fileID: 11400000, guid: b9dcc0235f78daf4683c3e4b2e9bbabc, type: 2}
-  _coolDownDuration: 3
-  CoolDownTimeLeft: 0
-  _nextReadyTime: 0
-  IsOnCoolDown: 0
+  coolDownDurations: []
+  coolDownTimeLefts: []
+  IsOnCooldown: 
 --- !u!1 &130866
 GameObject:
   m_ObjectHideFlags: 0
