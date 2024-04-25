@@ -209,6 +209,7 @@ public class NormalState : StateMachineBehaviour
 
     void Jump()
     {
+        if (playerController.IsAttacking) return;
         if (playerPosture == PlayerController.PlayerPosture.Stand && 
             playerController.IsJumping && playerController.IsGrounded)
         {

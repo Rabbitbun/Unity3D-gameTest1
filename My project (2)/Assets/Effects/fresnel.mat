@@ -48,8 +48,11 @@ Material:
     m_Ints: []
     m_Floats:
     - _FresnelPower: 3
+    - _MaxSize: 1
     - _QueueControl: 0
     - _QueueOffset: 0
     m_Colors:
+    - _EndSize: {r: 0.5, g: 0.5, b: 0.5, a: 0}
     - _FresnelColor: {r: 5.992157, g: 1.0666667, b: 4.2352943, a: 1}
+    - _StartSize: {r: 0.01, g: 0.01, b: 0.01, a: 0}
   m_BuildTextureStacks: []

@@ -32,5 +32,11 @@ MonoBehaviour:
   Cooldown: {fileID: 11400000, guid: f824cf4243df8ce43a81059ccb7a70b6, type: 2}
   GameplayEffect: {fileID: 11400000, guid: 28f7b411a66fd0248b9d85554a22a073, type: 2}
   GameplayCue:
-    CuePrefab: {fileID: 121802, guid: dd42c819b85cc2f42a6f67662b5f2a67, type: 3}
+    LifeTime: 3
+    IsActivated: 0
+    SpawnPoint: {fileID: 0}
+    CuePrefab: {fileID: 4415778098315334294, guid: 3e01bd710a17a95438b1652a535e9911, type: 3}
     CueInstance: {fileID: 0}
+    CueVFXPrefab: {fileID: 0}
+    animator: {fileID: 0}
+  TimeToApplyCueAfterAnim: 1

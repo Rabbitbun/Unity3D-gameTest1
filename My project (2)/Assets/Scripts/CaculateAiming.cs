@@ -15,6 +15,8 @@ public class CaculateAiming : MonoBehaviour
 
     public Transform _castPoint;
 
+    public Transform LeftHandPosition;
+
     private void Awake()
     {
         playerController = GetComponent<PlayerController>();
@@ -43,4 +45,10 @@ public class CaculateAiming : MonoBehaviour
         }
 
     }
+    
+    public Transform GetLeftHandPosition()
+    {
+        return LeftHandPosition;
+    }
+
 }

@@ -40,7 +40,7 @@ public class Normal_Attack_01 : StateMachineBehaviour
     {
         playerController.IsAttacking = false;
         animator.ResetTrigger("Attack1");
-        animator.ResetTrigger("Attack2");
+        //animator.ResetTrigger("Attack2");
         if (vel < 0.0f)
             playerController.VerticalVelocity = vel;
     }

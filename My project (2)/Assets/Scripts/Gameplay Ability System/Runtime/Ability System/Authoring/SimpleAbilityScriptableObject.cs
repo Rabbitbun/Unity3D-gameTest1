@@ -12,12 +12,19 @@ namespace AbilitySystem.Authoring
         /// <summary>
         /// Gameplay Effect to apply
         /// </summary>
-        
         public GameplayEffectScriptableObject GameplayEffect;
         /// <summary>
         /// 預計要使用的Gameplay Cue
         /// </summary>
         public GameplayCue GameplayCue;
+        /// <summary>
+        /// 執行動畫後多久後要應用 Cue
+        /// </summary>
+        public float TimeToApplyCueAfterAnim;
+
+        public AnimationClip AnimationClip;
+
+        public string AnimationTriggerName;
 
         /// <summary>
         /// Creates the Ability Spec, which is instantiated for each character.
@@ -39,11 +46,18 @@ namespace AbilitySystem.Authoring
         {
             private GameplayCue gameplayCue;
 
+            private float timeToApplyCueAfterAnim;
+
+            private string animationTriggerName;
+
             public SimpleAbilitySpec(AbstractAbilityScriptableObject abilitySO, AbilitySystemCharacter owner) : base(abilitySO, owner)
             {
                 gameplayCue = (this.Ability as SimpleAbilityScriptableObject).GameplayCue;
-            }
+                timeToApplyCueAfterAnim = (this.Ability as SimpleAbilityScriptableObject).TimeToApplyCueAfterAnim;
+                animationTriggerName = (this.Ability as SimpleAbilityScriptableObject).AnimationTriggerName;
 
+                //animationClip = (this.Ability as SimpleAbilityScriptableObject).AnimationClip;
+            }
 
             /// <summary>
             /// What to do when the ability is cancelled.  We don't care about there for this example.
@@ -70,8 +84,7 @@ namespace AbilitySystem.Authoring
                 var effectSpec = this.Owner.MakeOutgoingSpec((this.Ability as SimpleAbilityScriptableObject).GameplayEffect);
                 this.Owner.ApplyGameplayEffectSpecToSelf(effectSpec);
 
-                
-                
+                yield return gameplayCue.Update();
 
                 yield return null;
             }
@@ -101,14 +114,27 @@ namespace AbilitySystem.Authoring
 
             protected override IEnumerator PreActivate()
             {
+                gameplayCue.PrepareCue(this.Owner);
+                // Apply animations
+                Animator animatorComponent = Owner.GetComponent<Animator>();
+                var animationEventSystemComponent = Owner.GetComponent<AnimationEventSystem>();
+                animatorComponent.SetTrigger("Ability1");
+
+                Debug.Log("Ability1 take times: " + animatorComponent.GetCurrentAnimatorStateInfo(0).length);
+
+                yield return new WaitForSeconds(timeToApplyCueAfterAnim);
+
+                // Apply Gameplay Cue
                 gameplayCue.ApplyCue(this.Owner);
+
                 yield return null;
             }
 
             public override void EndAbility()
             {
-                base.EndAbility();
                 gameplayCue.RemoveCue(Owner);
+                base.EndAbility();
+                
             }
         }
     }
