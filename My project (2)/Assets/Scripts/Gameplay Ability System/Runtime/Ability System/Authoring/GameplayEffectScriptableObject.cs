@@ -15,6 +15,9 @@ namespace AbilitySystem.Authoring
 
         [SerializeField]
         public GameplayEffectPeriod Period;
+
+        [SerializeField]
+        public List<GameplayCue> gameplayCues = new List<GameplayCue>();
     }
 
 }

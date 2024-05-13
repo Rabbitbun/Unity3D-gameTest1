@@ -8,6 +8,8 @@ public class CaculateAiming : MonoBehaviour
 {
     private PlayerController playerController;
 
+    public GameObject CameraTarget;
+
     //public Transform dubugTransform;
     public LayerMask layerMask = new LayerMask();
     public Vector3 mouseWorldPosition;
@@ -15,6 +17,7 @@ public class CaculateAiming : MonoBehaviour
 
     public Transform _castPoint;
 
+    public Transform RightHandPosition;
     public Transform LeftHandPosition;
 
     private void Awake()
@@ -34,21 +37,27 @@ public class CaculateAiming : MonoBehaviour
             mouseWorldPosition = raycastHit.point;
         }
 
-        if(playerController.armState == PlayerController.ArmState.Aim)
-        {
-            Vector3 worldAimTarget = mouseWorldPosition;
-            worldAimTarget.y = transform.position.y;
-            aimDirection = (worldAimTarget - transform.position).normalized;
-            transform.forward = Vector3.Lerp(transform.forward, aimDirection, Time.deltaTime * 20f);
-            //在這邊調整_castPoint
-            _castPoint.LookAt(mouseWorldPosition);
-        }
+        //if(playerController.armState == PlayerController.ArmState.Aim)
+        //if (playerController.IsLockCamera)
+        //{
+        //    Vector3 worldAimTarget = mouseWorldPosition;
+        //    worldAimTarget.y = transform.position.y;
+        //    aimDirection = (worldAimTarget - transform.position).normalized;
+        //    transform.forward = Vector3.Lerp(transform.forward, aimDirection, Time.deltaTime * 20f);
+        //    //在這邊調整_castPoint
+        //    _castPoint.LookAt(mouseWorldPosition);
+        //}
 
     }
     
     public Transform GetLeftHandPosition()
     {
         return LeftHandPosition;
+    }
+
+    public Transform GetRightHandPosition()
+    {
+        return RightHandPosition;
     }
 
 }

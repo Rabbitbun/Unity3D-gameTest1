@@ -20,7 +20,7 @@ MonoBehaviour:
     - Attribute: {fileID: 11400000, guid: e35ad6a784cb06948b072a851d567fa1, type: 2}
       ModifierOperator: 0
       ModifierMagnitude: {fileID: 11400000, guid: c7f694d9947adb54f88adc4e119455c1, type: 2}
-      Multiplier: 1
+      Multiplier: 0.5
     ConditionalGameplayEffects: []
   gameplayEffectTags:
     AssetTag: {fileID: 11400000, guid: 1d72e484d6c1c2044b933d9f5e9c2899, type: 2}
@@ -38,3 +38,4 @@ MonoBehaviour:
   Period:
     Period: 0
     ExecuteOnApplication: 0
+  gameplayCues: []

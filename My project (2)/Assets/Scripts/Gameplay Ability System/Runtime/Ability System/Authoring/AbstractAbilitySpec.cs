@@ -1,5 +1,6 @@
 using System.Collections;
 using GameplayTag.Authoring;
+using UnityEngine;
 
 namespace AbilitySystem.Authoring
 {
@@ -7,6 +8,20 @@ namespace AbilitySystem.Authoring
     {
         public float TimeRemaining;
         public float TotalDuration;
+    }
+
+    /// <summary>
+    /// Reason for an activation failure. You can add new reasons when implementing your own abilities.
+    /// </summary>
+    public enum ActivationFailure
+    {
+        ALREADY_ACTIVE,
+        COST,
+        COOLDOWN,
+        TAGS_SOURCE_FAILED,
+        TAGS_TARGET_FAILED,
+        TAGS_BLOCKED,
+        OTHER,
     }
 
     public abstract class AbstractAbilitySpec
@@ -19,7 +34,12 @@ namespace AbilitySystem.Authoring
         /// <summary>
         /// The owner of the AbilitySpec - usually the source
         /// </summary>
-        protected AbilitySystemCharacter Owner;
+        public AbilitySystemCharacter Owner;
+
+        /// <summary>
+        /// The target of the AbilitySpec
+        /// </summary>
+        public AbilitySystemCharacter Target;
 
         /// <summary>
         /// Ability level
@@ -55,7 +75,6 @@ namespace AbilitySystem.Authoring
             yield return PreActivate();
             yield return ActivateAbility();
             EndAbility();
-
         }
 
         /// <summary>
@@ -64,16 +83,44 @@ namespace AbilitySystem.Authoring
         /// <returns></returns>
         public virtual bool CanActivateAbility()
         {
-            return !isActive
-                    && CheckGameplayTags()
-                    && CheckCost()
-                    && CheckCooldown().TimeRemaining <= 0;
+            if (isActive)
+            {
+                Debug.Log($"{this.Ability.name} is already active.");
+                Owner.OnGameplayAbilityFailedActivation?.Invoke(this, Ability.name, ActivationFailure.ALREADY_ACTIVE);
+                return false;
+            }
+            if (!CheckGameplayTags())
+                return false;
+            if (!CheckCost())
+            {
+                Owner.OnGameplayAbilityFailedActivation?.Invoke(this, Ability.name, ActivationFailure.COST);
+                return false;
+            }
+            if (CheckCooldown().TimeRemaining > 0)
+            {
+                Debug.Log($"{this.Ability.name} is on Cooldown. Time Remaining: {CheckCooldown().TimeRemaining}");
+                Owner.OnGameplayAbilityFailedActivation?.Invoke(this, Ability.name, ActivationFailure.COOLDOWN);
+                return false;
+            }
+
+            return true;
+            //return !isActive
+            //        && CheckGameplayTags()
+            //        && CheckCost()
+            //        && CheckCooldown().TimeRemaining <= 0;
         }
 
         /// <summary>
         /// Cancels the ability, if it is active
         /// </summary>
-        public abstract void CancelAbility();
+        public virtual void CancelAbility()
+        {
+            if (!isActive) return;
+
+            isActive = false;
+
+            Owner.OnGameplayAbilityDeactivated?.Invoke(this, Ability.name);
+        }
 
         /// <summary>
         /// Checks if Gameplay Tag requirements allow activating this ability
@@ -150,6 +197,8 @@ namespace AbilitySystem.Authoring
         public virtual void EndAbility()
         {
             this.isActive = false;
+            Debug.Log("結束技能EndAbility with :" + this.Ability.name);
+            Owner.OnGameplayAbilityDeactivated?.Invoke(this, Ability.name);
         }
 
         /// <summary>
@@ -159,6 +208,7 @@ namespace AbilitySystem.Authoring
         public virtual bool CheckCost()
         {
             if (this.Ability.Cost == null) return true;
+
             var geSpec = this.Owner.MakeOutgoingSpec(this.Ability.Cost, this.Level);
             // If this isn't an instant cost, then assume it passes cooldown check
             if (geSpec.GameplayEffect.gameplayEffect.DurationPolicy != EDurationPolicy.Instant) return true;
@@ -245,6 +295,8 @@ namespace AbilitySystem.Authoring
             }
             return true;
         }
+
+        
     }
 
 }

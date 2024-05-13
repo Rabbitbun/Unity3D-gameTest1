@@ -82,6 +82,15 @@ public partial class @PlayerInputs : IInputActionCollection2, IDisposable
                     ""initialStateCheck"": false
                 },
                 {
+                    ""name"": ""DogeRoll"",
+                    ""type"": ""Button"",
+                    ""id"": ""1071af40-131d-42af-b20c-ac0759c287b6"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                },
+                {
                     ""name"": ""UseAbility1"",
                     ""type"": ""Button"",
                     ""id"": ""f284b982-8f77-4a14-b58c-ca3dbe8477b3"",
@@ -136,6 +145,15 @@ public partial class @PlayerInputs : IInputActionCollection2, IDisposable
                     ""initialStateCheck"": false
                 },
                 {
+                    ""name"": ""Guard"",
+                    ""type"": ""Button"",
+                    ""id"": ""bf922f40-244f-4eb7-b0bd-9010e4902d64"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                },
+                {
                     ""name"": ""Aim"",
                     ""type"": ""Button"",
                     ""id"": ""47665191-6e7b-4b2e-8b77-21ffc526f9db"",
@@ -157,6 +175,15 @@ public partial class @PlayerInputs : IInputActionCollection2, IDisposable
                     ""name"": ""Interact"",
                     ""type"": ""Button"",
                     ""id"": ""a344f3ed-f570-408e-803b-beecfb5c5458"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""UseItem"",
+                    ""type"": ""Button"",
+                    ""id"": ""ec3f2b64-2724-4b12-afcd-497b1040276d"",
                     ""expectedControlType"": ""Button"",
                     ""processors"": """",
                     ""interactions"": """",
@@ -416,7 +443,7 @@ public partial class @PlayerInputs : IInputActionCollection2, IDisposable
                 {
                     ""name"": """",
                     ""id"": ""a5de660d-6d8b-48b5-a104-62ff50e95e31"",
-                    ""path"": ""<Keyboard>/space"",
+                    ""path"": ""<Keyboard>/v"",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": ""Keyboard&Mouse"",
@@ -493,7 +520,7 @@ public partial class @PlayerInputs : IInputActionCollection2, IDisposable
                 {
                     ""name"": """",
                     ""id"": ""928e5189-bff6-4127-be9e-c3fdbb74a142"",
-                    ""path"": ""<Keyboard>/leftCtrl"",
+                    ""path"": ""<Keyboard>/c"",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": ""Keyboard&Mouse"",
@@ -553,6 +580,39 @@ public partial class @PlayerInputs : IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""groups"": ""Keyboard&Mouse"",
                     ""action"": ""UseAbility4"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""1b78eb24-a9f7-49e6-8e92-6b619d7c3f3b"",
+                    ""path"": ""<Keyboard>/r"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""Keyboard&Mouse"",
+                    ""action"": ""UseItem"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""d8dd4e56-d2b1-45f7-a358-4d27c56a876c"",
+                    ""path"": ""<Keyboard>/space"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""Keyboard&Mouse"",
+                    ""action"": ""DogeRoll"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""2a6b9faa-dfbc-4e8a-adf1-8a0746bf1c79"",
+                    ""path"": ""<Keyboard>/leftCtrl"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""Keyboard&Mouse"",
+                    ""action"": ""Guard"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 }
@@ -758,15 +818,18 @@ public partial class @PlayerInputs : IInputActionCollection2, IDisposable
         m_Player_Run = m_Player.FindAction("Run", throwIfNotFound: true);
         m_Player_Jump = m_Player.FindAction("Jump", throwIfNotFound: true);
         m_Player_Crouch = m_Player.FindAction("Crouch", throwIfNotFound: true);
+        m_Player_DogeRoll = m_Player.FindAction("DogeRoll", throwIfNotFound: true);
         m_Player_UseAbility1 = m_Player.FindAction("UseAbility1", throwIfNotFound: true);
         m_Player_UseAbility2 = m_Player.FindAction("UseAbility2", throwIfNotFound: true);
         m_Player_UseAbility3 = m_Player.FindAction("UseAbility3", throwIfNotFound: true);
         m_Player_UseAbility4 = m_Player.FindAction("UseAbility4", throwIfNotFound: true);
         m_Player_SwitchStyle = m_Player.FindAction("SwitchStyle", throwIfNotFound: true);
         m_Player_Chant = m_Player.FindAction("Chant", throwIfNotFound: true);
+        m_Player_Guard = m_Player.FindAction("Guard", throwIfNotFound: true);
         m_Player_Aim = m_Player.FindAction("Aim", throwIfNotFound: true);
         m_Player_Pause = m_Player.FindAction("Pause", throwIfNotFound: true);
         m_Player_Interact = m_Player.FindAction("Interact", throwIfNotFound: true);
+        m_Player_UseItem = m_Player.FindAction("UseItem", throwIfNotFound: true);
         m_Player_LockCamera = m_Player.FindAction("LockCamera", throwIfNotFound: true);
         m_Player_SwitchAbilityList = m_Player.FindAction("SwitchAbilityList", throwIfNotFound: true);
         // Menu
@@ -842,15 +905,18 @@ public partial class @PlayerInputs : IInputActionCollection2, IDisposable
     private readonly InputAction m_Player_Run;
     private readonly InputAction m_Player_Jump;
     private readonly InputAction m_Player_Crouch;
+    private readonly InputAction m_Player_DogeRoll;
     private readonly InputAction m_Player_UseAbility1;
     private readonly InputAction m_Player_UseAbility2;
     private readonly InputAction m_Player_UseAbility3;
     private readonly InputAction m_Player_UseAbility4;
     private readonly InputAction m_Player_SwitchStyle;
     private readonly InputAction m_Player_Chant;
+    private readonly InputAction m_Player_Guard;
     private readonly InputAction m_Player_Aim;
     private readonly InputAction m_Player_Pause;
     private readonly InputAction m_Player_Interact;
+    private readonly InputAction m_Player_UseItem;
     private readonly InputAction m_Player_LockCamera;
     private readonly InputAction m_Player_SwitchAbilityList;
     public struct PlayerActions
@@ -863,15 +929,18 @@ public partial class @PlayerInputs : IInputActionCollection2, IDisposable
         public InputAction @Run => m_Wrapper.m_Player_Run;
         public InputAction @Jump => m_Wrapper.m_Player_Jump;
         public InputAction @Crouch => m_Wrapper.m_Player_Crouch;
+        public InputAction @DogeRoll => m_Wrapper.m_Player_DogeRoll;
         public InputAction @UseAbility1 => m_Wrapper.m_Player_UseAbility1;
         public InputAction @UseAbility2 => m_Wrapper.m_Player_UseAbility2;
         public InputAction @UseAbility3 => m_Wrapper.m_Player_UseAbility3;
         public InputAction @UseAbility4 => m_Wrapper.m_Player_UseAbility4;
         public InputAction @SwitchStyle => m_Wrapper.m_Player_SwitchStyle;
         public InputAction @Chant => m_Wrapper.m_Player_Chant;
+        public InputAction @Guard => m_Wrapper.m_Player_Guard;
         public InputAction @Aim => m_Wrapper.m_Player_Aim;
         public InputAction @Pause => m_Wrapper.m_Player_Pause;
         public InputAction @Interact => m_Wrapper.m_Player_Interact;
+        public InputAction @UseItem => m_Wrapper.m_Player_UseItem;
         public InputAction @LockCamera => m_Wrapper.m_Player_LockCamera;
         public InputAction @SwitchAbilityList => m_Wrapper.m_Player_SwitchAbilityList;
         public InputActionMap Get() { return m_Wrapper.m_Player; }
@@ -901,6 +970,9 @@ public partial class @PlayerInputs : IInputActionCollection2, IDisposable
                 @Crouch.started -= m_Wrapper.m_PlayerActionsCallbackInterface.OnCrouch;
                 @Crouch.performed -= m_Wrapper.m_PlayerActionsCallbackInterface.OnCrouch;
                 @Crouch.canceled -= m_Wrapper.m_PlayerActionsCallbackInterface.OnCrouch;
+                @DogeRoll.started -= m_Wrapper.m_PlayerActionsCallbackInterface.OnDogeRoll;
+                @DogeRoll.performed -= m_Wrapper.m_PlayerActionsCallbackInterface.OnDogeRoll;
+                @DogeRoll.canceled -= m_Wrapper.m_PlayerActionsCallbackInterface.OnDogeRoll;
                 @UseAbility1.started -= m_Wrapper.m_PlayerActionsCallbackInterface.OnUseAbility1;
                 @UseAbility1.performed -= m_Wrapper.m_PlayerActionsCallbackInterface.OnUseAbility1;
                 @UseAbility1.canceled -= m_Wrapper.m_PlayerActionsCallbackInterface.OnUseAbility1;
@@ -919,6 +991,9 @@ public partial class @PlayerInputs : IInputActionCollection2, IDisposable
                 @Chant.started -= m_Wrapper.m_PlayerActionsCallbackInterface.OnChant;
                 @Chant.performed -= m_Wrapper.m_PlayerActionsCallbackInterface.OnChant;
                 @Chant.canceled -= m_Wrapper.m_PlayerActionsCallbackInterface.OnChant;
+                @Guard.started -= m_Wrapper.m_PlayerActionsCallbackInterface.OnGuard;
+                @Guard.performed -= m_Wrapper.m_PlayerActionsCallbackInterface.OnGuard;
+                @Guard.canceled -= m_Wrapper.m_PlayerActionsCallbackInterface.OnGuard;
                 @Aim.started -= m_Wrapper.m_PlayerActionsCallbackInterface.OnAim;
                 @Aim.performed -= m_Wrapper.m_PlayerActionsCallbackInterface.OnAim;
                 @Aim.canceled -= m_Wrapper.m_PlayerActionsCallbackInterface.OnAim;
@@ -928,6 +1003,9 @@ public partial class @PlayerInputs : IInputActionCollection2, IDisposable
                 @Interact.started -= m_Wrapper.m_PlayerActionsCallbackInterface.OnInteract;
                 @Interact.performed -= m_Wrapper.m_PlayerActionsCallbackInterface.OnInteract;
                 @Interact.canceled -= m_Wrapper.m_PlayerActionsCallbackInterface.OnInteract;
+                @UseItem.started -= m_Wrapper.m_PlayerActionsCallbackInterface.OnUseItem;
+                @UseItem.performed -= m_Wrapper.m_PlayerActionsCallbackInterface.OnUseItem;
+                @UseItem.canceled -= m_Wrapper.m_PlayerActionsCallbackInterface.OnUseItem;
                 @LockCamera.started -= m_Wrapper.m_PlayerActionsCallbackInterface.OnLockCamera;
                 @LockCamera.performed -= m_Wrapper.m_PlayerActionsCallbackInterface.OnLockCamera;
                 @LockCamera.canceled -= m_Wrapper.m_PlayerActionsCallbackInterface.OnLockCamera;
@@ -956,6 +1034,9 @@ public partial class @PlayerInputs : IInputActionCollection2, IDisposable
                 @Crouch.started += instance.OnCrouch;
                 @Crouch.performed += instance.OnCrouch;
                 @Crouch.canceled += instance.OnCrouch;
+                @DogeRoll.started += instance.OnDogeRoll;
+                @DogeRoll.performed += instance.OnDogeRoll;
+                @DogeRoll.canceled += instance.OnDogeRoll;
                 @UseAbility1.started += instance.OnUseAbility1;
                 @UseAbility1.performed += instance.OnUseAbility1;
                 @UseAbility1.canceled += instance.OnUseAbility1;
@@ -974,6 +1055,9 @@ public partial class @PlayerInputs : IInputActionCollection2, IDisposable
                 @Chant.started += instance.OnChant;
                 @Chant.performed += instance.OnChant;
                 @Chant.canceled += instance.OnChant;
+                @Guard.started += instance.OnGuard;
+                @Guard.performed += instance.OnGuard;
+                @Guard.canceled += instance.OnGuard;
                 @Aim.started += instance.OnAim;
                 @Aim.performed += instance.OnAim;
                 @Aim.canceled += instance.OnAim;
@@ -983,6 +1067,9 @@ public partial class @PlayerInputs : IInputActionCollection2, IDisposable
                 @Interact.started += instance.OnInteract;
                 @Interact.performed += instance.OnInteract;
                 @Interact.canceled += instance.OnInteract;
+                @UseItem.started += instance.OnUseItem;
+                @UseItem.performed += instance.OnUseItem;
+                @UseItem.canceled += instance.OnUseItem;
                 @LockCamera.started += instance.OnLockCamera;
                 @LockCamera.performed += instance.OnLockCamera;
                 @LockCamera.canceled += instance.OnLockCamera;
@@ -1119,15 +1206,18 @@ public partial class @PlayerInputs : IInputActionCollection2, IDisposable
         void OnRun(InputAction.CallbackContext context);
         void OnJump(InputAction.CallbackContext context);
         void OnCrouch(InputAction.CallbackContext context);
+        void OnDogeRoll(InputAction.CallbackContext context);
         void OnUseAbility1(InputAction.CallbackContext context);
         void OnUseAbility2(InputAction.CallbackContext context);
         void OnUseAbility3(InputAction.CallbackContext context);
         void OnUseAbility4(InputAction.CallbackContext context);
         void OnSwitchStyle(InputAction.CallbackContext context);
         void OnChant(InputAction.CallbackContext context);
+        void OnGuard(InputAction.CallbackContext context);
         void OnAim(InputAction.CallbackContext context);
         void OnPause(InputAction.CallbackContext context);
         void OnInteract(InputAction.CallbackContext context);
+        void OnUseItem(InputAction.CallbackContext context);
         void OnLockCamera(InputAction.CallbackContext context);
         void OnSwitchAbilityList(InputAction.CallbackContext context);
     }

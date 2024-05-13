@@ -15,7 +15,7 @@ MonoBehaviour:
   gameplayEffect:
     DurationPolicy: 0
     DurationModifier: {fileID: 11400000, guid: c7f694d9947adb54f88adc4e119455c1, type: 2}
-    DurationMultiplier: 0
+    DurationMultiplier: 1.2
     Modifiers: []
     ConditionalGameplayEffects: []
   gameplayEffectTags:
@@ -34,3 +34,4 @@ MonoBehaviour:
   Period:
     Period: 0
     ExecuteOnApplication: 0
+  gameplayCues: []

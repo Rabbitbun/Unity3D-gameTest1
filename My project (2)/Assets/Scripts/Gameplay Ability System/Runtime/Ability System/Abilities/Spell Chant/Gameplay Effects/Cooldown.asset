@@ -13,9 +13,9 @@ MonoBehaviour:
   m_Name: Cooldown
   m_EditorClassIdentifier: 
   gameplayEffect:
-    DurationPolicy: 2
+    DurationPolicy: 0
     DurationModifier: {fileID: 11400000, guid: c7f694d9947adb54f88adc4e119455c1, type: 2}
-    DurationMultiplier: 2
+    DurationMultiplier: 0
     Modifiers: []
     ConditionalGameplayEffects: []
   gameplayEffectTags:
@@ -35,3 +35,4 @@ MonoBehaviour:
   Period:
     Period: 0
     ExecuteOnApplication: 0
+  gameplayCues: []

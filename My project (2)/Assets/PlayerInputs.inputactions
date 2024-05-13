@@ -60,6 +60,15 @@
                     "initialStateCheck": false
                 },
                 {
+                    "name": "DogeRoll",
+                    "type": "Button",
+                    "id": "1071af40-131d-42af-b20c-ac0759c287b6",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                },
+                {
                     "name": "UseAbility1",
                     "type": "Button",
                     "id": "f284b982-8f77-4a14-b58c-ca3dbe8477b3",
@@ -114,6 +123,15 @@
                     "initialStateCheck": false
                 },
                 {
+                    "name": "Guard",
+                    "type": "Button",
+                    "id": "bf922f40-244f-4eb7-b0bd-9010e4902d64",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                },
+                {
                     "name": "Aim",
                     "type": "Button",
                     "id": "47665191-6e7b-4b2e-8b77-21ffc526f9db",
@@ -135,6 +153,15 @@
                     "name": "Interact",
                     "type": "Button",
                     "id": "a344f3ed-f570-408e-803b-beecfb5c5458",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                },
+                {
+                    "name": "UseItem",
+                    "type": "Button",
+                    "id": "ec3f2b64-2724-4b12-afcd-497b1040276d",
                     "expectedControlType": "Button",
                     "processors": "",
                     "interactions": "",
@@ -394,7 +421,7 @@
                 {
                     "name": "",
                     "id": "a5de660d-6d8b-48b5-a104-62ff50e95e31",
-                    "path": "<Keyboard>/space",
+                    "path": "<Keyboard>/v",
                     "interactions": "",
                     "processors": "",
                     "groups": "Keyboard&Mouse",
@@ -471,7 +498,7 @@
                 {
                     "name": "",
                     "id": "928e5189-bff6-4127-be9e-c3fdbb74a142",
-                    "path": "<Keyboard>/leftCtrl",
+                    "path": "<Keyboard>/c",
                     "interactions": "",
                     "processors": "",
                     "groups": "Keyboard&Mouse",
@@ -531,6 +558,39 @@
                     "processors": "",
                     "groups": "Keyboard&Mouse",
                     "action": "UseAbility4",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "1b78eb24-a9f7-49e6-8e92-6b619d7c3f3b",
+                    "path": "<Keyboard>/r",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "Keyboard&Mouse",
+                    "action": "UseItem",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "d8dd4e56-d2b1-45f7-a358-4d27c56a876c",
+                    "path": "<Keyboard>/space",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "Keyboard&Mouse",
+                    "action": "DogeRoll",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "2a6b9faa-dfbc-4e8a-adf1-8a0746bf1c79",
+                    "path": "<Keyboard>/leftCtrl",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "Keyboard&Mouse",
+                    "action": "Guard",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }

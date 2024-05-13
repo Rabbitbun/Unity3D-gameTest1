@@ -22,6 +22,10 @@ public class UIAttributeUpdater : MonoBehaviour
 
     [SerializeField] private bool isHealthBar;
 
+    public bool ShouldFaceToCamera = true;
+
+    public bool ShouldChangeSize = false;
+
     private void OnEnable()
     {
         if (UIattributeEventHandler != null)
@@ -47,8 +51,12 @@ public class UIAttributeUpdater : MonoBehaviour
     // 收到attribute的maxValue 更改ui components 去符合長度
     private void OnAttributeMaxValueChanged(float value)
     {
-        var rect = this.gameObject.GetComponent<RectTransform>();
-        rect.sizeDelta = new Vector2(value, rect.sizeDelta.y);
+        if (ShouldChangeSize)
+        {
+            var rect = this.gameObject.GetComponent<RectTransform>();
+            rect.sizeDelta = new Vector2(value, rect.sizeDelta.y);
+        }
+        
     }
 
     void LateUpdate()
@@ -62,6 +70,11 @@ public class UIAttributeUpdater : MonoBehaviour
             && attributeSystemComponent.GetAttributeValue(maxAttribute, out var maxAttributeValue))
         {
             attributeUI.SetAttributeValue(currentAttributeValue.CurrentValue, maxAttributeValue.CurrentValue);
+        }
+
+        if (ShouldFaceToCamera)
+        {
+            transform.rotation = Quaternion.LookRotation(transform.position - Camera.main.transform.position);
         }
     }
 }

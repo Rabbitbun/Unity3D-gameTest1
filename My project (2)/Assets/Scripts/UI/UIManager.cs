@@ -45,17 +45,6 @@ public class UIManager : MonoBehaviour, IuseAbility
         SkillSystem = GameObject.FindWithTag("Player").GetComponent<SkillSystem>();
         StatusSystem = GameObject.FindWithTag("Player").GetComponent<StatusSystem>();
 
-
-        
-        // TODO: 需要重新架構整個cooldown 腳本 
-        //foreach (var go in SkillSystem.SkillObjectList)
-        //{
-        //    _skillsCooldown.Add(go.GetComponent<AbilityCooldown>());
-        //}
-        //for (int i = 0; i < 4; i++)
-        //{
-        //    _currentSkillsCoolDown[i] = _skillsCooldown[i];
-        //}
     }
 
     private void Start()

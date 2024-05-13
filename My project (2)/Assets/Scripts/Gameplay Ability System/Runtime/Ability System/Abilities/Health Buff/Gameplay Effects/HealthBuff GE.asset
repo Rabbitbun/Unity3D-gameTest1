@@ -15,16 +15,17 @@ MonoBehaviour:
   gameplayEffect:
     DurationPolicy: 2
     DurationModifier: {fileID: 11400000, guid: c7f694d9947adb54f88adc4e119455c1, type: 2}
-    DurationMultiplier: 4
+    DurationMultiplier: 2
     Modifiers:
     - Attribute: {fileID: 11400000, guid: 5bde0391a6f30cb4180cd98b90607e0a, type: 2}
       ModifierOperator: 0
       ModifierMagnitude: {fileID: 11400000, guid: c7f694d9947adb54f88adc4e119455c1, type: 2}
-      Multiplier: 50
+      Multiplier: 30
     ConditionalGameplayEffects: []
   gameplayEffectTags:
     AssetTag: {fileID: 11400000, guid: 7864c3386cab7b44eb96316bee317d44, type: 2}
-    GrantedTags: []
+    GrantedTags:
+    - {fileID: 11400000, guid: c0a06322ce7c0a94480a36ec74827634, type: 2}
     OngoingTagRequirements:
       RequireTags: []
       IgnoreTags: []
@@ -38,3 +39,4 @@ MonoBehaviour:
   Period:
     Period: 0
     ExecuteOnApplication: 0
+  gameplayCues: []

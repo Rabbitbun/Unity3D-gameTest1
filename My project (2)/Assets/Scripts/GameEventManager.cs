@@ -4,6 +4,16 @@ public class GameEventManager : MonoBehaviour
 {
     public bool IsgamePaused;
 
+    private void OnEnable()
+    {
+        
+    }
+
+    private void OnDisable()
+    {
+        
+    }
+
     private void Awake()
     {
         IsgamePaused = false;

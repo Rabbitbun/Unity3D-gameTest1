@@ -14,11 +14,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   AbilityName: Spell Chant
   AbilityTags:
-    AssetTag: {fileID: 0}
+    AssetTag: {fileID: 11400000, guid: 1d72e484d6c1c2044b933d9f5e9c2899, type: 2}
     CancelAbilitiesWithTags: []
     BlockAbilitiesWithTags:
     - {fileID: 11400000, guid: d5bb29d0eec06e04c8d0198d0bb680ac, type: 2}
-    ActivationOwnedTags: []
+    ActivationOwnedTags:
+    - {fileID: 11400000, guid: 1d72e484d6c1c2044b933d9f5e9c2899, type: 2}
     OwnerTags:
       RequireTags: []
       IgnoreTags: []
@@ -40,3 +41,6 @@ MonoBehaviour:
     CueVFXPrefab: {fileID: 0}
     animator: {fileID: 0}
   TimeToApplyCueAfterAnim: 1
+  AnimationClip: {fileID: 0}
+  AnimationTriggerName: 
+  EarlyEnd: 0

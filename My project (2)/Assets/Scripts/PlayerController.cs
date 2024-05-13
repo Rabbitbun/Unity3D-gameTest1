@@ -12,7 +12,7 @@ public class PlayerController : MonoBehaviour
     public Animator animator;
     private Transform _cameraTransform;
     public CharacterController CharacterController;
-    Vector2 mouseXY;
+    public Vector2 mouseXY;
 
     private PlayerInputManager playerInput;
     private MasterManager masterManagerInstance;
@@ -22,8 +22,6 @@ public class PlayerController : MonoBehaviour
     public GameObject CinemachineCameraTarget;
     private float _cinemachineTargetYaw;
     private float _cinemachineTargetPitch;
-    private float _cinemachineTargetYawTemp;
-    private float _cinemachineTargetPitchTemp;
 
     #region 玩家姿態、動畫臨界點參數
     public enum PlayerPosture
@@ -69,7 +67,7 @@ public class PlayerController : MonoBehaviour
     public float _runSpeed = 6f;
     #endregion
 
-    #region 輸入值
+    #region 輸入相關
     public Vector2 MoveInput;
     public bool IsCrouch;
     public bool IsRunning;
@@ -77,6 +75,7 @@ public class PlayerController : MonoBehaviour
     public bool IsJumping;
     public bool IsAttacking;
     public bool IsChanting;
+    public bool IsLockCamera;
     #endregion
 
     #region 狀態機參數的Hash
@@ -144,14 +143,16 @@ public class PlayerController : MonoBehaviour
         _inputReader.jumpCanceledEvent += OnJumpCanceled;
         _inputReader.cameraMoveEvent += OnMouseXY;
 
-        _inputReader.startedChanting += OnStartedChanting;
-        _inputReader.stoppedChanting += OnStoppedChanting;
+        //_inputReader.startedChanting += OnStartedChanting;
+        //_inputReader.stoppedChanting += OnStoppedChanting;
         _inputReader.startedAiming += OnStartedAiming;
         _inputReader.stoppedAiming += OnStoppedAiming;
 
         _inputReader.crouchEvent += OnCrouch;
 
-        _inputReader.attackEvent += OnAttack;
+        //_inputReader.attackEvent += OnAttack;
+
+        _inputReader.lockCameraEvent += OnLockCamera;
         //...
     }
 
@@ -164,14 +165,16 @@ public class PlayerController : MonoBehaviour
         _inputReader.jumpCanceledEvent -= OnJumpCanceled;
         _inputReader.cameraMoveEvent -= OnMouseXY;
 
-        _inputReader.startedChanting -= OnStartedChanting;
-        _inputReader.stoppedChanting -= OnStoppedChanting;
+        //_inputReader.startedChanting -= OnStartedChanting;
+        //_inputReader.stoppedChanting -= OnStoppedChanting;
         _inputReader.startedAiming -= OnStartedAiming;
         _inputReader.stoppedAiming -= OnStoppedAiming;
 
         _inputReader.crouchEvent -= OnCrouch;
 
-        _inputReader.attackEvent -= OnAttack;
+        //_inputReader.attackEvent -= OnAttack;
+
+        _inputReader.lockCameraEvent -= OnLockCamera;
         //...
     }
 
@@ -210,7 +213,7 @@ public class PlayerController : MonoBehaviour
     void LateUpdate()
     {
         if (MasterManager.Instance.GameEventManager.IsgamePaused == false)
-            CameraRotation();
+            //CameraRotation();
 
         switch (IsChanting)
         {
@@ -230,9 +233,9 @@ public class PlayerController : MonoBehaviour
         if (MasterManager.Instance.GameEventManager.IsgamePaused)
             return;
 
-        /// IsJumping = PlayerInputManager.Instance.jump;
-        /// IsChanting = PlayerInputManager.Instance.Casting;
-        /// IsAiming = PlayerInputManager.Instance.Aiming;
+        // IsJumping = PlayerInputManager.Instance.jump;
+        // IsChanting = PlayerInputManager.Instance.Casting;
+        // IsAiming = PlayerInputManager.Instance.Aiming;
 
         //if (IsAiming && PlayerInputManager.Instance.RightClickPressed)
         //{
@@ -243,15 +246,15 @@ public class PlayerController : MonoBehaviour
         //}
 
         // 如果在 Chanting 時做其他動作如普通攻擊等, chanting會被取消, 需重新按下 chanting鍵
-        if (IsAttacking)
-        {
-            if (IsChanting)
-            {
-                IsChanting = false;
-            }
+        //if (IsAttacking)
+        //{
+        //    if (IsChanting)
+        //    {
+        //        IsChanting = false;
+        //    }
 
-            animator.SetTrigger("Attack1");
-        }
+        //    animator.SetTrigger("Attack1");
+        //}
 
         //if (PlayerInputManager.Instance.leftClick)
         //{
@@ -371,7 +374,6 @@ public class PlayerController : MonoBehaviour
 
     public void CalculateJumpCD()
     {
-        print("進入跳躍協程");
         StartCoroutine(CoolDownJump());
     }
 
@@ -509,21 +511,33 @@ public class PlayerController : MonoBehaviour
     /// <summary>
     /// 將移動方向轉為以攝影機前方為基準
     /// </summary>
-    void CaculateInputDirection()
+    public void CaculateInputDirection()
     {
+        //if (!IsLockCamera)
+        //{
+        //    Vector3 camForwardProjection = new Vector3(_cameraTransform.forward.x, 0, _cameraTransform.forward.z).normalized;
+        //    playerMovement = camForwardProjection * MoveInput.y + _cameraTransform.right * MoveInput.x;
+
+        //    playerMovement = PlayerTransform.InverseTransformVector(playerMovement);
+        //}
+        //else
+        //{
+        //    //var moveDir = new Vector3(MoveInput.x, 0, MoveInput.y);
+        //    //playerMovement = Quaternion.AngleAxis(_cameraTransform.rotation.eulerAngles.y, Vector3.up) * moveDir;
+
+
+        //    //playerMovement = new Vector3(MoveInput.x, 0, MoveInput.y);
+
+        //    //var moveDir = new Vector3(MoveInput.x, 0, MoveInput.y);
+        //    //playerMovement = _cameraTransform.rotation * moveDir;
+
+        //    playerMovement = _cameraTransform.forward * MoveInput.y + _cameraTransform.right * MoveInput.x;
+        //}
+
         Vector3 camForwardProjection = new Vector3(_cameraTransform.forward.x, 0, _cameraTransform.forward.z).normalized;
         playerMovement = camForwardProjection * MoveInput.y + _cameraTransform.right * MoveInput.x;
 
         playerMovement = PlayerTransform.InverseTransformVector(playerMovement);
-
-        //Vector3 forward = transform.InverseTransformVector(_cameraTransform.forward);
-        //Vector3 right = transform.InverseTransformVector(_cameraTransform.right);
-        //forward.y = 0f;
-        //right.y = 0f;
-        //forward = forward.normalized;
-        //right = right.normalized;
-
-        //playerMovement = MoveInput.y * forward + MoveInput.x * right;
     }
 
     void SetupAnimator()
@@ -709,6 +723,13 @@ public class PlayerController : MonoBehaviour
 
     private void OnStoppedAiming() => IsAiming = false;
 
-    private void OnAttack() => IsAttacking = true;
+    //private void OnAttack() => IsAttacking = true;
+
+    private void OnLockCamera()
+    {
+        IsLockCamera = !IsLockCamera;
+        animator.SetBool("IsCameraLockOn", IsLockCamera);
+        //Debug.Log("設定相機固定: " + IsLockCamera);
+    }
 
 }

@@ -12,9 +12,6 @@ namespace AbilitySystem
         /// </summary>
         public GameplayEffectScriptableObject GameplayEffect { get; private set; }
 
-        /// <summary>
-        /// 
-        /// </summary>
         public float DurationRemaining { get; private set; }
 
         public float TotalDuration { get; private set; }
@@ -30,6 +27,9 @@ namespace AbilitySystem
             return new GameplayEffectSpec(GameplayEffect, Source, Level);
         }
 
+        /// <summary>
+        /// constructor
+        /// </summary>
         private GameplayEffectSpec(GameplayEffectScriptableObject GameplayEffect, AbilitySystemCharacter Source, float Level = 1)
         {
             this.GameplayEffect = GameplayEffect;

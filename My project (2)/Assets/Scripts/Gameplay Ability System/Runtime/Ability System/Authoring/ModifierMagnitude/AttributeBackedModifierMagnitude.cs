@@ -10,8 +10,6 @@ namespace AbilitySystem.ModifierMagnitude
     [CreateAssetMenu(menuName = "Gameplay Ability System/Gameplay Effect/Modifier Magnitude/Attribute Backed")]
     public class AttributeBackedModifierMagnitude : ModifierMagnitudeScriptableObject
     {
-
-
         [SerializeField]
         private AnimationCurve ScalingFunction;
 

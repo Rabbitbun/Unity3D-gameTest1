@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.Events;
 using UnityEngine.InputSystem;
 
 public class PlayerInputManager : MonoBehaviour
@@ -21,6 +22,9 @@ public class PlayerInputManager : MonoBehaviour
 
     public PlayerInputs PlayerInput;
 
+
+
+
     private void OnEnable()
     {
         PlayerInput.Player.Enable();
@@ -40,41 +44,41 @@ public class PlayerInputManager : MonoBehaviour
 
     public void Start()
     {
-        PlayerInput.Player.Look.started += OnLookInput;
-        PlayerInput.Player.Look.performed += OnLookInput;
-        PlayerInput.Player.Look.canceled += OnLookInput;
+        //PlayerInput.Player.Look.started += OnLookInput;
+        //PlayerInput.Player.Look.performed += OnLookInput;
+        //PlayerInput.Player.Look.canceled += OnLookInput;
 
-        //PlayerInput.Player.LeftClick.started += OnLeftClickInput;
-        ////_playerInput.Player.LeftClick.performed += OnLeftClickInput;
-        //PlayerInput.Player.LeftClick.canceled += OnLeftClickInput;
+        ////PlayerInput.Player.LeftClick.started += OnLeftClickInput;
+        //////_playerInput.Player.LeftClick.performed += OnLeftClickInput;
+        ////PlayerInput.Player.LeftClick.canceled += OnLeftClickInput;
 
-        //PlayerInput.Player.RightClick.started += OnRightClickInput;
-        ////_playerInput.Player.RightClick.performed += OnRightClickInput;
-        ////_playerInput.Player.RightClick.canceled += OnRightClickInput;
+        ////PlayerInput.Player.RightClick.started += OnRightClickInput;
+        //////_playerInput.Player.RightClick.performed += OnRightClickInput;
+        //////_playerInput.Player.RightClick.canceled += OnRightClickInput;
 
-        //PlayerInput.Player.RightClick.started += OnRightClickPressed;
-        ////PlayerInput.Player.RightClick.performed += OnRightClickPressed;
-        //PlayerInput.Player.RightClick.canceled += OnRightClickPressed;
+        ////PlayerInput.Player.RightClick.started += OnRightClickPressed;
+        //////PlayerInput.Player.RightClick.performed += OnRightClickPressed;
+        ////PlayerInput.Player.RightClick.canceled += OnRightClickPressed;
 
-        PlayerInput.Player.Move.performed += OnMoveInput;
-        PlayerInput.Player.Move.canceled += OnMoveInput;
+        //PlayerInput.Player.Move.performed += OnMoveInput;
+        //PlayerInput.Player.Move.canceled += OnMoveInput;
 
-        PlayerInput.Player.Jump.performed += OnJumpInput;
-        PlayerInput.Player.Jump.canceled += OnJumpInput;
+        //PlayerInput.Player.Jump.performed += OnJumpInput;
+        //PlayerInput.Player.Jump.canceled += OnJumpInput;
 
-        PlayerInput.Player.Run.performed += OnRunInput;
-        PlayerInput.Player.Run.canceled += OnRunInput;
+        //PlayerInput.Player.Run.performed += OnRunInput;
+        //PlayerInput.Player.Run.canceled += OnRunInput;
 
-        PlayerInput.Player.Crouch.performed += OnCrouchInput;
-        PlayerInput.Player.Crouch.canceled += OnCrouchInput;
+        //PlayerInput.Player.Crouch.performed += OnCrouchInput;
+        //PlayerInput.Player.Crouch.canceled += OnCrouchInput;
 
-        PlayerInput.Player.Pause.started += OnEscInput;
+        //PlayerInput.Player.Pause.started += OnEscInput;
 
-        //PlayerInput.Player.CastSpell.started += OnCasting;
-        ////PlayerInput.Player.CastSpell.performed += OnCasting;
-        ////PlayerInput.Player.CastSpell.canceled += OnCasting;
+        ////PlayerInput.Player.CastSpell.started += OnCasting;
+        //////PlayerInput.Player.CastSpell.performed += OnCasting;
+        //////PlayerInput.Player.CastSpell.canceled += OnCasting;
 
-        PlayerInput.Player.Aim.started += OnAimming;
+        //PlayerInput.Player.Aim.started += OnAimming;
     }
 
     public void OnMoveInput(InputAction.CallbackContext context)
@@ -150,4 +154,5 @@ public class PlayerInputManager : MonoBehaviour
     {
         RightClickPressed = context.ReadValueAsButton();
     }
+    
 }

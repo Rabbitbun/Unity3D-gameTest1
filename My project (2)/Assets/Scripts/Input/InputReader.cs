@@ -14,15 +14,24 @@ public class InputReader : ScriptableObject, PlayerInputs.IPlayerActions, Player
     public event UnityAction<Vector2> moveEvent = delegate { };
     public event UnityAction<Vector2, bool> cameraMoveEvent = delegate { };
 
-    public event UnityAction attackEvent = delegate { };
+    public event UnityAction<int> attackEvent = delegate { };
+    public event UnityAction<int> StopattackEvent = delegate { };
 
     public event UnityAction<int> useAbility1Event = delegate { };
     public event UnityAction<int> useAbility2Event = delegate { };
     public event UnityAction<int> useAbility3Event = delegate { };
     public event UnityAction<int> useAbility4Event = delegate { };
 
+    public event UnityAction<int> StopuseAbility1Event = delegate { };
+    public event UnityAction<int> StopuseAbility2Event = delegate { };
+    public event UnityAction<int> StopuseAbility3Event = delegate { };
+    public event UnityAction<int> StopuseAbility4Event = delegate { };
+
     public event UnityAction switchStyleEvent = delegate { };
     public event UnityAction switchAbilityListEvent = delegate { };
+
+    public event UnityAction<int> dogeRollEvent = delegate { };
+    public event UnityAction<int> guardEvent = delegate { };
 
     public event UnityAction startedRunning = delegate { };
     public event UnityAction stoppedRunning = delegate { };
@@ -32,14 +41,15 @@ public class InputReader : ScriptableObject, PlayerInputs.IPlayerActions, Player
     public event UnityAction jumpEvent = delegate { };
     public event UnityAction jumpCanceledEvent = delegate { };
 
-    public event UnityAction startedChanting = delegate { };
-    public event UnityAction stoppedChanting = delegate { };
+    public event UnityAction<int> startedChanting = delegate { };
+    public event UnityAction<int> stoppedChanting = delegate { };
 
     public event UnityAction startedAiming = delegate { };
     public event UnityAction stoppedAiming = delegate { };
 
     public event UnityAction pauseEvent = delegate { };
     public event UnityAction interactEvent = delegate { };
+    public event UnityAction<int> useItemEvent = delegate { };
     public event UnityAction lockCameraEvent = delegate { };
 
     public event UnityAction MouseLeftClickEvent = delegate { };
@@ -69,11 +79,16 @@ public class InputReader : ScriptableObject, PlayerInputs.IPlayerActions, Player
     {
         DisableAllInput();
     }
+    private void Awake()
+    {
+    }
 
     public void OnAttack(InputAction.CallbackContext context)
     {
         if (context.phase == InputActionPhase.Performed)
-            attackEvent.Invoke();
+            attackEvent.Invoke(0);
+        //if (context.phase == InputActionPhase.Canceled)
+        //    StopattackEvent.Invoke(-1);
     }
 
     public void OnAim(InputAction.CallbackContext context)
@@ -87,18 +102,26 @@ public class InputReader : ScriptableObject, PlayerInputs.IPlayerActions, Player
 
     public void OnChant(InputAction.CallbackContext context)
     {
+        //if (context.phase == InputActionPhase.Performed)
+        //{
+        //    IsChanting = true;
+        //    startedChanting.Invoke();
+        //}
+
+        //if (context.phase == InputActionPhase.Canceled)
+        //{
+        //    IsChanting = false;
+        //    stoppedChanting.Invoke();
+        //}
         if (context.phase == InputActionPhase.Performed)
         {
-            IsChanting = true;
-            startedChanting.Invoke();
+            startedChanting.Invoke(1);
         }
-
         if (context.phase == InputActionPhase.Canceled)
         {
-            IsChanting = false;
-            stoppedChanting.Invoke();
+            stoppedChanting.Invoke(-1);
         }
-            
+
     }
 
     public void OnCrouch(InputAction.CallbackContext context)
@@ -107,10 +130,28 @@ public class InputReader : ScriptableObject, PlayerInputs.IPlayerActions, Player
             crouchEvent.Invoke();
     }
 
+    public void OnDogeRoll(InputAction.CallbackContext context)
+    {
+        if (context.phase == InputActionPhase.Performed)
+            dogeRollEvent.Invoke(2);
+    }
+
+    public void OnGuard(InputAction.CallbackContext context)
+    {
+        if (context.phase == InputActionPhase.Performed)
+            guardEvent.Invoke(3);
+    }
+
     public void OnInteract(InputAction.CallbackContext context)
     {
         if (context.phase == InputActionPhase.Performed)
             interactEvent.Invoke();
+    }
+
+    public void OnUseItem(InputAction.CallbackContext context)
+    {
+        if (context.phase == InputActionPhase.Performed)
+            useItemEvent.Invoke(4);
     }
 
     public void OnJump(InputAction.CallbackContext context)
@@ -125,7 +166,7 @@ public class InputReader : ScriptableObject, PlayerInputs.IPlayerActions, Player
     public void OnLockCamera(InputAction.CallbackContext context)
     {
         if (context.phase == InputActionPhase.Performed)
-            MouseRightClickEvent.Invoke();
+            lockCameraEvent.Invoke();
     }
 
     public void OnLook(InputAction.CallbackContext context)
@@ -143,7 +184,11 @@ public class InputReader : ScriptableObject, PlayerInputs.IPlayerActions, Player
     public void OnPause(InputAction.CallbackContext context)
     {
         if (context.phase == InputActionPhase.Performed)
+        {
             pauseEvent.Invoke();
+            //MasterManager.Instance.GameEventManager.PauseGame();
+        }
+            
     }
 
     public void OnRun(InputAction.CallbackContext context)
@@ -167,23 +212,35 @@ public class InputReader : ScriptableObject, PlayerInputs.IPlayerActions, Player
 
     public void OnUseAbility1(InputAction.CallbackContext context)
     {
+        // ability: 10 11 12 13
         if (context.phase == InputActionPhase.Performed)
-            useAbility1Event.Invoke(0);
+            useAbility1Event.Invoke(10);
+        if (context.phase == InputActionPhase.Canceled)
+            useAbility1Event.Invoke(-1);
     }
     public void OnUseAbility2(InputAction.CallbackContext context)
     {
+        // ability: 10 11 12 13
         if (context.phase == InputActionPhase.Performed)
-            useAbility2Event.Invoke(1);
+            useAbility2Event.Invoke(11);
+        if (context.phase == InputActionPhase.Canceled)
+            StopuseAbility2Event.Invoke(-1);
     }
     public void OnUseAbility3(InputAction.CallbackContext context)
     {
+        // ability: 10 11 12 13
         if (context.phase == InputActionPhase.Performed)
-            useAbility3Event.Invoke(2);
+            useAbility3Event.Invoke(12);
+        if (context.phase == InputActionPhase.Canceled)
+            useAbility1Event.Invoke(-1);
     }
     public void OnUseAbility4(InputAction.CallbackContext context)
     {
+        // ability: 10 11 12 13
         if (context.phase == InputActionPhase.Performed)
-            useAbility4Event.Invoke(3);
+            useAbility4Event.Invoke(13);
+        if (context.phase == InputActionPhase.Canceled)
+            useAbility1Event.Invoke(-1);
     }
 
     public void OnSwitchAbilityList(InputAction.CallbackContext context)
@@ -219,7 +276,11 @@ public class InputReader : ScriptableObject, PlayerInputs.IPlayerActions, Player
     public void OnUnpause(InputAction.CallbackContext context)
     {
         if (context.phase == InputActionPhase.Performed)
+        {
             menuUnpauseEvent();
+            //MasterManager.Instance.GameEventManager.PauseGame();
+        }
+            
     }
 
     public void OnBackView(InputAction.CallbackContext context)

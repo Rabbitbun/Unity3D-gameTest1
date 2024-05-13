@@ -26,6 +26,8 @@ namespace AbilitySystem.Authoring
 
         public string AnimationTriggerName;
 
+        public bool EarlyEnd = false;
+
         /// <summary>
         /// Creates the Ability Spec, which is instantiated for each character.
         /// </summary>
@@ -41,6 +43,7 @@ namespace AbilitySystem.Authoring
         /// <summary>
         /// The Ability Spec is the instantiation of the ability.  Since the Ability Spec
         /// is instantiated for each character, we can store stateful data here.
+        /// 能力規格是能力的實例化。由於能力規格是為每個角色實例化的，因此我們可以在此處儲存狀態資料。
         /// </summary>
         public class SimpleAbilitySpec : AbstractAbilitySpec
         {
@@ -50,11 +53,14 @@ namespace AbilitySystem.Authoring
 
             private string animationTriggerName;
 
+            private bool earlyEnd;
+
             public SimpleAbilitySpec(AbstractAbilityScriptableObject abilitySO, AbilitySystemCharacter owner) : base(abilitySO, owner)
             {
                 gameplayCue = (this.Ability as SimpleAbilityScriptableObject).GameplayCue;
                 timeToApplyCueAfterAnim = (this.Ability as SimpleAbilityScriptableObject).TimeToApplyCueAfterAnim;
                 animationTriggerName = (this.Ability as SimpleAbilityScriptableObject).AnimationTriggerName;
+                earlyEnd = (this.Ability as SimpleAbilityScriptableObject).EarlyEnd;
 
                 //animationClip = (this.Ability as SimpleAbilityScriptableObject).AnimationClip;
             }
@@ -77,15 +83,18 @@ namespace AbilitySystem.Authoring
                 var cdSpec = this.Owner.MakeOutgoingSpec(this.Ability.Cooldown);
                 var costSpec = this.Owner.MakeOutgoingSpec(this.Ability.Cost);
                 this.Owner.ApplyGameplayEffectSpecToSelf(cdSpec);
-                this.Owner.ApplyGameplayEffectSpecToSelf(costSpec);
+                this.Owner.ApplyGameplayEffectSpecToSelf(costSpec); 
 
 
                 // Apply primary effect
                 var effectSpec = this.Owner.MakeOutgoingSpec((this.Ability as SimpleAbilityScriptableObject).GameplayEffect);
                 this.Owner.ApplyGameplayEffectSpecToSelf(effectSpec);
 
+                
+                Debug.Log("isActive: " + isActive.ToString());
+                Debug.Log("gameplayCue.Update()!!");
                 yield return gameplayCue.Update();
-
+                Debug.Log("END gameplayCue.Update()!!");
                 yield return null;
             }
 
@@ -114,7 +123,7 @@ namespace AbilitySystem.Authoring
 
             protected override IEnumerator PreActivate()
             {
-                gameplayCue.PrepareCue(this.Owner);
+                //gameplayCue.PrepareCue(this.Owner);
                 // Apply animations
                 Animator animatorComponent = Owner.GetComponent<Animator>();
                 var animationEventSystemComponent = Owner.GetComponent<AnimationEventSystem>();

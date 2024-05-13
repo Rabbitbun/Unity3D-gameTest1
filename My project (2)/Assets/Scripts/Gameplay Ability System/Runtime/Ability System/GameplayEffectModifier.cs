@@ -12,6 +12,7 @@ namespace AbilitySystem
         public EAttributeModifier ModifierOperator;
         public ModifierMagnitudeScriptableObject ModifierMagnitude;
         public float Multiplier;
+        public float offset;
     }
 
 
