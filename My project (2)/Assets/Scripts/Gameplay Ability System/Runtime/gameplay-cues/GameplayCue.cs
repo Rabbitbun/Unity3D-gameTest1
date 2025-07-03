@@ -3,6 +3,7 @@ using Cysharp.Threading.Tasks;
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using System.Threading.Tasks;
 using UnityEngine;
 using UnityEngine.VFX;
@@ -37,6 +38,20 @@ public class GameplayCue
     public GameObject PSPrefab;
     private GameObject PSInstance;
 
+    public PlaySoundCue playSoundCue;
+
+    public GameplayCue(GameplayCue cue) 
+    { 
+        this.LifeTime = cue.LifeTime;
+        this.delayTime = cue.delayTime;
+        this.ShouldFlip = cue.ShouldFlip;
+        this.CuePrefab = cue.CuePrefab;
+        this.CueVFXPrefab = cue.CueVFXPrefab;
+        this.PSPrefab = cue.PSPrefab;
+        this.playSoundCue = cue.playSoundCue;
+    }
+
+
     public void PrepareCue(AbilitySystemCharacter asc)
     {
         animator = asc.GetComponent<Animator>();
@@ -46,7 +61,7 @@ public class GameplayCue
         WeaponObj = asc.GetComponent<CastPointComponent>().SwordColliderPoint;
     }
 
-    public async void ApplyCue(AbilitySystemCharacter asc)
+    public async void ApplyCue(AbilitySystemCharacter asc, GameplayEffectSpec geSpec)
     {
         if (asc.gameObject.tag == "Player")
         {
@@ -66,6 +81,11 @@ public class GameplayCue
             await UniTask.Delay(TimeSpan.FromSeconds(delayTime));
         }
         Debug.Log("應用Cue!");
+
+        //var playSoundCueSpec = playSoundCue.ApplyFrom(geSpec);
+        //playSoundCueSpec.OnAdd();
+        
+
         if (CuePrefab != null)
         {
             CueInstance = GameObject.Instantiate(CuePrefab);
@@ -80,6 +100,7 @@ public class GameplayCue
             if (LifeTime > 0)
             {
                 await UniTask.Delay(TimeSpan.FromSeconds(LifeTime));
+                //playSoundCueSpec.OnRemove();
                 GameObject.Destroy(CueInstance);
             }
         }
@@ -113,6 +134,7 @@ public class GameplayCue
             if (LifeTime > 0)
             {
                 await UniTask.Delay(TimeSpan.FromSeconds(LifeTime));
+                //playSoundCueSpec.OnRemove();
                 GameObject.Destroy(CueVFXInstance.gameObject);
             }
         }
@@ -124,22 +146,28 @@ public class GameplayCue
             PSInstance.transform.localPosition = PSPrefab.transform.position;
             PSInstance.transform.localRotation = PSPrefab.transform.rotation;
 
-            var ps = PSInstance.GetComponent<ParticleSystem>();
+            List<ParticleSystem> PSs = PSInstance.GetComponentsInChildren<ParticleSystem>().ToList();
 
-            if (ps.main.startDelay.constant == 0.0f)
+            //var ps = PSInstance.GetComponent<ParticleSystem>();
+            foreach (var ps in PSs)
             {
-                // wait until next frame because the transform may change
-                var m = ps.main;
-                var d = ps.main.startDelay;
-                d.constant = 0.01f;
-                m.startDelay = d;
+                if (ps.main.startDelay.constant == 0.0f)
+                {
+                    // wait until next frame because the transform may change
+                    var m = ps.main;
+                    var d = ps.main.startDelay;
+                    d.constant = 0.01f;
+                    m.startDelay = d;
+                }
+                ps.Play();
             }
-            ps.Play();
-
+            
             if (LifeTime > 0)
             {
-                await UniTask.Delay(TimeSpan.FromSeconds(LifeTime));
-                GameObject.Destroy(PSInstance);
+                Debug.Log(LifeTime);
+                await Task.Delay(TimeSpan.FromSeconds(LifeTime));
+                //playSoundCueSpec.OnRemove();
+                GameObject.Destroy(this.PSInstance);
             }
         }
         
@@ -184,5 +212,3 @@ public class GameplayCue
         
     }
 }
-
-

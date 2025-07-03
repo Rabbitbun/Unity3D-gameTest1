@@ -134,7 +134,7 @@ namespace AbilitySystem.Authoring
                 yield return new WaitForSeconds(timeToApplyCueAfterAnim);
 
                 // Apply Gameplay Cue
-                gameplayCue.ApplyCue(this.Owner);
+                gameplayCue.ApplyCue(this.Owner, null);
 
                 yield return null;
             }

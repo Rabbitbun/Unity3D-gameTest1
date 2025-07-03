@@ -17,8 +17,7 @@ MonoBehaviour:
     AssetTag: {fileID: 11400000, guid: 1ef7baaa778b7314284c5e72d41db4ca, type: 2}
     CancelAbilitiesWithTags: []
     BlockAbilitiesWithTags: []
-    ActivationOwnedTags:
-    - {fileID: 11400000, guid: 1ef7baaa778b7314284c5e72d41db4ca, type: 2}
+    ActivationOwnedTags: []
     OwnerTags:
       RequireTags: []
       IgnoreTags:
@@ -34,4 +33,10 @@ MonoBehaviour:
   GameplayEffect: {fileID: 11400000, guid: 5336268243d5f9a408e3ce221ff1bf6d, type: 2}
   AnimationTriggerName: Blood Ball Ability
   DelayForApplyGE: 1
+  ApplyPrefabTransform: 0
   ProjectilePrefab: {fileID: 9209061552537538229, guid: 9de6ec24a1fed6f4d83239cd1bff8d94, type: 3}
+  ProjectileNumber: 1
+  AnimationCue: {fileID: 11400000, guid: b104a36f26b459042b57716adcdbe57c, type: 2}
+  PreVFXCue: {fileID: 11400000, guid: 6dd5539293d80e14580b58abb2b20891, type: 2}
+  GameObjectCue: {fileID: 0}
+  SoundCue: {fileID: 0}

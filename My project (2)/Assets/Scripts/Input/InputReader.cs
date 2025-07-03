@@ -186,7 +186,7 @@ public class InputReader : ScriptableObject, PlayerInputs.IPlayerActions, Player
         if (context.phase == InputActionPhase.Performed)
         {
             pauseEvent.Invoke();
-            //MasterManager.Instance.GameEventManager.PauseGame();
+            MasterManager.Instance.GameEventManager.PauseGame();
         }
             
     }

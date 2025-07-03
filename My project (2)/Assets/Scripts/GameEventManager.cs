@@ -35,7 +35,7 @@ public class GameEventManager : MonoBehaviour
         {
             // stop -> continue
             IsgamePaused = false;
-            Time.timeScale = 1;
+            //Time.timeScale = 1;
             Cursor.visible = false;
             Cursor.lockState = CursorLockMode.Locked;
 
@@ -47,7 +47,7 @@ public class GameEventManager : MonoBehaviour
         {
             // continue -> stop
             IsgamePaused = true;
-            Time.timeScale = 0;
+            //Time.timeScale = 0;
             Cursor.visible = true;
             Cursor.lockState = CursorLockMode.None;
 

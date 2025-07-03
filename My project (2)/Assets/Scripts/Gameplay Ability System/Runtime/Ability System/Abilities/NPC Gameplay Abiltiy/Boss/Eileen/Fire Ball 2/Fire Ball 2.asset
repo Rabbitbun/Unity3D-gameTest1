@@ -1,0 +1,42 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 814eb09a9d7b7f94192bab21a54a9901, type: 3}
+  m_Name: Fire Ball 2
+  m_EditorClassIdentifier: 
+  AbilityName: Fire Ball 2
+  AbilityTags:
+    AssetTag: {fileID: 11400000, guid: 5e2fd2fe4db06394990f9c8ac3b43b96, type: 2}
+    CancelAbilitiesWithTags: []
+    BlockAbilitiesWithTags: []
+    ActivationOwnedTags:
+    - {fileID: 11400000, guid: 5e2fd2fe4db06394990f9c8ac3b43b96, type: 2}
+    OwnerTags:
+      RequireTags: []
+      IgnoreTags: []
+    SourceTags:
+      RequireTags: []
+      IgnoreTags: []
+    TargetTags:
+      RequireTags: []
+      IgnoreTags: []
+  Cost: {fileID: 11400000, guid: 881dc0c96e48da24ea8eda6d2ad1f4b5, type: 2}
+  Cooldown: {fileID: 11400000, guid: e04b5e0c1e2389249b633a9294ed8108, type: 2}
+  GameplayEffect: {fileID: 11400000, guid: acc7b3d0259fda541becf965d20188f0, type: 2}
+  AnimationTriggerName: 
+  DelayForApplyGE: 1
+  ApplyPrefabTransform: 1
+  ProjectilePrefab: {fileID: 121802, guid: 1eafd59ae2c938b439ac2b3566c839bf, type: 3}
+  ProjectileNumber: 1
+  AnimationCue: {fileID: 11400000, guid: dfb38c38d1647324d910d6ac56939bea, type: 2}
+  PreVFXCue: {fileID: 11400000, guid: ef37a774c9088a047995b9682b241fdb, type: 2}
+  GameObjectCue: {fileID: 0}
+  SoundCue: {fileID: 11400000, guid: 0b3755e2b8ac5ef4f9b760586e1e7435, type: 2}

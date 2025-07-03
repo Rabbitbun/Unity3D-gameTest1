@@ -19,6 +19,7 @@ MonoBehaviour:
     BlockAbilitiesWithTags: []
     ActivationOwnedTags:
     - {fileID: 11400000, guid: c8b1ecf622d73f54893a113f7174fba2, type: 2}
+    - {fileID: 11400000, guid: c0a06322ce7c0a94480a36ec74827634, type: 2}
     OwnerTags:
       RequireTags: []
       IgnoreTags:

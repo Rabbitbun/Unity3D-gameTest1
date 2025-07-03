@@ -1,0 +1,45 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bd0e4a3bf71d7cc44acd7d81145b5a7d, type: 3}
+  m_Name: Melee Attack 02
+  m_EditorClassIdentifier: 
+  AbilityName: 
+  AbilityTags:
+    AssetTag: {fileID: 0}
+    CancelAbilitiesWithTags: []
+    BlockAbilitiesWithTags: []
+    ActivationOwnedTags: []
+    OwnerTags:
+      RequireTags: []
+      IgnoreTags: []
+    SourceTags:
+      RequireTags: []
+      IgnoreTags: []
+    TargetTags:
+      RequireTags: []
+      IgnoreTags: []
+  Cost: {fileID: 11400000, guid: 4078c20fa8047a34bb2deb7886d27877, type: 2}
+  Cooldown: {fileID: 11400000, guid: 7dbdc7bf5a2b3474b9ea9a4228fe0fdc, type: 2}
+  GameplayEffects:
+  - {fileID: 11400000, guid: e13e1b79da39f1a4f97bd86c3e249a2f, type: 2}
+  - {fileID: 11400000, guid: 9c37576eb3bfeff4b8e4be22512bd635, type: 2}
+  - {fileID: 11400000, guid: 617ef53147e23f54383d3c08d4750ded, type: 2}
+  AnimationTriggerName: Melee Attack 02
+  AttackTimes: 3
+  EachComboStartIn:
+  - 0.6
+  - 1.4
+  - 2
+  CollisionCues:
+  - {fileID: 11400000, guid: da6914c25268b484c86ec89b44e6b984, type: 2}
+  - {fileID: 11400000, guid: da6914c25268b484c86ec89b44e6b984, type: 2}
+  - {fileID: 11400000, guid: da6914c25268b484c86ec89b44e6b984, type: 2}

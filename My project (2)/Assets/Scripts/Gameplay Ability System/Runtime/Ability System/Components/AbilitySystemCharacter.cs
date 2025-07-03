@@ -116,6 +116,12 @@ namespace AbilitySystem
             OnGameplayAbilityGranted?.Invoke(spec);
         }
 
+        public void UseAbilitySpec(AbstractAbilitySpec spec)
+        {
+            StartCoroutine(spec.TryActivateAbility());
+            OnGameplayAbilityTryActivate?.Invoke(spec, spec.Ability.name);
+        }
+
         /// <summary>
         /// 移除有這個 tag 的 Ability(已啟用的), 呼叫UngrantAbility 取消 Ability, 觸發事件
         /// </summary>
@@ -217,11 +223,6 @@ namespace AbilitySystem
             return true;
         }
 
-        //public IEnumerator DelayCue()
-        //{
-
-        //}
-
         /// <summary>
         /// 產生一個新的 GameplayEffectSpec
         /// </summary>
@@ -308,7 +309,8 @@ namespace AbilitySystem
             for (int i = 0; i < gameplayCues.Count; i++)
             {
                 var cue = gameplayCues[i];
-                cue.ApplyCue(this);
+                var newCue = new GameplayCue(cue);
+                newCue.ApplyCue(this, spec);
             }
         }
         /// <summary>
@@ -347,7 +349,24 @@ namespace AbilitySystem
             for (int i = 0; i < gameplayCues.Count; i++)
             {
                 var cue = gameplayCues[i];
-                cue.ApplyCue(this);
+                var newCue = new GameplayCue(cue);
+                newCue.ApplyCue(this, spec);
+            }
+        }
+
+        public void RemoveGameplayEffect(GameplayEffectSpec spec)
+        {
+            //GameplayEffectContainer.RemoveGameplayEffectSpec(spec);
+            for (int i = 0; i < AppliedGameplayEffects.Count; i++)
+            {
+                var ge = AppliedGameplayEffects[i].spec;
+
+                if (ge == spec)
+                {
+                    AppliedGameplayEffects.RemoveAt(i);
+                    OnGameplayEffectRemoved?.Invoke(ge);
+                    break;
+                }
             }
         }
 

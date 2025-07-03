@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Spell Chant GE
   m_EditorClassIdentifier: 
   gameplayEffect:
-    DurationPolicy: 1
+    DurationPolicy: 0
     DurationModifier: {fileID: 11400000, guid: c7f694d9947adb54f88adc4e119455c1, type: 2}
     DurationMultiplier: 0
     Modifiers:
@@ -21,6 +21,7 @@ MonoBehaviour:
       ModifierOperator: 0
       ModifierMagnitude: {fileID: 11400000, guid: c7f694d9947adb54f88adc4e119455c1, type: 2}
       Multiplier: 0.5
+      offset: 0
     ConditionalGameplayEffects: []
   gameplayEffectTags:
     AssetTag: {fileID: 11400000, guid: 1d72e484d6c1c2044b933d9f5e9c2899, type: 2}
@@ -38,4 +39,11 @@ MonoBehaviour:
   Period:
     Period: 0
     ExecuteOnApplication: 0
-  gameplayCues: []
+  gameplayCues:
+  - LifeTime: 0.5
+    delayTime: 0
+    ShouldFlip: 0
+    CuePrefab: {fileID: 0}
+    CueVFXPrefab: {fileID: 0}
+    PSPrefab: {fileID: 2399211436176211120, guid: 9988e26025b71e64db91eac7d098544c, type: 3}
+    playSoundCue: {fileID: 0}

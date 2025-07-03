@@ -13,14 +13,15 @@ MonoBehaviour:
   m_Name: Cooldown
   m_EditorClassIdentifier: 
   gameplayEffect:
-    DurationPolicy: 0
+    DurationPolicy: 2
     DurationModifier: {fileID: 11400000, guid: c7f694d9947adb54f88adc4e119455c1, type: 2}
-    DurationMultiplier: 1.2
+    DurationMultiplier: 1
     Modifiers: []
     ConditionalGameplayEffects: []
   gameplayEffectTags:
     AssetTag: {fileID: 11400000, guid: c32646ff3754cf04f9361ad8fc009efc, type: 2}
-    GrantedTags: []
+    GrantedTags:
+    - {fileID: 11400000, guid: c0a06322ce7c0a94480a36ec74827634, type: 2}
     OngoingTagRequirements:
       RequireTags: []
       IgnoreTags: []

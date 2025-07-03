@@ -53,9 +53,9 @@ public class PlayerUI : MonoBehaviour
 
     private void Start()
     {
-        // 先抓取玩家的system
-        SkillSystem = UIManager.Instance.SkillSystem;
-        StatusSystem = UIManager.Instance.StatusSystem;
+        //// 先抓取玩家的system
+        //SkillSystem = UIManager.Instance.SkillSystem;
+        //StatusSystem = UIManager.Instance.StatusSystem;
 
         SkillCooldownScript = GetComponent<SkillCooldown>();
 

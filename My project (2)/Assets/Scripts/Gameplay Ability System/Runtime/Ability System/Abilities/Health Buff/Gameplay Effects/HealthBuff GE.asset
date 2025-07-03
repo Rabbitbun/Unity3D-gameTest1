@@ -13,14 +13,15 @@ MonoBehaviour:
   m_Name: HealthBuff GE
   m_EditorClassIdentifier: 
   gameplayEffect:
-    DurationPolicy: 2
+    DurationPolicy: 0
     DurationModifier: {fileID: 11400000, guid: c7f694d9947adb54f88adc4e119455c1, type: 2}
-    DurationMultiplier: 2
+    DurationMultiplier: 0
     Modifiers:
     - Attribute: {fileID: 11400000, guid: 5bde0391a6f30cb4180cd98b90607e0a, type: 2}
       ModifierOperator: 0
       ModifierMagnitude: {fileID: 11400000, guid: c7f694d9947adb54f88adc4e119455c1, type: 2}
-      Multiplier: 30
+      Multiplier: 40
+      offset: 0
     ConditionalGameplayEffects: []
   gameplayEffectTags:
     AssetTag: {fileID: 11400000, guid: 7864c3386cab7b44eb96316bee317d44, type: 2}
@@ -39,4 +40,10 @@ MonoBehaviour:
   Period:
     Period: 0
     ExecuteOnApplication: 0
-  gameplayCues: []
+  gameplayCues:
+  - LifeTime: 1
+    delayTime: 0
+    ShouldFlip: 0
+    CuePrefab: {fileID: 0}
+    CueVFXPrefab: {fileID: 0}
+    PSPrefab: {fileID: 9017484664307500583, guid: 16522cbce3f2d0142a1de04193918e4b, type: 3}

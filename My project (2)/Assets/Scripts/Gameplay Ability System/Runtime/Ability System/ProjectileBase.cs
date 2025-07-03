@@ -60,7 +60,7 @@ public class ProjectileBase : MonoBehaviour
                     var d = p.main.startDelay;
                     d.constant = 0.01f;
                     m.startDelay = d;
-                    m.startSpeed = ProjectileColliderSpeed;
+                    //m.startSpeed = ProjectileColliderSpeed;
                 }
                 p.Play();
             }
@@ -70,9 +70,9 @@ public class ProjectileBase : MonoBehaviour
     protected virtual void Awake()
     {
         Starting = true;
-        //int fireLayer = UnityEngine.LayerMask.NameToLayer("FireLayer");
-        //if (fireLayer >= 0 && fireLayer < 32)
-        //    UnityEngine.Physics.IgnoreLayerCollision(fireLayer, fireLayer);
+        int AbilityLayer = UnityEngine.LayerMask.NameToLayer("AbilityLayer");
+        if (AbilityLayer >= 0 && AbilityLayer < 32)
+            UnityEngine.Physics.IgnoreLayerCollision(AbilityLayer, AbilityLayer);
     }
 
     protected virtual void Start()

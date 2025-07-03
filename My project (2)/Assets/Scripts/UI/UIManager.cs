@@ -9,9 +9,9 @@ public class UIManager : MonoBehaviour, IuseAbility
 
     [SerializeField, ReadOnly] public PlayerUI playerUI;
 
-    // 從玩家身上抓取System
-    [SerializeField, ReadOnly] public SkillSystem SkillSystem;
-    [SerializeField, ReadOnly] public StatusSystem StatusSystem;
+    //// 從玩家身上抓取System
+    //[SerializeField, ReadOnly] public SkillSystem SkillSystem;
+    //[SerializeField, ReadOnly] public StatusSystem StatusSystem;
 
     [SerializeField] public GameObject PauseMenu;
     [SerializeField] public KeyBindingFootBarHelper KeyBindingFootBar;
@@ -42,8 +42,8 @@ public class UIManager : MonoBehaviour, IuseAbility
 
         playerUI = GetComponentInChildren<PlayerUI>();
 
-        SkillSystem = GameObject.FindWithTag("Player").GetComponent<SkillSystem>();
-        StatusSystem = GameObject.FindWithTag("Player").GetComponent<StatusSystem>();
+        //SkillSystem = GameObject.FindWithTag("Player").GetComponent<SkillSystem>();
+        //StatusSystem = GameObject.FindWithTag("Player").GetComponent<StatusSystem>();
 
     }
 
@@ -133,17 +133,17 @@ public class UIManager : MonoBehaviour, IuseAbility
 
     public void HealthChanging(object sender, StatusEventArgs e)
     {
-        if (e.target == "UI")
-        {
-            if (e.actType == StatusEventArgs.ActType.Damage)
-            {
-                StatusSystem.healthSystem.Damage(e.value);
-            }
-            else if (e.actType == StatusEventArgs.ActType.Heal)
-            {
-                StatusSystem.healthSystem.Heal(e.value);
-            }
-        }
+        //if (e.target == "UI")
+        //{
+        //    if (e.actType == StatusEventArgs.ActType.Damage)
+        //    {
+        //        StatusSystem.healthSystem.Damage(e.value);
+        //    }
+        //    else if (e.actType == StatusEventArgs.ActType.Heal)
+        //    {
+        //        StatusSystem.healthSystem.Heal(e.value);
+        //    }
+        //}
         
     }
 

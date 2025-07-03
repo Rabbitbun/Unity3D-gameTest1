@@ -22,6 +22,7 @@ MonoBehaviour:
     AssetTag: {fileID: 11400000, guid: 51bed3c8abb39ca40add2be213d01691, type: 2}
     GrantedTags:
     - {fileID: 11400000, guid: 51bed3c8abb39ca40add2be213d01691, type: 2}
+    - {fileID: 11400000, guid: c0a06322ce7c0a94480a36ec74827634, type: 2}
     OngoingTagRequirements:
       RequireTags: []
       IgnoreTags: []

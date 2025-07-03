@@ -21,6 +21,7 @@ MonoBehaviour:
       ModifierOperator: 0
       ModifierMagnitude: {fileID: 11400000, guid: c7f694d9947adb54f88adc4e119455c1, type: 2}
       Multiplier: -20
+      offset: 0
     ConditionalGameplayEffects:
     - GameplayEffect: {fileID: 11400000, guid: 5aa82b66d582ba14eae7a81c1e8dfb12, type: 2}
       RequiredSourceTags: []
@@ -48,4 +49,10 @@ MonoBehaviour:
   Period:
     Period: 0
     ExecuteOnApplication: 0
-  gameplayCues: []
+  gameplayCues:
+  - LifeTime: 1
+    delayTime: 0
+    ShouldFlip: 0
+    CuePrefab: {fileID: 0}
+    CueVFXPrefab: {fileID: 0}
+    PSPrefab: {fileID: 1000012909287652, guid: c6c6a49213a22314da1695789227d8e9, type: 3}

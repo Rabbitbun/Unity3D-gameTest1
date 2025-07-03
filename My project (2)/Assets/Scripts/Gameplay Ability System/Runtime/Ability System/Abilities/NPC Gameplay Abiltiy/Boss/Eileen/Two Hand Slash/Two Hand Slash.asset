@@ -1,0 +1,40 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3f908b4521ef91440af5b2157cccaf3c, type: 3}
+  m_Name: Two Hand Slash
+  m_EditorClassIdentifier: 
+  AbilityName: Two Hand Slash
+  AbilityTags:
+    AssetTag: {fileID: 0}
+    CancelAbilitiesWithTags: []
+    BlockAbilitiesWithTags: []
+    ActivationOwnedTags: []
+    OwnerTags:
+      RequireTags: []
+      IgnoreTags: []
+    SourceTags:
+      RequireTags: []
+      IgnoreTags: []
+    TargetTags:
+      RequireTags: []
+      IgnoreTags: []
+  Cost: {fileID: 11400000, guid: 97744307eeab7b044a80945038771fb0, type: 2}
+  Cooldown: {fileID: 11400000, guid: 28497ab9ea670c44ea16e6088d1545d2, type: 2}
+  GameplayEffect: {fileID: 11400000, guid: 3f29851775c69514394c01181114fed3, type: 2}
+  AnimationTriggerName: Two Hand Slash
+  DelayForApplyGE: 0.2
+  Collider: {fileID: 0}
+  AnimationCue: {fileID: 0}
+  PreGECues: []
+  CollisionCues:
+  - {fileID: 11400000, guid: 6e1906e24382b344986d8cdc6b7be8db, type: 2}
+  - {fileID: 11400000, guid: 18d9a1fd93b64e1428a7e8eb678b4ce2, type: 2}

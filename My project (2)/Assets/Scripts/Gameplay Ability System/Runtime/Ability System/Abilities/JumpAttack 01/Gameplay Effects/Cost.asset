@@ -1,0 +1,42 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 75732b2e301ef7646bd23d3e5dc00cfd, type: 3}
+  m_Name: Cost
+  m_EditorClassIdentifier: 
+  gameplayEffect:
+    DurationPolicy: 0
+    DurationModifier: {fileID: 11400000, guid: c7f694d9947adb54f88adc4e119455c1, type: 2}
+    DurationMultiplier: 0
+    Modifiers:
+    - Attribute: {fileID: 11400000, guid: e35ad6a784cb06948b072a851d567fa1, type: 2}
+      ModifierOperator: 0
+      ModifierMagnitude: {fileID: 11400000, guid: c7f694d9947adb54f88adc4e119455c1, type: 2}
+      Multiplier: -30
+      offset: 0
+    ConditionalGameplayEffects: []
+  gameplayEffectTags:
+    AssetTag: {fileID: 11400000, guid: 46a720327cea2cf40be9279692c768b7, type: 2}
+    GrantedTags: []
+    OngoingTagRequirements:
+      RequireTags: []
+      IgnoreTags: []
+    ApplicationTagRequirements:
+      RequireTags: []
+      IgnoreTags: []
+    RemovalTagRequirements:
+      RequireTags: []
+      IgnoreTags: []
+    RemoveGameplayEffectsWithTag: []
+  Period:
+    Period: 0
+    ExecuteOnApplication: 0
+  gameplayCues: []

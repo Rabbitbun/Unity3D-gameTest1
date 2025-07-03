@@ -72,21 +72,6 @@ namespace AbilitySystem.Authoring
             /// 這邊應該跟MeleeCombo邏輯類似 迴圈每次減少時間 時間結束之前有接到輸入就重製時間
 
             /// <summary>
-            /// Try activating the ability.  Remember to use StartCoroutine() since this 
-            /// is a couroutine, to allow abilities to span more than one frame.
-            /// </summary>
-            public override IEnumerator TryActivateAbility()
-            {
-                if (!CanActivateAbility()) yield break;
-
-                isActive = true;
-
-                yield return PreActivate();
-                yield return ActivateAbility();
-                EndAbility();
-            }
-
-            /// <summary>
             /// What to do when the ability is cancelled
             /// </summary>
             public override void CancelAbility() 
@@ -105,21 +90,23 @@ namespace AbilitySystem.Authoring
                     animatorComponent.SetBool(AnimationBoolName, true);
                 TimeCounter = 0.0f;
 
-                while(IsCharging)
+                var cdSpec = this.Owner.MakeOutgoingSpec(this.Ability.Cooldown);
+                var costSpec = this.Owner.MakeOutgoingSpec(this.Ability.Cost);
+
+                var effectSpec = this.Owner.MakeOutgoingSpec((this.Ability as ChargingAbilitySO).GameplayEffect);
+                while (IsCharging)
                 {
+                    if (!CheckGameplayTags()) yield break;
+
                     TimeCounter += Time.deltaTime;
                     if (TimeCounter >= 0.1f)
                     {
-                        // Apply cost and cooldown
-                        var cdSpec = this.Owner.MakeOutgoingSpec(this.Ability.Cooldown);
-                        var costSpec = this.Owner.MakeOutgoingSpec(this.Ability.Cost);
                         this.Owner.ApplyGameplayEffectSpecToSelf(cdSpec);
                         this.Owner.ApplyGameplayEffectSpecToSelf(costSpec);
 
-                        // Apply primary effect
-                        var effectSpec = this.Owner.MakeOutgoingSpec((this.Ability as ChargingAbilitySO).GameplayEffect);
-                    
+                        Owner.AttributeSystem.UpdateAttributeCurrentValues();
                         this.Owner.ApplyGameplayEffectSpecToSelf(effectSpec);
+                        Owner.AttributeSystem.UpdateAttributeCurrentValues();
 
                         TimeCounter = 0.0f;
                     }

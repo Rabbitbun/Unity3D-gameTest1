@@ -75,6 +75,17 @@ public class AbilityController : MonoBehaviour
         _inputReader.switchAbilityListEvent -= HandleSwitchAbilityListChanged;
     }
 
+    private void OnDestroy()
+    {
+        foreach (var spec in abilitySpecs)
+        {
+            if (spec != null)
+            {
+                
+            }
+        }
+    }
+
     // Start is called before the first frame update
     void Start()
     {
@@ -106,13 +117,18 @@ public class AbilityController : MonoBehaviour
     public void UpdateUI()
     {
         //TAGS
-        text.text += $"\n Tags:\n<color=#F5FF40>";
-        foreach (var tag in abilitySystemCharacter.Tags)
+        if (text != null)
         {
-            text.text += $"{tag.name},";
-            // if (asc.tags.IndexOf(tag) % 3 == 2) text.text += "\n";
+            text.text = "";
+            text.text += $"\n Tags:\n<color=#F5FF40>";
+            foreach (var tag in this.abilitySystemCharacter.Tags)
+            {
+                text.text += tag.name + " ";
+            }
+            text.text += "</color>";
         }
-        text.text += "</color>";
+        
+
     }
 
     // 啟用初始化ability
@@ -147,7 +163,8 @@ public class AbilityController : MonoBehaviour
 
     private void HandleAbilityUse(int index)
     {
-        //TODO: 可在技能SO上設定是否可以持續按住，若可以再進行，不行就直接使用。現在先暫時這樣寫
+        ///TODO: 可在技能SO上設定是否可以持續按住，若可以再進行，不行就直接使用。
+        ///TODO: 額外寫GA的設定SO
 
         // ability 基礎技能(攻擊、防禦等等)為欄位 0 ~ 9 (10個)、特殊技能為欄位 10 ~ 17 (8個)
         // 基礎: 詠唱(1)、使用道具(2個)、普通攻擊(1個)、防禦(1個)、躲避(1個)、

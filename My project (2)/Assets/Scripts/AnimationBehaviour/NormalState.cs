@@ -23,6 +23,7 @@ public class NormalState : StateMachineBehaviour
         CaculateGravity();
         Jump();
         SetupAnimator(animator);
+        //Debug.Log("OnStateUpdate......");
     }
 
     // OnStateExit is called when a transition ends and the state machine finishes evaluating this state

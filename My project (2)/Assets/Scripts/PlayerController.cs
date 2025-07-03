@@ -130,7 +130,7 @@ public class PlayerController : MonoBehaviour
 
     public Vector3 playerDeltaMovement = Vector3.zero;
 
-    public Rig rig;
+    //public Rig rig;
 
     private bool IsNormalAttacking;
 
@@ -196,7 +196,7 @@ public class PlayerController : MonoBehaviour
 
         _cinemachineTargetYaw = CinemachineCameraTarget.transform.rotation.eulerAngles.y;
 
-        rig = GetComponentInChildren<Rig>();
+        //rig = GetComponentInChildren<Rig>();
     }
 
     void Update()
@@ -212,18 +212,18 @@ public class PlayerController : MonoBehaviour
     
     void LateUpdate()
     {
-        if (MasterManager.Instance.GameEventManager.IsgamePaused == false)
+        //if (MasterManager.Instance.GameEventManager.IsgamePaused == false)
             //CameraRotation();
 
-        switch (IsChanting)
-        {
-            case true:
-                rig.weight = Mathf.Lerp(rig.weight, 1.0f, Time.deltaTime * 10.0f);
-                break;
-            case false:
-                rig.weight = Mathf.Lerp(rig.weight, 0.0f, Time.deltaTime * 15.0f);
-                break;
-        }
+        //switch (IsChanting)
+        //{
+        //    case true:
+        //        rig.weight = Mathf.Lerp(rig.weight, 1.0f, Time.deltaTime * 10.0f);
+        //        break;
+        //    case false:
+        //        rig.weight = Mathf.Lerp(rig.weight, 0.0f, Time.deltaTime * 15.0f);
+        //        break;
+        //}
 
         DealWithInputInFixUpdate();
     }

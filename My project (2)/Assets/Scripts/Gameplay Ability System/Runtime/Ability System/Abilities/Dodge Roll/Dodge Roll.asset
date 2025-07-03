@@ -19,6 +19,7 @@ MonoBehaviour:
     BlockAbilitiesWithTags: []
     ActivationOwnedTags:
     - {fileID: 11400000, guid: 704065c31b55a2745aa8833c42d38542, type: 2}
+    - {fileID: 11400000, guid: c0a06322ce7c0a94480a36ec74827634, type: 2}
     OwnerTags:
       RequireTags: []
       IgnoreTags:
@@ -34,3 +35,4 @@ MonoBehaviour:
   Cooldown: {fileID: 11400000, guid: 49706804e56e90949ab0d678734d984f, type: 2}
   GameplayEffect: {fileID: 11400000, guid: 6a547be1f9d747144a601454c98a0e6e, type: 2}
   AnimationTriggerName: DodgeRoll Ability
+  AnimationBoolName: 

@@ -9,6 +9,10 @@ public class CastPointComponent : MonoBehaviour
     [SerializeField]
     public GameObject SwordColliderPoint;
 
+    public Transform _castPoint;
+
+    public Transform facePoint;
+
 
     public GameObject GetSwordColliderPoint()
     {

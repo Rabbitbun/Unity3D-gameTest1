@@ -124,7 +124,7 @@ public class PlayerInputManager : MonoBehaviour
     public void OnEscInput(InputAction.CallbackContext context)
     {
         //EscPressed = !EscPressed;
-        MasterManager.Instance.GameEventManager.PauseGame();
+        // MasterManager.Instance.GameEventManager.PauseGame();
     }
 
     public void OnCasting(InputAction.CallbackContext context)

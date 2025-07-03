@@ -16,12 +16,13 @@ MonoBehaviour:
   <MaxStackSize>k__BackingField: 99
   <ItemName>k__BackingField: Apple
   <ID>k__BackingField: 101
-  <ItemImage>k__BackingField: {fileID: 21300000, guid: f09eae8c0ea04254b90c5386a034a225, type: 3}
+  <ItemImage>k__BackingField: {fileID: 21300000, guid: 2aa6ab62866ce4439ab7303f7da55e51, type: 3}
   <Description>k__BackingField: 'An Apple.
 
     Recover Health while ate.'
   <OtherInfo>k__BackingField: nothing.
   itemType: 0
+  <DefaultParametersList>k__BackingField: []
   modifierDatas:
   - stateModifier: {fileID: 11400000, guid: 6972299316b4e3547be0167a14f5512f, type: 2}
     value: -10

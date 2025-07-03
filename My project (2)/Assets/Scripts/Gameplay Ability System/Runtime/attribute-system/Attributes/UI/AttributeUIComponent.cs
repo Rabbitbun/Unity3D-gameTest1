@@ -22,6 +22,11 @@ public class AttributeUIComponent : BaseAttributeUIComponent
         slider.maxValue = maxValue;
         slider.value = math.lerp(slider.value, currentValue, Time.deltaTime * lerpSpeed);
         
+        if (currentValue <= 0)
+        {
+            shrinkBar.fillAmount = 0;
+        }
+
 
         // 處理需要 shrink 的 bar
         if (shouldShrink && maxValue != 0) 

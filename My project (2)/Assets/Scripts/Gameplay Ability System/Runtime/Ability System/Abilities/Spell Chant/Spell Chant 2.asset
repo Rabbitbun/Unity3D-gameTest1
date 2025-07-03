@@ -15,7 +15,8 @@ MonoBehaviour:
   AbilityName: Spell Chant 2
   AbilityTags:
     AssetTag: {fileID: 11400000, guid: 1d72e484d6c1c2044b933d9f5e9c2899, type: 2}
-    CancelAbilitiesWithTags: []
+    CancelAbilitiesWithTags:
+    - {fileID: 11400000, guid: c0a06322ce7c0a94480a36ec74827634, type: 2}
     BlockAbilitiesWithTags: []
     ActivationOwnedTags:
     - {fileID: 11400000, guid: 1d72e484d6c1c2044b933d9f5e9c2899, type: 2}

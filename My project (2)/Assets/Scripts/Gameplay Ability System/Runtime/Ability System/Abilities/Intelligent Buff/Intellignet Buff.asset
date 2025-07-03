@@ -1,0 +1,35 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f50dcf1d2d1867e4c93c37855d046bbb, type: 3}
+  m_Name: Intellignet Buff
+  m_EditorClassIdentifier: 
+  AbilityName: Intelligent Buff
+  AbilityTags:
+    AssetTag: {fileID: 0}
+    CancelAbilitiesWithTags: []
+    BlockAbilitiesWithTags: []
+    ActivationOwnedTags: []
+    OwnerTags:
+      RequireTags: []
+      IgnoreTags:
+      - {fileID: 11400000, guid: 7ee1ab38bf4c8b745bac65ecc2db12ac, type: 2}
+    SourceTags:
+      RequireTags: []
+      IgnoreTags: []
+    TargetTags:
+      RequireTags: []
+      IgnoreTags: []
+  Cost: {fileID: 11400000, guid: 0a0f8daf621a8e34f901a4a0c0cdf00f, type: 2}
+  Cooldown: {fileID: 11400000, guid: f26dc91ee7a047845afde7ee0ef12784, type: 2}
+  GameplayEffect: {fileID: 11400000, guid: 34d4081962993784db467ea8129f5957, type: 2}
+  AnimationTriggerName: Intelligent Buff Ability
+  AnimationBoolName: 

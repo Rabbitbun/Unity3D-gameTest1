@@ -1,3 +1,4 @@
+using DG.Tweening;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
@@ -13,64 +14,102 @@ public class UIAbilityList : MonoBehaviour
     [SerializeField] private List<Image> icons2;
 
     [SerializeField] private float iconFadeValue = 0.2f;
+    [SerializeField] private float switchDuration = 0.5f;
 
-    // Start is called before the first frame update
-    void Start()
+    [SerializeField] private InputReader _inputReader = default;
+
+    private int _activePanelIndex = 0; // Track the currently active panel
+
+    private void OnEnable()
     {
-
+        _inputReader.switchAbilityListEvent += SwitchPanelActiveHandler;
     }
 
-    // Update is called once per frame
-    void Update()
+    private void OnDisable()
     {
-        
+        _inputReader.switchAbilityListEvent -= SwitchPanelActiveHandler;
     }
 
-    public void SwitchPanelActiveHandler(int index)
+    public void SwitchPanelActiveHandler()
     {
-        SwitchPanel(abilityPanel1, abilityPanel2);
-        ResetAllIcons();
-        switch (index) 
+        // Toggle active panel index
+        _activePanelIndex = (_activePanelIndex + 1) % 2;
+
+        if (_activePanelIndex == 0)
         {
-            case 0:
-                FadeOutPanelIcon(icons2);
-                break;            
-            case 1:
-                FadeOutPanelIcon(icons1);
-                break;
+            SwitchPanel(abilityPanel2, abilityPanel1);
+        }
+        else
+        {
+            SwitchPanel(abilityPanel1, abilityPanel2);
+        }
+
+        ResetAllIcons();
+        FadeOutInactivePanelIcons();
+    }
+
+    /// <summary>
+    /// Swaps the positions of two panels with animation.
+    /// </summary>
+    private void SwitchPanel(RectTransform inactivePanel, RectTransform activePanel)
+    {
+        // Use DOTween to animate the position swap
+        Vector2 tempPosition = activePanel.anchoredPosition;
+
+        activePanel.DOAnchorPos(inactivePanel.anchoredPosition, switchDuration).SetEase(Ease.InOutQuad);
+        inactivePanel.DOAnchorPos(tempPosition, switchDuration).SetEase(Ease.InOutQuad).OnComplete(() =>
+        {
+            inactivePanel.gameObject.SetActive(false);
+            activePanel.gameObject.SetActive(true);
+        });
+    }
+
+    /// <summary>
+    /// Fades out the icons of the inactive panel with animation.
+    /// </summary>
+    private void FadeOutInactivePanelIcons()
+    {
+        if (_activePanelIndex == 0)
+        {
+            FadeOutPanelIcons(icons2, abilityPanel2);
+            FadeInPanelIcons(icons1);
+        }
+        else
+        {
+            FadeOutPanelIcons(icons1, abilityPanel1);
+            FadeInPanelIcons(icons2);
         }
     }
-    /// <summary>
-    /// 對調位置
-    /// </summary>
-    private void SwitchPanel(RectTransform p1, RectTransform p2)
+
+    private void FadeOutPanelIcons(List<Image> icons, RectTransform panel)
     {
-        Vector2 temp = p1.anchoredPosition;
-        p1.anchoredPosition = p2.anchoredPosition;
-        p2.anchoredPosition = temp;
+        foreach (Image icon in icons)
+        {
+            icon.DOFade(0f, switchDuration).SetEase(Ease.InOutQuad);
+        }
+        panel.GetComponent<CanvasGroup>().DOFade(0f, switchDuration).SetEase(Ease.InOutQuad).OnComplete(() =>
+        {
+            panel.gameObject.SetActive(false);
+        });
     }
 
-    private void FadeOutPanelIcon(List<Image> icons)
+    private void FadeInPanelIcons(List<Image> icons)
     {
-        foreach (Image icon in icons) 
+        foreach (Image icon in icons)
         {
-            Color currentColor = icon.color;
-            currentColor.a = iconFadeValue;
-            icon.color = currentColor;
+            icon.DOFade(1.0f, switchDuration).SetEase(Ease.InOutQuad);
         }
     }
 
     private void ResetAllIcons()
     {
-        for (int i = 0; i < icons1.Count; i++) 
+        foreach (Image icon in icons1)
         {
-            Color c1 = icons1[i].color;
-            c1.a = 1.0f;
-            icons1[i].color = c1;
-
-            Color c2 = icons2[i].color;
-            c2.a = 1.0f;
-            icons2[i].color = c2;
+            icon.color = new Color(icon.color.r, icon.color.g, icon.color.b, 1.0f);
+        }
+        foreach (Image icon in icons2)
+        {
+            icon.color = new Color(icon.color.r, icon.color.g, icon.color.b, 1.0f);
         }
     }
 }

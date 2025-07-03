@@ -1,0 +1,634 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &-7315451931832624954
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5d3b43058580cce4fb446a9549f4228d, type: 3}
+  m_Name: CombatService
+  m_EditorClassIdentifier: 
+  state: 0
+  started: 0
+  guid: f174ea2e4868a4d47a9a985b3207acf4
+  position: {x: 56.800083, y: 653.99994}
+  description: 
+  drawGizmos: 0
+  child: {fileID: -4354252593961704979}
+  interval: 0.5
+  minObservationTime: 1
+  maxObservationTime: 5
+  ObservationTime: 0
+  minDistance: 5
+  maxDistance: 10
+  movementSpeed: 2
+  target: {fileID: 0}
+  targetPosition: {x: 0, y: 0, z: 0}
+--- !u!114 &-7024622620146950993
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a20b9ee412b2a0f4a9f8ab95255c7380, type: 3}
+  m_Name: BoolCondition
+  m_EditorClassIdentifier: 
+  state: 1
+  started: 0
+  guid: 5f4ecaaa551bc9049b083adc213602d5
+  position: {x: -192, y: -0.80000305}
+  description: IsInChaseRange is set
+  drawGizmos: 0
+  child: {fileID: 0}
+  selectedBlackboardProperty: IsInChaseRange
+  selectedEnumValue: 
+  comparisonType: 0
+--- !u!114 &-4768427809901071977
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: df9e411f4095d0a44acd9a25323f5e73, type: 3}
+  m_Name: Log
+  m_EditorClassIdentifier: 
+  state: 0
+  started: 0
+  guid: 261a85d7efeb8f84e86191b537d56890
+  position: {x: 310.40002, y: 348.79996}
+  description: 
+  drawGizmos: 0
+  message: Patrol Node !!
+--- !u!114 &-4550516816595295055
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b1e3955be5b8d8a49852d2c8fb71010b, type: 3}
+  m_Name: VisionCheck
+  m_EditorClassIdentifier: 
+  state: 2
+  started: 0
+  guid: 74575aea49458134e9e1ec99390b3f14
+  position: {x: -402.40002, y: 159.99998}
+  description: "\u5075\u6E2C\u6575\u4EBA"
+  drawGizmos: 1
+  viewDistance: 500
+  viewAngle: 45
+  rayCount: 10
+  obstacleMask:
+    serializedVersion: 2
+    m_Bits: 0
+  CheckTime: 1
+--- !u!114 &-4354252593961704979
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5bbcff87445f36e4582938670d757ed5, type: 3}
+  m_Name: Succeed
+  m_EditorClassIdentifier: 
+  state: 0
+  started: 0
+  guid: 5f49a528cbce5b04e8db5860c7e063ab
+  position: {x: 56.80004, y: 751.60016}
+  description: 
+  drawGizmos: 0
+  child: {fileID: 7641190406885029514}
+--- !u!114 &-3774885983935003696
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e15a157e0ad4a52459b76db24a5b54d7, type: 3}
+  m_Name: PlayAnimation
+  m_EditorClassIdentifier: 
+  state: 0
+  started: 0
+  guid: e1677b2c43c7ca94f98a7661c50c3745
+  position: {x: 5.1749554, y: 1187.6}
+  description: play Walk
+  drawGizmos: 0
+  animationName: Walk
+  WaitForAnimationEnd: 0
+  elapsedTime: 0
+  transitionDuration: 0.25
+  animationLayer: 0
+--- !u!114 &-3422896951053890912
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5bbcff87445f36e4582938670d757ed5, type: 3}
+  m_Name: Succeed
+  m_EditorClassIdentifier: 
+  state: 2
+  started: 0
+  guid: fbd430a72310cb243ba98c1aaa1c467e
+  position: {x: -402.40936, y: -3.2000012}
+  description: 
+  drawGizmos: 0
+  child: {fileID: -4550516816595295055}
+--- !u!114 &-2641633235667909642
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ed81eea7b1dd72a4facd4631f7a70350, type: 3}
+  m_Name: EnumCondition
+  m_EditorClassIdentifier: 
+  state: 0
+  started: 0
+  guid: 30448f2cd8fdd7145b8ba4306898b517
+  position: {x: 56.80002, y: 535.2}
+  description: AICombatState is equl to Observed
+  drawGizmos: 0
+  child: {fileID: -7315451931832624954}
+  selectedBlackboardProperty: AICombatState
+  selectedEnumValue: 
+  comparisonType: 0
+  AICombatState: 1
+  AIState: 0
+--- !u!114 &-2550196092182246467
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: df9e411f4095d0a44acd9a25323f5e73, type: 3}
+  m_Name: Log
+  m_EditorClassIdentifier: 
+  state: 0
+  started: 0
+  guid: 5d3203ee31dcb5647952fca1b4e03963
+  position: {x: 510.52774, y: 119.99995}
+  description: Selector!!!!!
+  drawGizmos: 0
+  message: Selector!!!!!
+--- !u!114 &-2517273545541526985
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 883b92265770e1749baefe163c77dfb1, type: 3}
+  m_Name: ObservedMove
+  m_EditorClassIdentifier: 
+  state: 0
+  started: 0
+  guid: df268e051c63f954cbe08d183010038d
+  position: {x: -43.419006, y: 990.3677}
+  description: 
+  drawGizmos: 0
+  moveSpeed: 1
+  stoppingDistance: 10
+  updateRotation: 1
+  acceleration: 10
+  tolerance: 1
+  circleRadius: 3
+  target: {fileID: 0}
+  targetPosition: {x: 0, y: 0, z: 0}
+--- !u!114 &-2223520412924045933
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a20b9ee412b2a0f4a9f8ab95255c7380, type: 3}
+  m_Name: BoolCondition
+  m_EditorClassIdentifier: 
+  state: 0
+  started: 0
+  guid: 49289e391dbf29046924de63bf5c1828
+  position: {x: 310.39996, y: 225.59998}
+  description: PauseCheck is unset
+  drawGizmos: 0
+  child: {fileID: -4768427809901071977}
+  selectedBlackboardProperty: PauseCheck
+  selectedEnumValue: 
+  comparisonType: 1
+--- !u!114 &-1431938784283922700
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e5f6aaafd5aa1154e9411cb0a72ebc58, type: 3}
+  m_Name: UseAbility
+  m_EditorClassIdentifier: 
+  state: 0
+  started: 0
+  guid: 8108ed5ede969524abed3e79515ef9a9
+  position: {x: 292.80005, y: 722.4001}
+  description: 
+  drawGizmos: 0
+  ability: {fileID: 11400000, guid: 5f876f70facd4364a8e55107ae967271, type: 2}
+--- !u!114 &-151696506993535977
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6525591d60a13644490f251e6dbf984d, type: 3}
+  m_Name: RotateToTarget
+  m_EditorClassIdentifier: 
+  state: 0
+  started: 0
+  guid: 32fe10ee364138644b0ee60381adccea
+  position: {x: -172.79999, y: 698.7953}
+  description: 
+  drawGizmos: 0
+  target: {fileID: 0}
+  rotationSpeed: 5
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2d285eb63c2cdd74180de7cfceaa96ad, type: 3}
+  m_Name: EnemyBT
+  m_EditorClassIdentifier: 
+  rootNode: {fileID: 1854170605566527679}
+  treeState: 0
+  nodes:
+  - {fileID: 1854170605566527679}
+  - {fileID: 6115778758033886371}
+  - {fileID: -4550516816595295055}
+  - {fileID: 5155156546083963908}
+  - {fileID: 6598976396887753745}
+  - {fileID: 5387291665582382612}
+  - {fileID: 844154677091839531}
+  - {fileID: 6833198487029651158}
+  - {fileID: -2223520412924045933}
+  - {fileID: -4768427809901071977}
+  - {fileID: -3422896951053890912}
+  - {fileID: -2550196092182246467}
+  - {fileID: -1431938784283922700}
+  - {fileID: 6665009071834977714}
+  - {fileID: 736679595271877980}
+  - {fileID: -151696506993535977}
+  - {fileID: -2641633235667909642}
+  - {fileID: -4354252593961704979}
+  - {fileID: 5852118910854495918}
+  - {fileID: -7315451931832624954}
+  - {fileID: 6258289092657365638}
+  - {fileID: 8994067120161804060}
+  - {fileID: 7641190406885029514}
+  - {fileID: -3774885983935003696}
+  - {fileID: -7024622620146950993}
+  - {fileID: 6195091960315245816}
+  - {fileID: -2517273545541526985}
+--- !u!114 &736679595271877980
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5bbcff87445f36e4582938670d757ed5, type: 3}
+  m_Name: Succeed
+  m_EditorClassIdentifier: 
+  state: 0
+  started: 0
+  guid: d7b902c022de5d14a86c596fa314f1c1
+  position: {x: -172.79999, y: 585.99524}
+  description: 
+  drawGizmos: 0
+  child: {fileID: -151696506993535977}
+--- !u!114 &844154677091839531
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a20b9ee412b2a0f4a9f8ab95255c7380, type: 3}
+  m_Name: BoolCondition
+  m_EditorClassIdentifier: 
+  state: 0
+  started: 0
+  guid: d2a338d9e35e2644bab839bb5eb2e010
+  position: {x: 107.20009, y: 225.59999}
+  description: PauseCheck is unset
+  drawGizmos: 0
+  child: {fileID: 6665009071834977714}
+  selectedBlackboardProperty: PauseCheck
+  selectedEnumValue: 
+  comparisonType: 1
+--- !u!114 &1854170605566527679
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 163c147d123e4a945b688eddc64e3ea5, type: 3}
+  m_Name: RootNode
+  m_EditorClassIdentifier: 
+  state: 0
+  started: 1
+  guid: 7572c0e2bfc7a5b4a983bc75d728ff76
+  position: {x: -42.400055, y: -396.03912}
+  description: "Eileen\u827E\u7433\u7684BT"
+  drawGizmos: 0
+  child: {fileID: 6598976396887753745}
+--- !u!114 &5155156546083963908
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 460be9e34c566ea45b9e282b1adcb028, type: 3}
+  m_Name: Selector
+  m_EditorClassIdentifier: 
+  state: 0
+  started: 0
+  guid: a4ff740699e54c347bd13138845d6b56
+  position: {x: 108.00007, y: -1.5999998}
+  description: 
+  drawGizmos: 0
+  children:
+  - {fileID: 5387291665582382612}
+  - {fileID: 6833198487029651158}
+--- !u!114 &5387291665582382612
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ed81eea7b1dd72a4facd4631f7a70350, type: 3}
+  m_Name: EnumCondition
+  m_EditorClassIdentifier: 
+  state: 0
+  started: 0
+  guid: 67879fe35b3ba304cae620203d357a72
+  position: {x: 107.20001, y: 117.60002}
+  description: AIState is equal Combat
+  drawGizmos: 0
+  child: {fileID: 844154677091839531}
+  selectedBlackboardProperty: AIState
+  selectedEnumValue: 
+  comparisonType: 0
+  AICombatState: 0
+  AIState: 3
+--- !u!114 &5852118910854495918
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 883b92265770e1749baefe163c77dfb1, type: 3}
+  m_Name: ObservedMove
+  m_EditorClassIdentifier: 
+  state: 0
+  started: 0
+  guid: cb007fedbc0dcac4e80e0a9a23de5efd
+  position: {x: 56.80002, y: 1219.6982}
+  description: 
+  drawGizmos: 0
+  moveSpeed: 5
+  stoppingDistance: 0.1
+  updateRotation: 1
+  acceleration: 10
+  tolerance: 1
+  circleRadius: 3
+  target: {fileID: 0}
+  targetPosition: {x: 0, y: 0, z: 0}
+--- !u!114 &6115778758033886371
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 61431bba79d7d7843b82bf1de71703f5, type: 3}
+  m_Name: Sequencer
+  m_EditorClassIdentifier: 
+  state: 1
+  started: 0
+  guid: ab9c40707949d9c40bab3499741f4268
+  position: {x: -41.600025, y: -145.15106}
+  description: 
+  drawGizmos: 0
+  children:
+  - {fileID: -3422896951053890912}
+  - {fileID: 5155156546083963908}
+--- !u!114 &6195091960315245816
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: df9e411f4095d0a44acd9a25323f5e73, type: 3}
+  m_Name: Log
+  m_EditorClassIdentifier: 
+  state: 0
+  started: 0
+  guid: acac1ba576e88134792c2be84e666c3b
+  position: {x: -191.99998, y: 141.59995}
+  description: IsInChaseRange!!!!
+  drawGizmos: 0
+  message: IsInChaseRange!!!!
+--- !u!114 &6258289092657365638
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ed81eea7b1dd72a4facd4631f7a70350, type: 3}
+  m_Name: EnumCondition
+  m_EditorClassIdentifier: 
+  state: 0
+  started: 0
+  guid: dbb43f63087dbe649b35a8f579a061bb
+  position: {x: 292.79993, y: 585.60004}
+  description: AICombatState is equal to Attack
+  drawGizmos: 0
+  child: {fileID: -1431938784283922700}
+  selectedBlackboardProperty: AICombatState
+  selectedEnumValue: 
+  comparisonType: 0
+  AICombatState: 2
+  AIState: 0
+--- !u!114 &6598976396887753745
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: afb5496e8cd973748a10b3e3ef436ebd, type: 3}
+  m_Name: Repeat
+  m_EditorClassIdentifier: 
+  state: 0
+  started: 1
+  guid: 7ef5e616cb2804a4cb15b1d7452b47d8
+  position: {x: -42.399982, y: -257.3225}
+  description: 
+  drawGizmos: 0
+  child: {fileID: 6115778758033886371}
+  restartOnSuccess: 1
+  restartOnFailure: 1
+--- !u!114 &6665009071834977714
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 61431bba79d7d7843b82bf1de71703f5, type: 3}
+  m_Name: Sequencer
+  m_EditorClassIdentifier: 
+  state: 0
+  started: 0
+  guid: f39f35dba62e6a44eb71728643c4d53b
+  position: {x: 107.20001, y: 355.19992}
+  description: 
+  drawGizmos: 0
+  children:
+  - {fileID: 736679595271877980}
+  - {fileID: -2641633235667909642}
+  - {fileID: 6258289092657365638}
+--- !u!114 &6833198487029651158
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ed81eea7b1dd72a4facd4631f7a70350, type: 3}
+  m_Name: EnumCondition
+  m_EditorClassIdentifier: 
+  state: 0
+  started: 0
+  guid: c1ae5324f9ce75045bc7ed13bb9a7254
+  position: {x: 310.39996, y: 119.99999}
+  description: AIState is equal Patrol
+  drawGizmos: 0
+  child: {fileID: -2223520412924045933}
+  selectedBlackboardProperty: AIState
+  selectedEnumValue: 
+  comparisonType: 0
+  AICombatState: 0
+  AIState: 1
+--- !u!114 &7641190406885029514
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 61431bba79d7d7843b82bf1de71703f5, type: 3}
+  m_Name: Sequencer
+  m_EditorClassIdentifier: 
+  state: 0
+  started: 0
+  guid: 00e6130a33eb1934eab4ded6c8527704
+  position: {x: 57.999985, y: 858.2}
+  description: 
+  drawGizmos: 0
+  children:
+  - {fileID: -2517273545541526985}
+--- !u!114 &8994067120161804060
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4489e3e257543504c8fc9f891246af6c, type: 3}
+  m_Name: MoveToPosition
+  m_EditorClassIdentifier: 
+  state: 0
+  started: 0
+  guid: c70c756deb2653d40be30e1dc60d2985
+  position: {x: -285.36407, y: 807.6}
+  description: 
+  drawGizmos: 0
+  speed: 1
+  stoppingDistance: 5
+  updateRotation: 1
+  acceleration: 10
+  tolerance: 1

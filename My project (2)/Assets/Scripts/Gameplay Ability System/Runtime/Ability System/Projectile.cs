@@ -42,12 +42,21 @@ public class Projectile : ProjectileBase
     //[Tooltip("碰撞時要摧毀的粒子系統(例如trail、主體等等)")]
     //public ParticleSystem[] ProjectileDestroyParticleSystemsOnCollision;
 
+    public bool AutoReDirection = false;
+
+    public float TargetYOffset = 0.0f;
+
     private bool collided;
+
+    private Rigidbody rb;
+    private float timer = 0;
+    public float turnRate = 100f;
 
     public Action<AbilitySystemCharacter> OnHit;
     [ReadOnly] public AbilitySystemCharacter source;
 
-
+    private Vector3 targetPosition;
+    [SerializeField, ReadOnly] private AbilitySystemCharacter target;
 
     private IEnumerator SendCollisionAfterDelay()
     {
@@ -63,10 +72,71 @@ public class Projectile : ProjectileBase
         base.Start();
 
         StartCoroutine(SendCollisionAfterDelay());
+
+        rb = GetComponent<Rigidbody>();
+
+        // 自動追蹤功能
+        if (AutoReDirection)
+        {
+            // 尋找最近的目標
+            target = FindClosestTarget();
+            if (target != null)
+            {
+                targetPosition = target.transform.position;
+            }
+        }
+    }
+
+    private void FixedUpdate()
+    {
+        if (AutoReDirection && target != null)
+        {
+            timer += Time.deltaTime;
+
+            if (target == null) return;
+            targetPosition = target.transform.position;
+            targetPosition.y += TargetYOffset;
+            //transform.rotation = Quaternion.RotateTowards(transform.rotation, Quaternion.LookRotation(targetPosition - transform.position), Time.deltaTime * turnRate * timer);
+            //rb.velocity = transform.forward * ProjectileColliderSpeed;
+            float step = timer;
+
+            // 旋轉投射物朝向目標
+            Vector3 direction = (targetPosition - transform.position).normalized;
+            Quaternion lookRotation = Quaternion.LookRotation(direction);
+            transform.rotation = Quaternion.RotateTowards(transform.rotation, lookRotation, step);
+
+            // 更新速度，保持前進方向
+            rb.velocity = transform.forward * ProjectileColliderSpeed;
+        }
+    }
+
+    private AbilitySystemCharacter FindClosestTarget()
+    {
+        // 尋找所有可能的目標
+        Collider[] colliders = Physics.OverlapSphere(transform.position, 100f, ProjectileCollisionLayers);
+
+        // 找出最近的目標
+        AbilitySystemCharacter closestTarget = null;
+        float shortestDistance = float.MaxValue;
+        foreach (Collider collider in colliders)
+        {
+            if (collider.GetComponent<AbilitySystemCharacter>() != null && collider.GetComponent<AbilitySystemCharacter>() != source)
+            {
+                float distance = Vector3.Distance(transform.position, collider.transform.position);
+                if (distance < shortestDistance)
+                {
+                    shortestDistance = distance;
+                    closestTarget = collider.GetComponent<AbilitySystemCharacter>();
+                }
+            }
+        }
+
+        return closestTarget;
     }
 
     private void OnCollisionEnter(Collision other)
     {
+        Debug.Log("碰撞到: "+other.gameObject.name);
         if (collided || other.gameObject.GetComponent<AbilitySystemCharacter>() == source)
         {
             // already collided, don't do anything
@@ -75,6 +145,7 @@ public class Projectile : ProjectileBase
         // stop the projectile
         collided = true;
         Stop();
+        rb.velocity = Vector3.zero; // 停止投射物
 
         if (other.gameObject.GetComponent<AbilitySystemCharacter>() != null && other.gameObject.GetComponent<AbilitySystemCharacter>() != source)
         {

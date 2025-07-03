@@ -1,0 +1,25 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4167b161db9825c4f8f04e9b350968ff, type: 3}
+  m_Name: Blood Arrow VFX Cue Pre
+  m_EditorClassIdentifier: 
+  Name: Blood Arrow Pre
+  Description: Pre
+  tag: {fileID: 0}
+  VfxPrefab: {fileID: 1782761041121067976, guid: b9fee4aefc3fa154985652d7793d3025, type: 3}
+  IsAttachToTarget: 1
+  OverrideSettings: 0
+  UsePrefabTransform: 0
+  Offset: {x: 0, y: 0, z: 0}
+  Rotation: {x: 0, y: 0, z: 0}
+  Scale: {x: 1, y: 1, z: 1}
+  offsetType: 1

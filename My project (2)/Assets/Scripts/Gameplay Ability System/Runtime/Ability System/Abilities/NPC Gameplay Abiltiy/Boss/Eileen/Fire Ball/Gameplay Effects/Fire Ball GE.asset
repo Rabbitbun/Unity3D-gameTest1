@@ -1,0 +1,49 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 75732b2e301ef7646bd23d3e5dc00cfd, type: 3}
+  m_Name: Fire Ball GE
+  m_EditorClassIdentifier: 
+  gameplayEffect:
+    DurationPolicy: 0
+    DurationModifier: {fileID: 11400000, guid: c7f694d9947adb54f88adc4e119455c1, type: 2}
+    DurationMultiplier: 5
+    Modifiers:
+    - Attribute: {fileID: 11400000, guid: 5bde0391a6f30cb4180cd98b90607e0a, type: 2}
+      ModifierOperator: 0
+      ModifierMagnitude: {fileID: 11400000, guid: caac877ebebdd584cb0f5fe9e9ba39d5, type: 2}
+      Multiplier: -40
+      offset: 0
+    ConditionalGameplayEffects: []
+  gameplayEffectTags:
+    AssetTag: {fileID: 11400000, guid: 5e2fd2fe4db06394990f9c8ac3b43b96, type: 2}
+    GrantedTags: []
+    OngoingTagRequirements:
+      RequireTags: []
+      IgnoreTags: []
+    ApplicationTagRequirements:
+      RequireTags: []
+      IgnoreTags: []
+    RemovalTagRequirements:
+      RequireTags: []
+      IgnoreTags: []
+    RemoveGameplayEffectsWithTag: []
+  Period:
+    Period: 0
+    ExecuteOnApplication: 0
+  gameplayCues:
+  - LifeTime: 5
+    delayTime: 0
+    ShouldFlip: 0
+    CuePrefab: {fileID: 0}
+    CueVFXPrefab: {fileID: 0}
+    PSPrefab: {fileID: 4084704624990113270, guid: 777641e7d188100449b2de34d4f4f571, type: 3}
+    playSoundCue: {fileID: 0}

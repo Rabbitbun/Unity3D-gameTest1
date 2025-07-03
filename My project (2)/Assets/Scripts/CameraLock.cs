@@ -15,12 +15,12 @@ public class CameraLock : MonoBehaviour
 
 
     [SerializeField] private InputReader _inputReader = default;
-    //[Space]
-    //[Header("UI")]
-    //[SerializeField] private Image aimIcon;  // ui image of aim icon u can leave it null.
-    //[Space]
-    //[Header("Settings")]
-    //[Space]
+    [Space]
+    [Header("UI")]
+    [SerializeField] private Image aimIcon;  // ui image of aim icon u can leave it null.
+    [Space]
+    [Header("Settings")]
+    [Space]
     [SerializeField] private string enemyTag; // the enemies tag.
     //[SerializeField] private KeyCode _Input;
     [SerializeField] private Vector2 targetLockOffset;
@@ -67,8 +67,8 @@ public class CameraLock : MonoBehaviour
             NewInputTarget(currentTarget);
         }
 
-        ////if (aimIcon)
-        ////    aimIcon.gameObject.SetActive(isTargeting);
+        if (aimIcon)
+            aimIcon.gameObject.SetActive(isTargeting);
 
         cinemachineFreeLook.m_XAxis.m_InputAxisValue = mouseX;
         cinemachineFreeLook.m_YAxis.m_InputAxisValue = mouseY;
@@ -102,9 +102,9 @@ public class CameraLock : MonoBehaviour
             Vector3 aimDirection = (targetPosition - transform.position).normalized;
 
             // 如果玩家沒有移動,則直接面向目標
-            if (playerController.playerMovement.sqrMagnitude < 0.1f)
+            if (playerController.playerMovement.sqrMagnitude < 0.2f)
             {
-                transform.forward = Vector3.Lerp(transform.forward, aimDirection, Time.deltaTime * 15f);
+                transform.forward = Vector3.Lerp(transform.forward, aimDirection, Time.deltaTime * 35f);
             }
             else
             {
