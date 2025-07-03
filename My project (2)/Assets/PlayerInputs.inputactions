@@ -695,7 +695,7 @@
                     "path": "<Mouse>/position",
                     "interactions": "",
                     "processors": "",
-                    "groups": "",
+                    "groups": "Keyboard&Mouse",
                     "action": "MouseMove",
                     "isComposite": false,
                     "isPartOfComposite": false
