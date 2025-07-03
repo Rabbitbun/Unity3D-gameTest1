@@ -15,6 +15,7 @@ TagManager:
   - UI
   - Enemy
   - Post process
+  - EnemySensor
   - 
   - 
   - 
@@ -37,8 +38,7 @@ TagManager:
   - 
   - 
   - 
-  - 
-  - 
+  - AbilityLayer
   m_SortingLayers:
   - name: Default
     uniqueID: 0
